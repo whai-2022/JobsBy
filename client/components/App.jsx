@@ -1,6 +1,6 @@
 import React, {} from 'react'
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 import Header from './Header'
 import Splash from './Splash'
@@ -11,28 +11,26 @@ import PostJob from './PostJob'
 function App() {
 
   //dummy auth to get splash / home functionality
-  let authorized = true
+  // let authorized = true
 
   return (
     <>
       
-      <BrowserRouter>
         <header className="header">
           <Header />
         </header>
         <section className="main">
-          {authorized ? <Home /> : <Splash />}
+          {/* {authorized ? <Home /> : <Splash />} */}
         
         </section>
         <footer className="footer"></footer>
 
         <Routes>
-          {/* <Route path='/' element={<Splash />} /> */}
+          <Route path='/' element={<Splash />} />
           <Route path='/home' element={<Home />} />
           <Route path='/alljobs' element={<AllJobs />} />
           <Route path='/postjob' element={<PostJob />} />
         </Routes> 
-      </BrowserRouter>
     </>
   )
 }

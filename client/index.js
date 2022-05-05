@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { ChakraProvider } from '@chakra-ui/react'
+import { BrowserRouter } from 'react-router-dom'
 
 import reducers from './reducers'
 import App from './components/App'
@@ -15,7 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
   render(
     <Provider store={store}>
       <ChakraProvider>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </ChakraProvider>
     </Provider>,
     document.getElementById('app')
