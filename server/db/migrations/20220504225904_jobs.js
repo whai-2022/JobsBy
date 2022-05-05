@@ -8,7 +8,7 @@ exports.up = (knex) => {
     table.string('title')
     table.text('description') // for longer strings
     table.text('requirements')
-    table.integer('type_id').references('types.id') // type_id references the id in the types table
+    table.integer('typeId').references('types.id') // type_id references the id in the types table
     table.string('category')
     table.string('locationRegion') // todo: fetch all regions from api
     table.string('locationSuburb') // todo: fetch all suburbs from api

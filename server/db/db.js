@@ -8,6 +8,9 @@ module.exports = {
   addJob,
   deleteJob,
   acceptJob,
+  getJobsByUserId,
+  getJobsByAccepterId,
+  updateJobById,
 }
 
 function getAllJobs(db = connection) {
@@ -31,4 +34,17 @@ function acceptJob(id, accepterId, db = connection) {
     .select()
     .where('id', id)
     .update({ accepted: true, accepterId })
+}
+
+function getJobsByUserId(userId, db = connection) {
+  return db('jobs').select().where('userId', userId)
+}
+
+function getJobsByAccepterId(accepterId, db = connection) {
+  return db('jobs').select().where('accepterId', accepterId)
+}
+
+// User who posted job can update the job listing
+function updateJobById(job, id, db = connection) {
+  return db('jobs').select().where('id', id).update(job)
 }
