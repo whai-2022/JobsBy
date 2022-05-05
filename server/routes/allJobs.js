@@ -46,12 +46,34 @@ router.post('/', (req, res) => {
 })
 
 // route  DELETE /api/jobs/:id
-//
+// Deletes a job by id
 router.delete('/:id', (req, res) => {
   const id = +req.params.id
   db.deleteJob(id)
     .then(() => {
       res.json(id)
+    })
+    .catch((e) => {
+      res.status(500).send(e.message)
+    })
+})
+
+// route  PATCH /api/allJobs/:id
+
+// res.body should be { accepterId }
+
+// updates accepted to true and acceptedId
+// gets the updated job and sends it back
+router.patch('/:id', (req, res) => {
+  const id = +req.params.id
+  const accepterId = req.body.accepterId
+
+  db.acceptJob(id, accepterId)
+    .then(() => {
+      return db.getJobById(id)
+    })
+    .then((job) => {
+      res.json(job)
     })
     .catch((e) => {
       res.status(500).send(e.message)

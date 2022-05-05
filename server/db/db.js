@@ -6,6 +6,8 @@ module.exports = {
   getAllJobs,
   getJobById,
   addJob,
+  deleteJob,
+  acceptJob,
 }
 
 function getAllJobs(db = connection) {
@@ -13,9 +15,20 @@ function getAllJobs(db = connection) {
 }
 
 function getJobById(id, db = connection) {
-  return db('jobs').select().where('id', id)
+  return db('jobs').select().where('id', id).first()
 }
 
 function addJob(job, db = connection) {
   return db('jobs').insert(job)
+}
+
+function deleteJob(id, db = connection) {
+  return db('jobs').del().where('id', id)
+}
+
+function acceptJob(id, accepterId, db = connection) {
+  return db('jobs')
+    .select()
+    .where('id', id)
+    .update({ accepted: true, accepterId })
 }
