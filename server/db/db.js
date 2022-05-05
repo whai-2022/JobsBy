@@ -14,7 +14,7 @@ module.exports = {
 }
 
 function getAllJobs(db = connection) {
-  return db('jobs').select()
+  return db('jobs').select().where('accepted', false)
 }
 
 function getJobById(id, db = connection) {
