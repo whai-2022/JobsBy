@@ -1,21 +1,22 @@
-import React, { useEffect } from 'react'
+import React, {} from 'react'
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Header from './Header'
 import Splash from './Splash'
 import Home from './Home'
-import Nav from './Nav'
 import AllJobs from './AllJobs'
+import PostJob from './PostJob'
 
 function App() {
-  useEffect(() => { }, [])
-  
+
   //dummy auth to get splash / home functionality
-  let authorized = false
+  let authorized = true
 
   return (
     <>
-      {/* <BrowserRouter> */}
+      
+      <BrowserRouter>
         <header className="header">
           <Header />
         </header>
@@ -25,12 +26,13 @@ function App() {
         </section>
         <footer className="footer"></footer>
 
-        {/* <Routes>
-          <Route path='/' element={<Splash />} />
+        <Routes>
+          {/* <Route path='/' element={<Splash />} /> */}
           <Route path='/home' element={<Home />} />
           <Route path='/alljobs' element={<AllJobs />} />
-        </Routes> */}
-      {/* </BrowserRouter> */}
+          <Route path='/postjob' element={<PostJob />} />
+        </Routes> 
+      </BrowserRouter>
     </>
   )
 }
