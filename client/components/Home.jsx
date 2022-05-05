@@ -10,11 +10,11 @@ function Home() {
     <>
       <Heading>Welcome</Heading>
       <br />
-      <Text>Please choose your option:</Text>
+      <Text>Are you looking for work, or needing a job done? </Text>
       <br />
-      <Link to='/alljobs' aria-label='all jobs'>See all jobs available</Link>
+      <Link to='/alljobs' aria-label='find jobs to be done' p={20}>See which jobs are available</Link>
       <br />
-      <Link to='/postjob' aria-label='post job'>Post a new job </Link>
+      <Link to='/postjob' aria-label='post a new job' p={20}>Post a new job </Link>
 
     </>
   )
