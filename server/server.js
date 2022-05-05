@@ -6,7 +6,8 @@ const server = express()
 server.use(express.json())
 server.use(express.static(path.join(__dirname, 'public')))
 
-//resolve path to browser
+server.use('/api/allJobs', require('./routes/allJobs'))
+server.use('/api/myJobs', require('./routes/myJobs'))
 
 server.get('*', (req, res) => {
   res.sendFile(path.resolve('server/public/index.html'))
