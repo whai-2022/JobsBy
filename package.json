@@ -77,9 +77,10 @@
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.21.0",
+    "@vscode/sqlite3": "^5.0.7",
     "express": "^4.17.1",
     "knex": "^1.0.1",
-    "@vscode/sqlite3": "^5.0.7",
     "pg": "^8.5.1",
     "superagent": "^6.1.0"
   },
