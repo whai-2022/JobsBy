@@ -20,14 +20,13 @@ function App() {
     <>
       <header className="header">
         <Header />
+        <Nav />
       </header>
-addressAutocomplete
       <Container maxW='container.sm' textAlign='center'>
       <section className="main">
         {/* {authorized ? <Home /> : <Splash />} */}
       </section>
       <footer className="footer"></footer>
-      <Nav />
 
         <Routes>
           <Route path='/' element={<Splash />} />
