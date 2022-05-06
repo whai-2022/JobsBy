@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react"
 import * as api from '../apis'
 import Job from './Job'
+import { fetchJobs } from "../actions"
 
-import { Heading, VStack, FormControl, FormLabel, Input, FormHelperText } from "@chakra-ui/react"
+import { Button, Heading, VStack, FormControl, FormLabel, Input, FormHelperText } from "@chakra-ui/react"
 import { useSelector, useDispatch} from "react-redux"
 
 function AllJobs() {
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
+
+  // temporary status for re-rendering
+  const [status, setStatus] = useState(false)
 
   const jobs = useSelector((state) => state.jobsReducer)
   
@@ -15,7 +19,7 @@ function AllJobs() {
 
   useEffect(() => {
     dispatch(fetchJobs())
-  }, [])
+  }, [status])
 
   console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
 
@@ -26,6 +30,10 @@ function AllJobs() {
         setAddresses(res)
       })
       .catch(err => console.log(err))
+  }
+
+  function handleClick() {
+    setStatus(true)
   }
 
   return (
@@ -48,13 +56,14 @@ function AllJobs() {
         <datalist id="addresses" name="addresses" >
           {addresses.map((address, idx) => (<option value={address.formatted} key={`address-${idx}`} />))}
         </datalist>
+        <Button onClick={handleClick}>Search</Button>
       </FormControl>
 
       {/* Cards of jobs */}
       <VStack spacing={6}>
-        <Job/>
-        <Job />
-        <Job/>
+        {status && jobs.map((job, i) => {
+         <Job key={i} title={job.title} description={job.description} />
+       })}
       </VStack>
       
     </>
