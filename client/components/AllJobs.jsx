@@ -5,7 +5,7 @@ import { Select } from "@chakra-ui/react"
 function AllJobs() {
 
   return (
-    <div>
+    <>
       <Select placeholder='Select your location' size='sm'>
         <option value='Auckland'>Auckland</option>
         <option value='Wellington'>Wellington</option>
@@ -14,7 +14,8 @@ function AllJobs() {
 
 
 
-    </div>
+
+    </>
   )
 }
 

@@ -2,7 +2,7 @@ import React, {} from 'react'
 
 import { Routes, Route } from 'react-router-dom'
 
-import { Container } from '@chakra-ui/react'
+import { Container} from '@chakra-ui/react'
 
 import Header from './Header'
 import Splash from './Splash'
