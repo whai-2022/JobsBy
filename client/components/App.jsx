@@ -1,4 +1,4 @@
-import React, {} from 'react'
+import React from 'react'
 
 import { Routes, Route } from 'react-router-dom'
 
@@ -12,7 +12,6 @@ import PostJob from './PostJob'
 import Nav from './Nav'
 
 function App() {
-
   //dummy auth to get splash / home functionality
   // let authorized = true
 
@@ -21,14 +20,13 @@ function App() {
       <header className="header">
         <Header />
       </header>
-      <Nav />
-      
-
+addressAutocomplete
       <Container maxW='container.sm' textAlign='center'>
-        <section className="main">
-          {/* {authorized ? <Home /> : <Splash />} */}
-        </section>
-        <footer className="footer"></footer>
+      <section className="main">
+        {/* {authorized ? <Home /> : <Splash />} */}
+      </section>
+      <footer className="footer"></footer>
+      <Nav />
 
         <Routes>
           <Route path='/' element={<Splash />} />
