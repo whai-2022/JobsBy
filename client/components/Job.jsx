@@ -4,7 +4,6 @@ import { Link, Link as LinkTo } from 'react-router-dom'
 import {Box, Badge, LinkBox, LinkOverlay } from '@chakra-ui/react'
 
 function Job({ title, description, pay, region, suburb} ) {
-
   return (
     <>
       

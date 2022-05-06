@@ -17,9 +17,10 @@ export function getAutocompleteAddresses(address) {
 }
 
 // gets a full list of jobs from database
-export function getAllJobs() {
+export function getAllJobs(region) {
+  console.log('getting jobs', region)
   return request
-    .get(allJobsURL)
+    .get(`${allJobsURL}/region/${region}`)
     .then((res) => res.body)
     .catch((err) => console.log(err.status, 'error!'))
 }

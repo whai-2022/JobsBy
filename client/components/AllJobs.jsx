@@ -13,18 +13,18 @@ function AllJobs() {
   const [searchTerm, setSearchTerm] = useState('')
   const [position, setPosition] = useState([-36.856912, 174.763399])
   const [error, setError] = useState(null)
-  console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
+  // console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
 
   // temporary status state for re-rendering on button press
-  const [status, setStatus] = useState(false)
+  // const [status, setStatus] = useState(false)
 
   const {jobs} = useSelector((state) => state.jobsReducer)
-
+  console.log(jobs)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(fetchJobs())
-  }, [])
+  // useEffect(() => {
+  //   dispatch(fetchJobs())
+  // }, [])
 
   // console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
 
@@ -43,7 +43,6 @@ function AllJobs() {
   }, [address])
 
   const search = () => {
-    
     api
       .getAutocompleteAddresses(searchTerm)
       .then((res) => {
@@ -63,12 +62,15 @@ function AllJobs() {
   }, [searchTerm])
 
   const submitSearch = () => {
-    if (addresses.length) setPosition([addresses[0].lat, addresses[0].lon])
+    if (addresses.length) {
+      setPosition([addresses[0].lat, addresses[0].lon])
+      dispatch(fetchJobs(addresses[0].region)) // fetch jobs by region
+    }
   }
 
-  function handleClick() {
-    setStatus(true)
-  }
+  // function handleClick() {
+  //   setStatus(true)
+  // }
 
   return (
     <>
@@ -100,22 +102,22 @@ function AllJobs() {
             {error}
           </Text>
         )}
-        <Button onClick={handleClick}>Show all jobs</Button>
+        {/* <Button onClick={handleClick}>Show all jobs</Button> */}
       </FormControl>
 
       {/* Cards of jobs available*/}
       <VStack spacing={6}>
-        {status && jobs.map((job, i) => {
+        {jobs.map((job, i) => {
           return <>
             {/* <Box m={1} fontSize='sm'>
               Select job for more details
             </Box> */}
             <Job
-            key={i}
-            title={job.title}
-            description={job.description}
-            pay={job.pay}
-            region={job.locationRegion}
+              key={i}
+              title={job.title}
+              description={job.description}
+              pay={job.pay}
+              region={job.locationRegion}
               suburb={job.locationSuburb} />
             </>
           })}

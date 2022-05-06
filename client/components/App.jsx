@@ -35,6 +35,7 @@ function App() {
           <Route path='/' element={<Splash />} />
           <Route path='/home' element={<Home />} />
           <Route path='/alljobs' element={<AllJobs />} />
+          {/* <Route path='/alljobs/:id' element={<JobDetails />} /> */}
           <Route path='/postjob' element={<PostJob />} />
           <Route path='/job' element={<Job />} />
         </Routes> 
