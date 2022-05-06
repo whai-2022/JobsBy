@@ -12,7 +12,7 @@ function Job(){
       p={5}
       shadow='md'
       borderWidth='1px'
-      w='80%'
+      w='100%'
       borderRadius='lg'
     >
       <Heading fontSize='xl'>Job Title</Heading>
