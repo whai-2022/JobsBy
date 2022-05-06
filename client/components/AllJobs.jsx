@@ -18,7 +18,7 @@ function AllJobs() {
   // temporary status state for re-rendering on button press
   const [status, setStatus] = useState(false)
 
-  const jobs = useSelector((state) => state.jobsReducer)
+  const {jobs} = useSelector((state) => state.jobsReducer)
 
   const dispatch = useDispatch()
 

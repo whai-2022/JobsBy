@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { MapContainer, TileLayer, Popup, Marker, useMap } from 'react-leaflet'
+import { Link } from 'react-router-dom'
 
-function JobsMap({ position }) {
+function JobsMap({ position, jobs }) {
   return (
     <MapContainer
       center={position}
@@ -15,11 +16,19 @@ function JobsMap({ position }) {
       />
       <Marker position={position}>
         <Popup>
-          {/* map over jobs, display job link and information */}
-          Job Info
+          Your Location
         </Popup>
       </Marker>
-      <PositionHandler position={position}/>
+      {jobs.map((job) => (
+        <Marker position={[+job.lat, +job.lon]} key={`marker-${job.id}`}>
+          <Popup>
+            {/* map over jobs, display job link and information */}
+            <h2>{job.title}</h2>
+            <Link to={`/alljobs/${job.id}`}>View Job</Link>
+          </Popup>
+        </Marker>
+      ))}
+      <PositionHandler position={position} />
     </MapContainer>
   )
 }
