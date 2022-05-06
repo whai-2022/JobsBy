@@ -35,7 +35,6 @@ function App() {
         {/* {authorized ? <Home /> : <Splash />} */}
       </section>
       <footer className="footer"></footer>
-      <Nav />
       {/* <LoggedIn /> */}
 
         <Routes>
