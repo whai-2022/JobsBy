@@ -8,10 +8,13 @@ import {
   FormLabel,
   Input,
 } from '@chakra-ui/react'
+// import { useAuth0 } from '@auth0/auth0-react'
 
 function PostJob() {
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
+
+  const { user } = useAuth0()
 
   console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
 

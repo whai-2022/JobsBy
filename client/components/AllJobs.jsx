@@ -40,19 +40,12 @@ function AllJobs() {
     return () => clearInterval(interval)
   }, [address])
 
-  // effect is mounted
-  // effect is ran
-
-  // effect is unmounted
-
   const search = () => {
     
     api
       .getAutocompleteAddresses(searchTerm)
       .then((res) => {
-        console.log(res)
         setAddresses(res)
-        setPosition([res[0].lat, res[0].lon])
       })
       .catch((err) => {
         console.log(err)
@@ -63,17 +56,12 @@ function AllJobs() {
 
   useEffect(() => {
     if (!searchTerm) return
-    console.log('search term is', searchTerm)
-    // search()
+    // console.log('search term is', searchTerm)
+    search()
   }, [searchTerm])
 
-  const toggle = () => {
-    setPosition([-37.7678863, 175.2898972])
-  }
-
-  const scrollTo = (index) => {
-    console.log(ulRef.current)
-    ulRef.current.children[index].scrollIntoView({ behavior: 'smooth' })
+  const submitSearch = () => {
+    if (addresses.length) setPosition([addresses[0].lat, addresses[0].lon])
   }
 
   return (
@@ -96,7 +84,7 @@ function AllJobs() {
             <option value={address.formatted} key={`address-${idx}`} />
           ))}
         </datalist>
-        <Button type="submit" onClick={search}>
+        <Button type="submit" onClick={submitSearch}>
           Search
         </Button>
         {error && (
@@ -105,7 +93,6 @@ function AllJobs() {
           </Text>
         )}
       </FormControl>
-      <Button onClick={toggle}>Move Pointer</Button>
       {/* Cards of jobs */}
       <VStack as="ul" spacing={6} ref={ulRef}>
         <Job />

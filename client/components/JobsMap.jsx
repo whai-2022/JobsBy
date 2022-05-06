@@ -13,10 +13,10 @@ function JobsMap({ position }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-
       <Marker position={position}>
         <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
+          {/* map over jobs, display job link and information */}
+          Job Info
         </Popup>
       </Marker>
       <PositionHandler position={position}/>
