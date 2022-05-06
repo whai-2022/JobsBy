@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
 
 const LoggedIn = () => {
-  const { isLoggedIn, logout, redirect } = useAuth0()
+  const { isAuthenticated, logout, redirect } = useAuth0()
 
   const signOut = () => {
     logout({ returnTo: window.location.origin })
