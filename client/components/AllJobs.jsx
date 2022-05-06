@@ -10,16 +10,17 @@ function AllJobs() {
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
 
-  // temporary status for re-rendering
+  // temporary status state for re-rendering on button press
   const [status, setStatus] = useState(false)
 
   const jobs = useSelector((state) => state.jobsReducer)
-  
+  console.log(jobs)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchJobs())
-  }, [status])
+  }, [])
 
   console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
 
@@ -59,10 +60,10 @@ function AllJobs() {
         <Button onClick={handleClick}>Search</Button>
       </FormControl>
 
-      {/* Cards of jobs */}
+      {/* Cards of jobs available*/}
       <VStack spacing={6}>
         {status && jobs.map((job, i) => {
-         <Job key={i} title={job.title} description={job.description} />
+         return <Job key={i} title={job.title} description={job.description} pay={job.pay} />
        })}
       </VStack>
       
