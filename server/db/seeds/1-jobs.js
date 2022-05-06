@@ -15,7 +15,7 @@ exports.seed = (knex) => {
       locationRegion: 'Auckland',
       locationSuburb: 'Gulf Harbour',
       pay: '$12/hour',
-      accepted: true,
+      accepted: false,
       accepterId: 'Auth0||hello',
     },
     {
