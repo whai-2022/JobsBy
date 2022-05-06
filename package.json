@@ -66,7 +66,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "6.3.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "sass": "^1.32.7",
@@ -77,9 +77,17 @@
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "knex": "^1.0.1",
+    "@auth0/auth0-react": "^1.10.1",
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/react": "^1.8.8",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@vscode/sqlite3": "^5.0.7",
+    "express": "^4.17.1",
+    "express-jwt": "^6.1.0",
+    "framer-motion": "^6.3.3",
+    "jwks-rsa": "^2.1.0",
+    "knex": "^1.0.1",
     "pg": "^8.5.1",
     "superagent": "^6.1.0"
   },
