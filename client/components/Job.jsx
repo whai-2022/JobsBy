@@ -2,7 +2,7 @@ import React from 'react'
 
 import {Box, Heading, Text} from '@chakra-ui/react'
 
-function Job({ title, description, pay } ) {
+function Job({ title, description, pay, region, suburb} ) {
 
   return (
     <>
@@ -15,9 +15,11 @@ function Job({ title, description, pay } ) {
       w='100%'
       borderRadius='lg'
     >
-      <Heading fontSize='xl'>{title}</Heading>
+        <Heading fontSize='xl'>{title}</Heading>
+        <Text>{suburb}, {region}</Text>
         <Text mt={4}>{description}</Text>
         <Text>{pay}</Text>
+        
     </Box>
     </>
   )
