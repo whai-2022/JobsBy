@@ -10,6 +10,7 @@ import Home from './Home'
 import AllJobs from './AllJobs'
 import PostJob from './PostJob'
 import Nav from './Nav'
+import Job from './Job'
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <section className="main">
           {/* {authorized ? <Home /> : <Splash />} */}
         </section>
+
         <footer className="footer"></footer>
 
         <Routes>
@@ -35,6 +37,7 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/alljobs' element={<AllJobs />} />
           <Route path='/postjob' element={<PostJob />} />
+          <Route path='/job' element={<Job />} />
         </Routes> 
       </Container>
     </>
