@@ -3,7 +3,7 @@ import * as api from '../apis'
 import Job from './Job'
 import { fetchJobs } from "../actions"
 
-import { Button, Heading, VStack, FormControl, FormLabel, Input, FormHelperText } from "@chakra-ui/react"
+import { Box, Button, Heading, VStack, FormControl, FormLabel, Input, FormHelperText } from "@chakra-ui/react"
 import { useSelector, useDispatch} from "react-redux"
 
 function AllJobs() {
@@ -62,13 +62,18 @@ function AllJobs() {
       {/* Cards of jobs available*/}
       <VStack spacing={6}>
         {status && jobs.map((job, i) => {
-          return <Job
+          return <>
+            {/* <Box m={1} fontSize='sm'>
+              Select job for more details
+            </Box> */}
+            <Job
             key={i}
             title={job.title}
             description={job.description}
             pay={job.pay}
             region={job.locationRegion}
-            suburb={job.locationSuburb} />
+              suburb={job.locationSuburb} />
+            </>
           })}
       </VStack>
       
