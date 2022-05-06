@@ -19,11 +19,6 @@ import Job from './Job'
 function App() {
   //user.sub
   
-  //dummy auth to get splash / home functionality
-  // let authorized = true
-
-  
-  
   return (
     <>
       <header className="header">
@@ -32,7 +27,6 @@ function App() {
       </header>
       <Container maxW='container.sm' textAlign='center'>
       <section className="main">
-        {/* {authorized ? <Home /> : <Splash />} */}
       </section>
       <footer className="footer"></footer>
       {/* <LoggedIn /> */}

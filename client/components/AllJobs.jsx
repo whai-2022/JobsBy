@@ -56,7 +56,7 @@ function AllJobs() {
         <datalist id="addresses" name="addresses" >
           {addresses.map((address, idx) => (<option value={address.formatted} key={`address-${idx}`} />))}
         </datalist>
-        <Button onClick={handleClick}>Search</Button>
+        <Button onClick={handleClick}>Show all jobs</Button>
       </FormControl>
 
       {/* Cards of jobs available*/}
