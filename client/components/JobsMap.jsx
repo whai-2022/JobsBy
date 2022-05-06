@@ -1,8 +1,9 @@
 import React from 'react'
 import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet'
+import { useMapEvents } from 'react-leaflet/hooks'
 
-function JobsMap() {
-  const position = [-36.856912, 174.763399]
+function JobsMap({ position }) {
+  // const position = [-36.856912, 174.763399]
   return (
     <MapContainer
       center={position}
