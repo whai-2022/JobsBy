@@ -8,8 +8,11 @@ import {
   FormLabel,
   Input,
 } from '@chakra-ui/react'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function PostJob() {
+  const { user } = useAuth0()
+  // userId: user.sub
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
 

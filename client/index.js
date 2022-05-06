@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         domain={'pont.au.auth0.com'}
         clientId={'hXTUUI6B39qdjH475HopKZi7XG8MZyjm'}
         redirectUri={window.location.origin}
-        audience="https:///api/allJobs"
+        audience="https://api/allJobs"
       >
         <ChakraProvider>
           <Provider store={store}>

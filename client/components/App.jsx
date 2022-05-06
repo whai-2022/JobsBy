@@ -4,6 +4,8 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Container } from '@chakra-ui/react'
 
+import { useAuth0 } from '@auth0/auth0-react'
+
 import Header from './Header'
 import Splash from './Splash'
 import Home from './Home'
@@ -12,6 +14,7 @@ import PostJob from './PostJob'
 import Nav from './Nav'
 
 function App() {
+  
   //dummy auth to get splash / home functionality
   // let authorized = true
 
@@ -20,7 +23,6 @@ function App() {
       <header className="header">
         <Header />
       </header>
-addressAutocomplete
       <Container maxW='container.sm' textAlign='center'>
       <section className="main">
         {/* {authorized ? <Home /> : <Splash />} */}
