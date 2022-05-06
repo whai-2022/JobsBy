@@ -12,6 +12,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 function PostJob() {
   const { user } = useAuth0()
+  // console.log(user.sub)
   // userId: user.sub
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])

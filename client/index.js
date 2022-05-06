@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <ChakraProvider>
           <Provider store={store}>
             <App />
-            <App />
           </Provider>
         </ChakraProvider>
       </Auth0Provider>

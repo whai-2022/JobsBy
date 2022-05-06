@@ -3,14 +3,15 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
 
 const LoggedIn = () => {
-  const { isAuthenticated, logout, redirect } = useAuth0()
+  const { isAuthenticated, user, logout, loginWithRedirect } = useAuth0()
 
   const signOut = () => {
     logout({ returnTo: window.location.origin })
   }
 
   function signIn() {
-    redirect()
+    console.log('sign in clicked', isAuthenticated)
+    loginWithRedirect()
   }
 
   return (
@@ -20,17 +21,17 @@ const LoggedIn = () => {
           <li>
             <Link to='/'>Home</Link>
           </li>
-          {isLoggedIn && (
+          {isAuthenticated && (
             <li>
               <Link to='/allJobs'>Jobs</Link>
             </li>
           )}
         </ul>
       </nav>
-      {LoggedIn && (
-        <p> See the jobs </p>
+      {isAuthenticated && (
+        <p> {`Welcome back, ${user.email}`} </p>
       )}
-      {LoggedIn ? (
+      {isAuthenticated ? (
         <>
           <button onClick={signOut}>
             Logout
