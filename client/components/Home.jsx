@@ -2,20 +2,21 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-// import Nav from './Nav'
+import { Heading, Text} from '@chakra-ui/react'
 
 function Home() {
 
   return (
-    <div>
-      <h1>Welcome</h1>
+    <>
+      <Heading>Welcome</Heading>
       <br />
-      <p>Please choose your option:</p>
+      <Text>Are you looking for work, or needing a job done? </Text>
       <br />
-      <Link to='/alljobs' aria-label='all jobs'>See all jobs available</Link>
+      <Link to='/alljobs' aria-label='find jobs to be done' p={20}>See which jobs are available</Link>
       <br />
-      <Link to='/postjob' aria-label='post job'>Post a new job </Link>
-    </div>
+      <Link to='/postjob' aria-label='post a new job' p={20}>Post a new job </Link>
+
+    </>
   )
 }
 
