@@ -14,8 +14,6 @@ function PostJob() {
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
 
-  const { user } = useAuth0()
-
   console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
 
   const handleAddressChange = (e) => {
