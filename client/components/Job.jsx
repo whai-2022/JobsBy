@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Box, Heading, Text, Badge } from '@chakra-ui/react'
+import {Box, Badge } from '@chakra-ui/react'
 
 function Job({ title, description, pay, region, suburb} ) {
 
@@ -9,14 +9,18 @@ function Job({ title, description, pay, region, suburb} ) {
       
     {/* A box(card) for an individual job */}
     <Box
-      p={5}
+      p={2}
       shadow='md'
+      overflow='hidden' 
       borderWidth='1px'
       w='100%'
       borderRadius='lg'
     >
-      <Box p={6} display='flex'
-      alignItems='baseline'>
+      <Box
+        p={2}
+        display='flex'
+        alignItems='baseline'
+      >
         <Badge borderRadius='full' px='2' colorScheme='teal'>
           Available
         </Badge>
@@ -31,19 +35,23 @@ function Job({ title, description, pay, region, suburb} ) {
         {suburb}, {region}
         </Box>
       </Box>
-      
-        <Box
-          mt={1}
-          fontWeight='bold'
-          fontSize='xl'
-        >
-          {title}
-        </Box>
-        <Box m={4} isTruncated>{description}</Box>
-        <Box m={2}>
-          {pay}
-        </Box>
+      <Box
+        mt={1}
+        fontWeight='bold'
+        fontSize='xl'
+      >
+        {title}
       </Box>
+      <Box
+       m={2}
+        isTruncated
+      >
+       {description}
+      </Box>
+      <Box m={2}>
+        {pay}
+      </Box>
+    </Box>
         
     </>
   )
