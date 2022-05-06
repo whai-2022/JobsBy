@@ -1,6 +1,7 @@
-import { getAllJobs } from '../apis'
+import { getAllJobs, getJobById } from '../apis'
 
 export const SET_JOBS = 'SET_JOBS'
+export const GET_JOB_DETAILS = 'GET_JOB_DETAILS'
 
 export function setJobs(jobs) {
   return {
@@ -9,11 +10,31 @@ export function setJobs(jobs) {
   }
 }
 
+export function getJobDetails(job) {
+  return {
+    type: GET_JOB_DETAILS,
+    payload: job,
+  }
+}
+
 export function fetchJobs() {
   return (dispatch) => {
     return getAllJobs()
       .then((res) => {
         dispatch(setJobs(res))
+        return null
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }
+}
+
+export function fetchJobByID(id) {
+  return (dispatch) => {
+    return getJobById()
+      .then((res) => {
+        dispatch(getJobDetails(res))
         return null
       })
       .catch((err) => {
