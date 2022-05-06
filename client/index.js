@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
+import { Auth0Provider } from '@auth0/auth0-react'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
@@ -64,17 +65,28 @@ const theme = extendTheme({
     80: '20rem',
     96: '24rem',
   },
+  // components: {
+  //   Form
+  // }
 })
 
 document.addEventListener('DOMContentLoaded', () => {
   render(
-    <Provider store={store}>
-      <ChakraProvider theme={theme}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ChakraProvider>
-    </Provider>,
+    <BrowserRouter>
+      <Auth0Provider
+        // set the values {''} to each attribute (domain=)
+        domain={'pont.au.auth0.com'}
+        clientId={'hXTUUI6B39qdjH475HopKZi7XG8MZyjm'}
+        redirectUri={window.location.origin}
+        audience="https://api/allJobs"
+      >
+        <ChakraProvider theme={theme}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </ChakraProvider>
+      </Auth0Provider>
+    </BrowserRouter>,
     document.getElementById('app')
   )
 })
