@@ -15,7 +15,7 @@ function AllJobs() {
         <option value='Dargaville'>...Dargaville</option>
       </Select>
 
-      <VStack>
+      <VStack spacing={6}>
       <Job/>
       <Job />
       <Job/>
