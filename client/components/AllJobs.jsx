@@ -1,12 +1,21 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import * as api from '../apis'
 import Job from './Job'
 
 import { Heading, VStack, FormControl, FormLabel, Input, FormHelperText } from "@chakra-ui/react"
+import { useSelector, useDispatch} from "react-redux"
 
 function AllJobs() {
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
+
+  const jobs = useSelector((state) => state.jobsReducer)
+  
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchJobs())
+  }, [])
 
   console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
 
