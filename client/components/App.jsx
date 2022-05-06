@@ -4,6 +4,8 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Container} from '@chakra-ui/react'
 
+import { useAuth0 } from '@auth0/auth0-react'
+
 import Header from './Header'
 import Splash from './Splash'
 import Home from './Home'
@@ -11,11 +13,17 @@ import AllJobs from './AllJobs'
 import PostJob from './PostJob'
 import Nav from './Nav'
 import Job from './Job'
+// import LoggedIn from './LoggedIn'
+
 
 function App() {
+  //user.sub
+  
   //dummy auth to get splash / home functionality
   // let authorized = true
 
+  
+  
   return (
     <>
       <header className="header">
@@ -27,6 +35,8 @@ function App() {
         {/* {authorized ? <Home /> : <Splash />} */}
       </section>
       <footer className="footer"></footer>
+      <Nav />
+      {/* <LoggedIn /> */}
 
         <Routes>
           <Route path='/' element={<Splash />} />
