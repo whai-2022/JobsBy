@@ -8,13 +8,13 @@ function Home() {
 
   return (
     <>
-      <Heading>Welcome</Heading>
+      <Heading>Welcome.</Heading>
       <br />
-      <Text>Please choose your option:</Text>
+      <Text fontSize='lg'>Would you like to find a job to do, or post one for someone else to take on?</Text>
       <br />
-      <Link to='/alljobs' aria-label='all jobs'>See all jobs available</Link>
+      <Link color='teal.500' to='/alljobs' aria-label='find available jobs'>Find a job</Link>
       <br />
-      <Link to='/postjob' aria-label='post job'>Post a new job </Link>
+      <Link color='teal.500' to='/postjob' aria-label='post a new job'>Post a new job </Link>
 
     </>
   )
