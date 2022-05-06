@@ -1,9 +1,7 @@
-import React from 'react'
-import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet'
-import { useMapEvents } from 'react-leaflet/hooks'
+import React, { useEffect } from 'react'
+import { MapContainer, TileLayer, Popup, Marker, useMap } from 'react-leaflet'
 
 function JobsMap({ position }) {
-  // const position = [-36.856912, 174.763399]
   return (
     <MapContainer
       center={position}
@@ -15,13 +13,25 @@ function JobsMap({ position }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+
       <Marker position={position}>
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
+        A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
+      <PositionHandler position={position}/>
     </MapContainer>
   )
+}
+
+function PositionHandler({ position }) {
+  const map = useMap()
+
+  useEffect(() => {
+    map.flyTo(position)
+  }, [position])
+
+  return null
 }
 
 export default JobsMap

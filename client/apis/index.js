@@ -12,7 +12,6 @@ export function getAutocompleteAddresses(address) {
       )}`
     )
     .then((res) => res.body)
-    .catch((err) => console.log(err))
 }
 
 // gets a full list of jobs from database
