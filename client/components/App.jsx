@@ -20,20 +20,19 @@ function App() {
       <header className="header">
         <Header />
       </header>
-addressAutocomplete
-      <Container maxW='container.sm' textAlign='center'>
-      <section className="main">
-        {/* {authorized ? <Home /> : <Splash />} */}
-      </section>
-      <footer className="footer"></footer>
-      <Nav />
+      <Container maxW="container.sm" textAlign="center">
+        <section className="main">
+          {/* {authorized ? <Home /> : <Splash />} */}
+        </section>
+        <footer className="footer"></footer>
+        <Nav />
 
         <Routes>
-          <Route path='/' element={<Splash />} />
-          <Route path='/home' element={<Home />} />
-          <Route path='/alljobs' element={<AllJobs />} />
-          <Route path='/postjob' element={<PostJob />} />
-        </Routes> 
+          <Route path="/" element={<Splash />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/alljobs" element={<AllJobs />} />
+          <Route path="/postjob" element={<PostJob />} />
+        </Routes>
       </Container>
     </>
   )
