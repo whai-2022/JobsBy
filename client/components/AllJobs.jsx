@@ -19,7 +19,6 @@ function AllJobs() {
   // const [status, setStatus] = useState(false)
 
   const {jobs} = useSelector((state) => state.jobsReducer)
-  console.log(jobs)
   const dispatch = useDispatch()
 
   // useEffect(() => {

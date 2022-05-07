@@ -32,7 +32,7 @@ exports.seed = (knex) => {
         'No requirements, just bring yourself, will provide cleaning equipment',
       typeId: 1,
       region: 'Auckland',
-      lat: '-36.8502',
+      lat: '-36.8402',
       lon: '174.7645',
       pay: '$20',
       accepted: false,
