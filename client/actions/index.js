@@ -17,9 +17,9 @@ export function getJobDetails(job) {
   }
 }
 
-export function fetchJobs() {
+export function fetchJobs(region) {
   return (dispatch) => {
-    return getAllJobs()
+    return getAllJobs(region)
       .then((res) => {
         dispatch(setJobs(res))
         return null

@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Container} from '@chakra-ui/react'
 
-import { useAuth0 } from '@auth0/auth0-react'
+// import { useAuth0 } from '@auth0/auth0-react'
 
 import Header from './Header'
 import Splash from './Splash'
