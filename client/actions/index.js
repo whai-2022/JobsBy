@@ -32,7 +32,7 @@ export function fetchJobs() {
 
 export function fetchJobByID(id) {
   return (dispatch) => {
-    return getJobById()
+    return getJobById(id)
       .then((res) => {
         dispatch(getJobDetails(res))
         return null

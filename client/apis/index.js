@@ -22,3 +22,10 @@ export function getAllJobs() {
     .then((res) => res.body)
     .catch((err) => console.log(err.status, 'error!'))
 }
+
+export function getJobById(id) {
+  return request
+    .get(`/api/allJobs/${id}`)
+    .then((res) => res.body)
+    .catch((err) => console.log(err.status, 'error!'))
+}
