@@ -13,6 +13,7 @@ import AllJobs from './AllJobs'
 import PostJob from './PostJob'
 import Nav from './Nav'
 import Job from './Job'
+import JobDetail from './JobDetail'
 // import LoggedIn from './LoggedIn'
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path='/' element={<Splash />} />
           <Route path='/home' element={<Home />} />
           <Route path='/alljobs' element={<AllJobs />} />
+          <Route path='/alljobs/:id' element={<JobDetail />} />
           <Route path='/postjob' element={<PostJob />} />
           <Route path='/job' element={<Job />} />
         </Routes> 
