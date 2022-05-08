@@ -37,6 +37,8 @@ import {
   FormLabel,
   // input text
   Input,
+  // multiple lines of text
+  Textarea,
   //  tells more details about the form section
   FormHelperText,
   // message that shows up when an error occurs
@@ -204,17 +206,20 @@ function PostJob() {
         <FormControl as="fieldset" id="type" isRequired>
           <FormLabel as="legend">Type of job</FormLabel>
           <RadioGroup
+            variantColor="green"
             name="type"
             value={newJob.type}
             onChange={(value) => handleValueChange('type', value)}
           >
             <Stack spacing={5} direction="row">
-              <Radio value="paid" id="paid">
+              <Radio value="paid" id="paid" aria-label="paid">
                 Paid
               </Radio>
-              <Radio value="volunteer" id="volunteer">
+              {/* <VisuallyHidden>Paid</VisuallyHidden> */}
+              <Radio value="volunteer" id="volunteer" aria-label="paid">
                 Volunteer
               </Radio>
+              {/* <VisuallyHidden>Volunteer</VisuallyHidden> */}
             </Stack>
           </RadioGroup>
         </FormControl>
@@ -263,8 +268,8 @@ function PostJob() {
             ))}
           </datalist>
           <FormHelperText>
-            For safety, we suggest setting the address to a landmark such as a
-            library or grocery store
+            For safety, we suggest setting the address to a landmark near the
+            job site, such as a library or grocery store
           </FormHelperText>
         </FormControl>
 
@@ -355,7 +360,7 @@ function PostJob() {
         {/* DESCRIPTION */}
         <FormControl id="description">
           <FormLabel>Description</FormLabel>
-          <Input
+          <Textarea
             name="description"
             value={newJob.description}
             onChange={handleInputChange}
@@ -371,8 +376,8 @@ function PostJob() {
             onChange={handleInputChange}
           />
           <FormHelperText>
-            Any unique requirements such as: having a professional license,
-            prior experience, or the ability to lift 15kg
+            Such as a professional license, prior experience, the ability to
+            lift 15kg
           </FormHelperText>
         </FormControl>
 
