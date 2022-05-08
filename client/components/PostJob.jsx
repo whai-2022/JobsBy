@@ -8,10 +8,12 @@ import {
   VStack,
   // renders a div
   Box,
-  //
+  // can be defined as h1, h2, h3, etc.
   Heading,
   // renders <p> tag by default
   Text,
+  // visually hidden allows you to add text for a screen reader that will not show up visually on the screen
+  VisuallyHidden,
   // links go somewhere
   Link,
   // buttons do things
@@ -28,7 +30,8 @@ import {
   // useColorMode,
   // UseColorModeValue,
   // -- FORM SPECIFIC --
-  // NB: every form component must be wrapped by FormControl, or else you will get misleading error messages
+  // Form components must be wrapped by FormControl, or else you will get misleading error messages
+  // FormControl passes id to Input as id, and to FormLabel as htmlFor
   FormControl,
   // label an input
   FormLabel,
@@ -45,8 +48,6 @@ import {
   // checkbox
   CheckboxGroup,
   Checkbox,
-  // visually hidden allows you to add text for a screen reader that will not show up visually on the screen
-  VisuallyHidden,
 } from '@chakra-ui/react'
 // icons from react-icons
 import { BsFillHandIndexThumbFill } from 'react-icons/bs'
@@ -60,11 +61,11 @@ function PostJob() {
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
   // console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
-  const handleAddressChange = (e) => {
-    setAddress(e.target.value)
+  const handleAddressChange = (evt) => {
+    setAddress(evt.target.value)
     api
       // auto-complete address field
-      .getAutocompleteAddresses(e.target.value)
+      .getAutocompleteAddresses(evt.target.value)
       .then((res) => {
         setAddresses(res)
       })
@@ -114,11 +115,11 @@ function PostJob() {
     }))
   }
 
-  // // TODO: make error message work
+  // // TODO: make error messages work
   // function errorMessageExample() {
   //   const [input, setInput] = useState('')
 
-  //   const handleInputChange = (e) => setInput(e.target.value)
+  //   const handleInputChange = (evt) => setInput(evt.target.value)
 
   //   const isError = input === ''
   // }
@@ -152,8 +153,6 @@ function PostJob() {
           List a Job
         </Heading>
         {/* STRETCH: Translate form */}
-        {/* a11y #1 instructions on what the form will require */}
-        {/* <em> If you want to edit a n existing job posting, please go to <Link to='' aria-label='my jobs'>MyJobs</Link>.</em> */}
         <Box
           bg="purple"
           w="100%"
@@ -165,7 +164,8 @@ function PostJob() {
             Form Instructions
           </Heading>
           <UnorderedList textAlign="left">
-            {/* a11y #2 say how long the form will take to complete. Make sure form does not time out.
+            {/* a11y: provide instructions on what the form requires */}
+            {/* a11y: say how long the form will take to complete. Make sure form does not time out.
           TODO: enable save as you go */}
             <ListItem>Time to complete ~ 30 minutes</ListItem>
             <ListItem>All fields marked “required” must be completed.</ListItem>
@@ -184,14 +184,12 @@ function PostJob() {
         <Heading as="h2" size="md">
           Job Form
         </Heading>
-        {/* a11y #3 form fields in a logical order to tab through */}
-        {/* a11y #4 highlight field when tabbing through */}
-        {/* a11y #6 define what the fields require if in a particular format 
-        // phone number should not be required or if it is, allow text only option if absolutely necessary
-        // How should we contact you? Dropdown: Phone Email Text*/}
+        {/* a11y: form fields in a logical order to tab through */}
+        {/* TODO a11y: highlight field when tabbing through */}
+        {/* a11y: define what the fields require. Ex: if in a particular format */}
 
         {/* OCCURRENCE */}
-        {/* a11y #5 short & specific labels, associated with form field. <label for=''> to match <input id=''> */}
+        {/* a11y: short & specific labels, associated with form field */}
         <FormControl id="occurrence">
           <FormLabel>How often does this job need to be done?</FormLabel>
           <Input
@@ -209,7 +207,6 @@ function PostJob() {
             name="type"
             value={newJob.type}
             onChange={(value) => handleValueChange('type', value)}
-            // TODO: Figure out this functionality. Does it need to be onChange={setValue} value={value}
           >
             <Stack spacing={5} direction="row">
               <Radio value="paid" id="paid">
@@ -295,6 +292,7 @@ function PostJob() {
         </FormControl>
 
         {/* PHONE */}
+        {/* a11y: phone number should not be required */}
         <FormControl id="phone">
           <FormLabel>Phone</FormLabel>
           <Input
@@ -311,7 +309,7 @@ function PostJob() {
           <FormLabel as="legend" htmlFor="contactBy">
             What&apos;s the best way to get in touch?
           </FormLabel>
-          {/* // isFocusable ? */}
+          {/* TODO: Add isFocusable ? */}
           <CheckboxGroup size="md" colorScheme="green" name="contactBy">
             <Stack spacing={[1, 5]} direction={['column', 'row']}>
               <Checkbox
