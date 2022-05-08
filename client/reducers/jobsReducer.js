@@ -38,8 +38,9 @@ const initialJobState = {
 const jobsReducer = (state = initialJobState, action) => {
   switch (action.type) {
     case SET_JOBS:
-      // return action.jobs
-      return { jobs: action.jobs }
+      console.log(action)
+      return action.jobs
+    // return { jobs: action.jobs }
     case GET_JOB_DETAILS:
       return { job: action.job }
 

@@ -18,12 +18,12 @@ function AllJobs() {
   // temporary status state for re-rendering on button press
   // const [status, setStatus] = useState(false)
 
-  const {jobs} = useSelector((state) => state.jobsReducer)
+  const { jobs } = useSelector((state) => state.jobsReducer)
   const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   dispatch(fetchJobs())
-  // }, [])
+  console.log(jobs)
+  useEffect(() => {
+    dispatch(fetchJobs())
+  }, [])
 
   // console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
 
@@ -105,7 +105,7 @@ function AllJobs() {
       </FormControl>
 
       {/* Cards of jobs available*/}
-      <VStack spacing={6}>
+      {/* <VStack spacing={6}>
         {jobs.map((job, i) => {
           return (
             <Job
@@ -118,7 +118,7 @@ function AllJobs() {
             suburb={job.locationSuburb} />
           )})}
         
-      </VStack>
+      </VStack> */}
     </>
   )
 }
