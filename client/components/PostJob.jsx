@@ -82,7 +82,7 @@ function PostJob() {
     requirements: '',
     type: '',
     contactBy: '',
-    occurrence: '',
+    occurrence: '', 
     when: '',
     pay: '',
     accepted: false,
@@ -127,8 +127,8 @@ function PostJob() {
   function handleSubmit(evt) {
     evt.preventDefault()
     // destructure address object (api data needs us to get the first item in the array)
-    // const { region, lon, lat } = addresses[0]
-    const [region, lon, lat] = ['Auckland', '-35', '174']
+    const { region, lon, lat } = addresses[0]
+    // const [region, lon, lat] = ['Auckland', '-35', '174']
 
     const job = {
       ...newJob,
@@ -138,8 +138,8 @@ function PostJob() {
       lon,
       lat,
     }
-    console.log(job)
-    // dispatch(createJob(job))
+    // console.log(job)
+    dispatch(createJob(job))
     // TODO: navigate to newly added Job (once job details view is live). Possibly, with async await (after getting id back)
     navigate('/')
   }
