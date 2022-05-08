@@ -20,10 +20,12 @@ export function getAutocompleteAddresses(address) {
 
 // posts new job
 export function postJob(job) {
+  console.log(allJobsURL, job)
   return request
-    .post(jobsURL)
+    .post(allJobsURL)
     .send(job)
     .then((response) => response.body)
+    .catch(err => console.log(err))
 }
 
 // gets a full list of jobs from database
