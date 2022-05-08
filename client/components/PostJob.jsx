@@ -54,7 +54,7 @@ import { BsFillHandIndexThumbFill } from 'react-icons/bs'
 import { useAuth0 } from '@auth0/auth0-react'
 
 function PostJob() {
-  // const { user } = useAuth0()
+  const { user } = useAuth0()
   // console.log(user.sub)
   // // to get the auth0Id -> user.sub
   // userId: user.sub
@@ -133,7 +133,7 @@ function PostJob() {
     const job = {
       ...newJob,
       contactBy: Object.keys(newJob.contactBy).filter(Boolean),
-      // UNCOMMENT FOR AUTH: userId: user.sub,
+      userId: user.sub,
       region,
       lon,
       lat,

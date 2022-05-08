@@ -34,7 +34,6 @@ router.get('/:id', (req, res) => {
 // POSTs to the database
 router.post('/', (req, res) => {
   const job = req.body
-  console.log('POST JOB', job)
   db.addJob(job)
     .then((id) => {
       const newJobId = id[0]
