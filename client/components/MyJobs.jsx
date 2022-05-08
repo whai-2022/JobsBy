@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { fetchJobs } from "../actions"
+import { fetchUserJobs } from "../actions"
 
 import { Heading, VStack } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
 import { useSelector, useDispatch} from "react-redux"
@@ -7,12 +7,13 @@ import { useSelector, useDispatch} from "react-redux"
 function MyJobs() {
   // const [error, setError] = useState(null)
 
-  const jobs = useSelector((state) => state.jobs)
-  console.log(jobs)
+  const myJobs = useSelector((state) => state.myJobs)
+  // myJobs = {jobs = [res.body/actual jobs]}
+  console.log(myJobs)
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(fetchJobs())
+    dispatch(fetchUserJobs('Auth0||something')) // TODO: use userId later
   }, [])
 
 
@@ -23,7 +24,7 @@ function MyJobs() {
       <VStack spacing={6}>
       <div>
           <ul>
-            {jobs?.map((jobPosting, i) => {
+            {myJobs?.jobs.map((jobPosting, i) => {
               return (
                 <li key={`${jobPosting.id} ${i}`}>
                   <h2>{jobPosting.title}</h2>

@@ -5,5 +5,5 @@ import myJobsReducer from './myJobsReducer'
 
 export default combineReducers({
   jobsReducer,
-  myJobsReducer,
+  myJobs: myJobsReducer,
 })

@@ -33,7 +33,7 @@ export function setError(errMessage) {
 export function requestUserJobs(jobs) {
   return {
     type: REQUEST_USER_JOBS,
-    payload: { jobs },
+    payload: { jobs: jobs },
   }
 }
 

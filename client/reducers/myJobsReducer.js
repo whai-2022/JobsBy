@@ -2,7 +2,6 @@ import { REQUEST_USER_JOBS } from '../actions'
 
 const initialJobState = {
   jobs: [],
-  job: {},
 }
 
 function myJobsReducer(state = initialJobState, action) {
