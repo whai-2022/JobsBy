@@ -56,7 +56,7 @@ import { BsFillHandIndexThumbFill } from 'react-icons/bs'
 import { useAuth0 } from '@auth0/auth0-react'
 
 function PostJob() {
-  // const { user } = useAuth0()
+  const { user } = useAuth0()
   // console.log(user.sub)
   // // to get the auth0Id -> user.sub
   // userId: user.sub
@@ -84,7 +84,7 @@ function PostJob() {
     requirements: '',
     type: '',
     contactBy: '',
-    occurrence: '',
+    occurrence: '', 
     when: '',
     pay: '',
     accepted: false,
@@ -129,19 +129,19 @@ function PostJob() {
   function handleSubmit(evt) {
     evt.preventDefault()
     // destructure address object (api data needs us to get the first item in the array)
-    // const { region, lon, lat } = addresses[0]
-    const [region, lon, lat] = ['Auckland', '-35', '174']
+    const { region, lon, lat } = addresses[0]
+    // const [region, lon, lat] = ['Auckland', '-35', '174']
 
     const job = {
       ...newJob,
       contactBy: Object.keys(newJob.contactBy).filter(Boolean),
-      // UNCOMMENT FOR AUTH: userId: user.sub,
+      userId: user.sub,
       region,
       lon,
       lat,
     }
-    console.log(job)
-    // dispatch(createJob(job))
+    // console.log(job)
+    dispatch(createJob(job))
     // TODO: navigate to newly added Job (once job details view is live). Possibly, with async await (after getting id back)
     navigate('/')
   }
