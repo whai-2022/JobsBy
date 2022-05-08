@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Routes, Route } from 'react-router-dom'
 
-import { Container} from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
 
 // import { useAuth0 } from '@auth0/auth0-react'
 
@@ -16,21 +16,19 @@ import Job from './Job'
 import JobDetail from './JobDetail'
 // import LoggedIn from './LoggedIn'
 
-
 function App() {
   //user.sub
-  
+
   return (
     <>
       <header className="header">
         <Header />
         <Nav />
       </header>
-      <Container maxW='container.sm' textAlign='center'>
-      <section className="main">
-      </section>
-      <footer className="footer"></footer>
-      {/* <LoggedIn /> */}
+      <Container maxW="container.sm" textAlign="center">
+        <section className="main"></section>
+        <footer className="footer"></footer>
+        {/* <LoggedIn /> */}
 
         <Routes>
           <Route path='/' element={<Splash />} />

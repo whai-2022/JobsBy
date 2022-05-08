@@ -1,7 +1,10 @@
-import { getAllJobs, getJobById } from '../apis'
+import { getAllJobs, postJob, getJobById } from '../apis'
 
 export const SET_JOBS = 'SET_JOBS'
-export const GET_JOB_DETAILS = 'GET_JOB_DETAILS'
+export const ADD_JOB = 'ADD_JOB'
+export const SET_ERROR = 'SET_ERROR'
+
+// Simple actions
 
 export function setJobs(jobs) {
   return {
@@ -9,6 +12,21 @@ export function setJobs(jobs) {
     jobs: jobs,
   }
 }
+export function addJob(job) {
+  return {
+    type: ADD_JOB,
+    payload: job,
+  }
+}
+
+export function setError(errMessage) {
+  return {
+    type: SET_ERROR,
+    payload: errMessage,
+  }
+}
+
+// Fancy thunks
 
 export function getJobDetails(job) {
   return {
@@ -39,6 +57,17 @@ export function fetchJobByID(id) {
       })
       .catch((err) => {
         console.log(err.message)
+      })
+  }
+}
+export function createJob(job) {
+  return (dispatch) => {
+    return postJob(job)
+      .then((job) => {
+        addJob(job)
+      })
+      .catch((errMessage) => {
+        dispatch(setError(errMessage))
       })
   }
 }
