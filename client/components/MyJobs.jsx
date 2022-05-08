@@ -28,7 +28,7 @@ function MyJobs() {
               return (
                 <li key={`${jobPosting.id} ${i}`}>
                   <h2>{jobPosting.title}</h2>
-                  <img src={jobPosting.name} />
+                  <h2> src={jobPosting.name}</h2>
                   <p>{jobPosting.region}</p>
                   {/* <button className='button' onClick={handleClick}>Delete</button> */}
                 </li>
