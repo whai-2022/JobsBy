@@ -43,6 +43,7 @@ router.post('/', (req, res) => {
       res.json(job)
     })
     .catch((e) => {
+      console.log(e.message)
       res.status(500).send(e.message)
     })
 })

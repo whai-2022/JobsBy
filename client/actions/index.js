@@ -1,7 +1,17 @@
+<<<<<<< HEAD
 import { getAllJobs, getUserJobs } from '../apis'
 
 export const SET_JOBS = 'SET_JOBS'
 export const REQUEST_USER_JOBS = 'REQUEST_USER_JOBS'
+=======
+import { getAllJobs, postJob } from '../apis'
+
+export const SET_JOBS = 'SET_JOBS'
+export const ADD_JOB = 'ADD_JOB'
+export const SET_ERROR = 'SET_ERROR'
+
+// Simple actions
+>>>>>>> f67d8757a5bac4cf86137b5c40a38bb8e0751dd7
 
 export function setJobs(jobs) {
   return {
@@ -9,6 +19,21 @@ export function setJobs(jobs) {
     jobs: jobs,
   }
 }
+export function addJob(job) {
+  return {
+    type: ADD_JOB,
+    payload: job,
+  }
+}
+
+export function setError(errMessage) {
+  return {
+    type: SET_ERROR,
+    payload: errMessage,
+  }
+}
+
+// Fancy thunks
 
 export function requestUserJobs(jobs) {
   return {
@@ -30,6 +55,7 @@ export function fetchJobs(region) {
   }
 }
 
+<<<<<<< HEAD
 export function fetchUserJobs(userId) {
   return (dispatch) => {
     return getUserJobs(userId)
@@ -42,3 +68,16 @@ export function fetchUserJobs(userId) {
       })
   }
 }
+=======
+export function createJob(job) {
+  return (dispatch) => {
+    return postJob(job)
+      .then((job) => {
+        addJob(job)
+      })
+      .catch((errMessage) => {
+        dispatch(setError(errMessage))
+      }
+      )}
+  }
+>>>>>>> f67d8757a5bac4cf86137b5c40a38bb8e0751dd7

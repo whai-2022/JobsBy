@@ -1,5 +1,6 @@
 import request from 'superagent'
 
+const jobsURL = '/'
 const allJobsURL = '/api/allJobs'
 const myJobsURL = '/api/myJobs/jobsListed'
 const apiKey1 = 'QG8WqWD76jb02uxJAAQZWQ'
@@ -15,6 +16,17 @@ export function getAutocompleteAddresses(address) {
       )}`
     )
     .then((res) => res.body)
+    .catch((err) => console.log(err))
+}
+
+// posts new job
+export function postJob(job) {
+  console.log(allJobsURL, job)
+  return request
+    .post(allJobsURL)
+    .send(job)
+    .then((response) => response.body)
+    .catch(err => console.log(err))
 }
 
 // gets a full list of jobs from database
