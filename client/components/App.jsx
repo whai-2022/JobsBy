@@ -35,17 +35,13 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/alljobs" element={<AllJobs />} />
           {/* <Route path='/alljobs/:id' element={<JobDetails />} /> */}
-<<<<<<< HEAD
           <Route path='/postjob' element={<PostJob />} />
           <Route path='/job' element={<Job />} />
           {/* TODO: when my profile is made (maybe), we can make this myProfile/myJobs ? */}
           <Route path='/myJobs' element={<MyJobs />} />
-        </Routes> 
-=======
           <Route path="/postjob" element={<PostJob />} />
           <Route path="/job" element={<Job />} />
         </Routes>
->>>>>>> f67d8757a5bac4cf86137b5c40a38bb8e0751dd7
       </Container>
     </>
   )
