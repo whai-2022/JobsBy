@@ -20,7 +20,3 @@ coverage/*
 
 # Dotenv env settings
 .env
-
-# Package json
-package-lock.json
-
