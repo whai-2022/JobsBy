@@ -1,43 +1,17 @@
-import React from 'react'
-
-import { Routes, Route } from 'react-router-dom'
-
-import { Container } from '@chakra-ui/react'
-
-// import { useAuth0 } from '@auth0/auth0-react'
-
-import Header from './Header'
-import Splash from './Splash'
-import Home from './Home'
-import AllJobs from './AllJobs'
-import PostJob from './PostJob'
-import Nav from './Nav'
-import Job from './Job'
-// import LoggedIn from './LoggedIn'
+import React, { useEffect } from 'react'
+import AddTodo from './AddTodo'
 
 function App() {
-  //user.sub
+  useEffect(() => {}, [])
 
   return (
     <>
       <header className="header">
-        <Header />
-        <Nav />
+        <h1>todos</h1>
+        <AddTodo />
       </header>
-      <Container maxW="container.sm" textAlign="center">
-        <section className="main"></section>
-        <footer className="footer"></footer>
-        {/* <LoggedIn /> */}
-
-        <Routes>
-          <Route path="/" element={<Splash />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/alljobs" element={<AllJobs />} />
-          {/* <Route path='/alljobs/:id' element={<JobDetails />} /> */}
-          <Route path="/postjob" element={<PostJob />} />
-          <Route path="/job" element={<Job />} />
-        </Routes>
-      </Container>
+      <section className="main"></section>
+      <footer className="footer"></footer>
     </>
   )
 }
