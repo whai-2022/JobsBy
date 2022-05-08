@@ -45,6 +45,8 @@ import {
   // checkbox
   CheckboxGroup,
   Checkbox,
+  // visually hidden allows you to add text for a screen reader that will not show up visually on the screen
+  VisuallyHidden,
 } from '@chakra-ui/react'
 // icons from react-icons
 import { BsFillHandIndexThumbFill } from 'react-icons/bs'
@@ -57,7 +59,7 @@ function PostJob() {
   // userId: user.sub
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
-  console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
+  // console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
   const handleAddressChange = (e) => {
     setAddress(e.target.value)
     api
@@ -86,11 +88,30 @@ function PostJob() {
     accepterId: '',
   })
 
-  function handleChange(evt) {
+  function handleInputChange(evt) {
+    console.log(evt)
     setNewJob({
       ...newJob,
       [evt.target.name]: evt.target.value,
     })
+  }
+
+  function handleValueChange(field, value) {
+    console.log(field, value)
+    setNewJob({
+      ...newJob,
+      [field]: value,
+    })
+  }
+
+  function handleCheckboxChange(evt) {
+    setNewJob((state) => ({
+      ...state,
+      contactBy: {
+        ...state.contactBy,
+        [evt.target.name]: evt.target.checked,
+      },
+    }))
   }
 
   // // TODO: make error message work
@@ -105,23 +126,28 @@ function PostJob() {
   function handleSubmit(evt) {
     evt.preventDefault()
     // destructure address object (api data needs us to get the first item in the array)
-    const { region, lon, lat } = addresses[0]
+    // const { region, lon, lat } = addresses[0]
+    const [region, lon, lat] = ['Auckland', '-35', '174']
 
     const job = {
       ...newJob,
+      contactBy: Object.keys(newJob.contactBy).filter(Boolean),
       // UNCOMMENT FOR AUTH: userId: user.sub,
       region,
       lon,
       lat,
     }
-    dispatch(createJob(job))
+    console.log(job)
+    // dispatch(createJob(job))
     // TODO: navigate to newly added Job (once job details view is live). Possibly, with async await (after getting id back)
     navigate('/')
   }
 
+  console.log(newJob)
+
   return (
     <>
-      <VStack w="full" h="full" p={10} spacing={10} align-items="flex-start">
+      <VStack w="full" h="full" p={10} spacing={10} alignItems="flex-start">
         <Heading as="h1" size="xl" textAlign="left">
           List a Job
         </Heading>
@@ -167,45 +193,29 @@ function PostJob() {
         {/* OCCURRENCE */}
         {/* a11y #5 short & specific labels, associated with form field. <label for=''> to match <input id=''> */}
         <FormControl id="occurrence">
-          <FormLabel htmlFor="occurrence">
-            How often does this job need to be done?
-          </FormLabel>
-          {/* <RadioGroup>
-            <Stack spacing={5} direction="row">
-              <Radio colorScheme="" value="occurrence">
-              Once
-              </Radio>
-              <Radio colorScheme="" value="occurrence">
-              Recurring
-              </Radio>
-            </Stack>
-          </RadioGroup> */}
+          <FormLabel>How often does this job need to be done?</FormLabel>
           <Input
             name="occurrence"
-            type="occurrence"
             value={newJob.occurrence}
-            onSubmit={handleSubmit}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <FormHelperText>One-off, weekly, or monthly</FormHelperText>
         </FormControl>
 
         {/* TYPE */}
-        <FormControl id="type" isRequired>
-          <FormLabel htmlFor="type">Type of job</FormLabel>
+        <FormControl as="fieldset" id="type" isRequired>
+          <FormLabel as="legend">Type of job</FormLabel>
           <RadioGroup
             name="type"
-            type="type"
             value={newJob.type}
-            onSubmit={handleSubmit}
-            onChange={handleChange}
+            onChange={(value) => handleValueChange('type', value)}
             // TODO: Figure out this functionality. Does it need to be onChange={setValue} value={value}
           >
             <Stack spacing={5} direction="row">
-              <Radio value="paid" aria-describedby>
+              <Radio value="paid" id="paid">
                 Paid
               </Radio>
-              <Radio value="volunteer" aria-describedby>
+              <Radio value="volunteer" id="volunteer">
                 Volunteer
               </Radio>
             </Stack>
@@ -214,16 +224,8 @@ function PostJob() {
 
         {/* PAY */}
         <FormControl id="pay">
-          <FormLabel htmlFor="pay">
-            If a paid job, what is the rate per hour?
-          </FormLabel>
-          <Input
-            type="pay"
-            name="pay"
-            value={newJob.pay}
-            onSubmit={handleSubmit}
-            onChange={handleChange}
-          />
+          <FormLabel>If a paid job, what is the rate per hour?</FormLabel>
+          <Input name="pay" value={newJob.pay} onChange={handleInputChange} />
           <FormHelperText>
             The rate must not be less than the{' '}
             <Link
@@ -237,13 +239,12 @@ function PostJob() {
 
         {/* WHEN */}
         <FormControl id="when">
-          <FormLabel htmlFor="when">Start Date</FormLabel>
+          <FormLabel>Start Date</FormLabel>
           <Input
             name="when"
-            type="when"
             value={newJob.when}
             onSubmit={handleSubmit}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <FormHelperText>Anytime, ASAP, or DD/MM/YYYY</FormHelperText>
         </FormControl>
@@ -251,13 +252,11 @@ function PostJob() {
         {/* ADDRESS */}
         {/* TODO: ensure address field is accessible 
             & TEST if autocomplete is accessible */}
-        <FormControl id="when" isRequired>
-          <FormLabel htmlFor="address">Address</FormLabel>
+        <FormControl id="address" isRequired>
+          <FormLabel>Address</FormLabel>
           <Input
             list="addresses"
-            id="address"
             name="address"
-            type="address"
             value={address}
             onChange={handleAddressChange}
           />
@@ -274,77 +273,70 @@ function PostJob() {
 
         {/* NAME */}
         <FormControl id="name" isRequired>
-          <FormLabel htmlFor="name">Name</FormLabel>
+          <FormLabel>Name</FormLabel>
           <Input
             name="name"
-            type="name"
             value={newJob.name}
             onSubmit={handleSubmit}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <FormHelperText>Contact person&apos;s details</FormHelperText>
         </FormControl>
 
         {/* EMAIL */}
-        <FormControl>
-          <FormLabel htmlFor="email">Email</FormLabel>
+        <FormControl id="email">
+          <FormLabel>Email</FormLabel>
           <Input
-            id="email"
-            name="email"
             type="email"
             value={newJob.email}
             onSubmit={handleSubmit}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </FormControl>
 
         {/* PHONE */}
-        <FormControl>
-          <FormLabel htmlFor="phone">Phone</FormLabel>
+        <FormControl id="phone">
+          <FormLabel>Phone</FormLabel>
           <Input
-            id="phone"
             name="phone"
-            type="phone"
+            type="tel"
             value={newJob.phone}
             onSubmit={handleSubmit}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </FormControl>
 
         {/* CONTACT */}
-        <FormControl id="contactBy">
-          <FormLabel htmlFor="contactBy">
+        <FormControl as="fieldset" id="contactBy">
+          <FormLabel as="legend" htmlFor="contactBy">
             What&apos;s the best way to get in touch?
           </FormLabel>
-          <CheckboxGroup
-            size="md"
-            colorScheme="green"
-            name="contactBy"
-            type="contactBy"
-            value={newJob.contactBy}
-            onSubmit={handleSubmit}
-            onChange={handleChange}
-          >
+          {/* // isFocusable ? */}
+          <CheckboxGroup size="md" colorScheme="green" name="contactBy">
             <Stack spacing={[1, 5]} direction={['column', 'row']}>
-              <Checkbox>Email</Checkbox>
-              <Checkbox>Phone</Checkbox>
-              <Checkbox>Text</Checkbox>
+              <Checkbox
+                isChecked={newJob.contactBy.contactByEmail}
+                name="contactByEmail"
+                onChange={handleCheckboxChange}
+              >
+                Email
+              </Checkbox>
+              <Checkbox
+                isChecked={newJob.contactBy.contactByPhone}
+                name="contactByPhone"
+                onChange={handleCheckboxChange}
+              >
+                Phone
+              </Checkbox>
+              <Checkbox
+                isChecked={newJob.contactBy.contactByText}
+                name="contactByText"
+                onChange={handleCheckboxChange}
+              >
+                Text
+              </Checkbox>
             </Stack>
           </CheckboxGroup>
-          {/* <RadioGroup
-            id="contactBy"
-            name="contactBy"
-            type="contactBy"
-            value={newJob.contactBy}
-            onSubmit={handleSubmit}
-            onChange={handleChange}
-          >
-            <Stack spacing={5} direction="row">
-              <Radio>Email</Radio>
-              <Radio>Phone</Radio>
-              <Radio>Text</Radio>
-            </Stack>
-          </RadioGroup> */}
           {/* <FormHelperText>
             How would you like job seekers to contact you?
           </FormHelperText> */}
@@ -352,40 +344,33 @@ function PostJob() {
 
         {/* TITLE */}
         <FormControl id="title" isRequired>
-          <FormLabel htmlFor="title">Title</FormLabel>
+          <FormLabel>Title</FormLabel>
           <Input
             name="title"
             type="title"
             value={newJob.title}
-            onSubmit={handleSubmit}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <FormHelperText>A short, clear job title</FormHelperText>
         </FormControl>
 
         {/* DESCRIPTION */}
-        <FormControl>
-          <FormLabel htmlFor="description">Description</FormLabel>
+        <FormControl id="description">
+          <FormLabel>Description</FormLabel>
           <Input
-            id="description"
             name="description"
-            type="description"
             value={newJob.description}
-            onSubmit={handleSubmit}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <FormHelperText>Details about the job</FormHelperText>
         </FormControl>
 
-        <FormControl>
-          <FormLabel htmlFor="requirements">Special Requirements</FormLabel>
+        <FormControl id="requirements">
+          <FormLabel>Special Requirements</FormLabel>
           <Input
-            id="requirements"
             name="requirements"
-            type="requirements"
             value={newJob.requirements}
-            onSubmit={handleSubmit}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <FormHelperText>
             Any unique requirements such as: having a professional license,
@@ -401,6 +386,7 @@ function PostJob() {
           <Button
             rightIcon={<BsFillHandIndexThumbFill />}
             colorScheme="blue"
+            onClick={handleSubmit}
             size="lg"
           >
             Submit Form
