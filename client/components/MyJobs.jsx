@@ -1,45 +1,57 @@
-import React, { useEffect, useState } from "react"
-import * as api from '../apis'
-import Job from './Job'
+import React, { useEffect } from "react"
 import { fetchJobs } from "../actions"
 
-import { Text, Button, Heading, VStack } from "@chakra-ui/react"
+import { Heading, VStack } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
 import { useSelector, useDispatch} from "react-redux"
 
-function AllJobs() {
-  const [error, setError] = useState(null)
-  // console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
+function MyJobs() {
+  // const [error, setError] = useState(null)
 
-  // temporary status state for re-rendering on button press
-  // const [status, setStatus] = useState(false)
+  const jobs = useSelector((state) => state.jobs)
+  console.log(jobs)
 
-  const {jobs} = useSelector((state) => state.jobsReducer)
-
-
-  // useEffect(() => {
-  //   dispatch(fetchJobs())
-  // }, [])
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchJobs())
+  }, [])
 
 
   return (
     <>
-      <Heading m={9}>Here are your jobs</Heading>
+      <Heading m={9}>Here are your jobs:</Heading>
 
       <VStack spacing={6}>
-        {jobs.map((job, i) => {
-          return <>
-            <Job
-              key={i}
-              title={job.title}
-              description={job.description}
-              pay={job.pay}
-              region={job.locationRegion}
-              suburb={job.locationSuburb} />
-            </>
-          })}
+      <div>
+          <ul>
+            {jobs?.map((jobPosting, i) => {
+              return (
+                <li key={`${jobPosting.id} ${i}`}>
+                  <h2>{jobPosting.title}</h2>
+                  <img src={jobPosting.name} />
+                  <p>{jobPosting.region}</p>
+                  {/* <button className='button' onClick={handleClick}>Delete</button> */}
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </VStack>
     </>
   )
 }
 
-export default AllJobs
+export default MyJobs
+
+
+
+// {jobs.map((job) => {
+//   return <>
+//     <Job
+//       key={i}
+//       title={job.title}
+//       description={job.description}
+//       pay={job.pay}
+//       region={job.locationRegion}
+//       suburb={job.locationSuburb} />
+//     </>
+//   })}

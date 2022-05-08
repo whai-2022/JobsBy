@@ -5,7 +5,7 @@ const initialJobState = {
   job: {},
 }
 
-const myJobsReducer = (state = initialJobState, action) => {
+function myJobsReducer(state = initialJobState, action) {
   switch (action.type) {
     case REQUEST_USER_JOBS:
       return action.payload
