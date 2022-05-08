@@ -11,7 +11,8 @@ exports.seed = (knex) => {
         'Needing to have a nice dinner, please help me make one! I have an oven and a toaster.',
       requirements:
         '3 years experience as chef would be beneficial, but not essential. Need to be tall to reach counter.',
-      type: "paid",
+      type: 'paid',
+      category: 'green',
       region: 'Auckland',
       lat: '-36.8505',
       lon: '174.7645',
@@ -33,7 +34,8 @@ exports.seed = (knex) => {
         'Simple car wash job, please come between 2pm - 5pm on Thursday or Friday',
       requirements:
         'No requirements, just bring yourself, will provide cleaning equipment',
-      type: "paid",
+      type: 'paid',
+      category: 'green',
       region: 'Auckland',
       lat: '-36.8402',
       lon: '174.7645',
@@ -55,7 +57,8 @@ exports.seed = (knex) => {
         'Simple car wash job, please come between 2pm - 5pm on Thursday or Friday',
       requirements:
         'No requirements, just bring yourself, will provide cleaning equipment',
-      type: "paid",
+      type: 'paid',
+      category: 'green',
       region: 'waikato',
       lat: '-37.8502',
       lon: '174.7645',

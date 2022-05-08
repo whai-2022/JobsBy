@@ -1,4 +1,6 @@
-import { getAllJobs, postJob } from '../apis'
+import { getAllJobs, getUserJobs, postJob } from '../apis'
+
+export const REQUEST_USER_JOBS = 'REQUEST_USER_JOBS'
 
 export const SET_JOBS = 'SET_JOBS'
 export const ADD_JOB = 'ADD_JOB'
@@ -28,6 +30,13 @@ export function setError(errMessage) {
 
 // Fancy thunks
 
+export function requestUserJobs(jobs) {
+  return {
+    type: REQUEST_USER_JOBS,
+    payload: { jobs: jobs },
+  }
+}
+
 export function fetchJobs(region) {
   return (dispatch) => {
     return getAllJobs(region)
@@ -41,6 +50,18 @@ export function fetchJobs(region) {
   }
 }
 
+export function fetchUserJobs(userId) {
+  return (dispatch) => {
+    return getUserJobs(userId)
+      .then((res) => {
+        dispatch(requestUserJobs(res))
+        return null
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }
+}
 export function createJob(job) {
   return (dispatch) => {
     return postJob(job)
@@ -49,6 +70,6 @@ export function createJob(job) {
       })
       .catch((errMessage) => {
         dispatch(setError(errMessage))
-      }
-      )}
+      })
   }
+}

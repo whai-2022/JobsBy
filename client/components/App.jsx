@@ -13,6 +13,7 @@ import AllJobs from './AllJobs'
 import PostJob from './PostJob'
 import Nav from './Nav'
 import Job from './Job'
+import MyJobs from './MyJobs'
 // import LoggedIn from './LoggedIn'
 
 function App() {
@@ -34,6 +35,10 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/alljobs" element={<AllJobs />} />
           {/* <Route path='/alljobs/:id' element={<JobDetails />} /> */}
+          <Route path='/postjob' element={<PostJob />} />
+          <Route path='/job' element={<Job />} />
+          {/* TODO: when my profile is made (maybe), we can make this myProfile/myJobs ? */}
+          <Route path='/myJobs' element={<MyJobs />} />
           <Route path="/postjob" element={<PostJob />} />
           <Route path="/job" element={<Job />} />
         </Routes>

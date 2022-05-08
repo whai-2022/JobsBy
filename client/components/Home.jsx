@@ -16,6 +16,8 @@ function Home() {
       <Link as={LinkTo} color='teal.500'   to='/alljobs' aria-label='find available jobs'>Find a job</Link>
       <br />
       <Link as={LinkTo} color='teal.500'  to='/postjob' aria-label='post a new job'>Post a new job </Link>
+      <br />
+      <Link as={LinkTo} color='teal.500'  to='/myJobs' aria-label='post a new job'>My jobs </Link>
 
     </>
   )
