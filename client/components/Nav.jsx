@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
+// import { useAuth0 } from '@auth0/auth0-react'
 
 import {
   Menu,
@@ -16,8 +17,7 @@ import {
 
 import { HamburgerIcon } from '@chakra-ui/icons'
 
-function Nav(){
-
+function Nav() {
   return (
     <>
       <Menu>
@@ -25,7 +25,6 @@ function Nav(){
           Test
         </MenuButton>
       </Menu>
-
     </>
   )
 }

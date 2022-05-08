@@ -13,8 +13,9 @@ module.exports = {
   updateJobById,
 }
 
-function getAllJobs(db = connection) {
-  return db('jobs').select().where('accepted', false)
+function getAllJobs(region, db = connection) {
+  // search by region
+  return db('jobs').select().where('accepted', false).where('region', region)
 }
 
 function getJobById(id, db = connection) {

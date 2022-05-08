@@ -48,20 +48,20 @@ import {
 } from '@chakra-ui/react'
 // icons from react-icons
 import { BsFillHandIndexThumbFill } from 'react-icons/bs'
-
-// UNCOMMENT FOR AUTH0: import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function PostJob() {
-  // UNCOMMENT FOR AUTH0: const { user } = useAuth0()
-  // to get the auth0Id -> user.sub
-
-  // auto-complete address field
+  // const { user } = useAuth0()
+  // console.log(user.sub)
+  // // to get the auth0Id -> user.sub
+  // userId: user.sub
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
   console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
   const handleAddressChange = (e) => {
     setAddress(e.target.value)
     api
+      // auto-complete address field
       .getAutocompleteAddresses(e.target.value)
       .then((res) => {
         setAddresses(res)
@@ -199,10 +199,15 @@ function PostJob() {
             value={newJob.type}
             onSubmit={handleSubmit}
             onChange={handleChange}
+            // TODO: Figure out this functionality. Does it need to be onChange={setValue} value={value}
           >
             <Stack spacing={5} direction="row">
-              <Radio>Paid</Radio>
-              <Radio>Volunteer</Radio>
+              <Radio value="paid" aria-describedby>
+                Paid
+              </Radio>
+              <Radio value="volunteer" aria-describedby>
+                Volunteer
+              </Radio>
             </Stack>
           </RadioGroup>
         </FormControl>
@@ -355,7 +360,7 @@ function PostJob() {
             onSubmit={handleSubmit}
             onChange={handleChange}
           />
-          <FormHelperText>A short, clear job title.</FormHelperText>
+          <FormHelperText>A short, clear job title</FormHelperText>
         </FormControl>
 
         {/* DESCRIPTION */}
@@ -369,7 +374,7 @@ function PostJob() {
             onSubmit={handleSubmit}
             onChange={handleChange}
           />
-          <FormHelperText>Details about the job.</FormHelperText>
+          <FormHelperText>Details about the job</FormHelperText>
         </FormControl>
 
         <FormControl>
@@ -383,8 +388,8 @@ function PostJob() {
             onChange={handleChange}
           />
           <FormHelperText>
-            Examples: Professional license, prior experience, or the ability to
-            lift 15kg
+            Any unique requirements such as: having a professional license,
+            prior experience, or the ability to lift 15kg
           </FormHelperText>
         </FormControl>
 

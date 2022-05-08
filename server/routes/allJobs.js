@@ -1,12 +1,14 @@
 const express = require('express')
 const router = express.Router()
+// const checkJwt = require('../auth-0')
 
 const db = require('../db/db')
 
-// route  GET /api/allJobs
-// gets all jobs
-router.get('/', (req, res) => {
-  db.getAllJobs()
+// route  GET /api/allJobs/region/:region
+// gets all jobs by region
+router.get('/region/:region', (req, res) => {
+  const region = req.params.region
+  db.getAllJobs(region)
     .then((jobs) => {
       res.json(jobs)
     })

@@ -10,8 +10,12 @@ exports.up = (knex) => {
     table.text('requirements')
     table.integer('typeId').references('types.id') // type_id references the id in the types table
     table.string('category')
-    table.string('locationRegion') // todo: fetch all regions from api
-    table.string('locationSuburb') // todo: fetch all suburbs from api
+    table.string('region')
+    table.string('lon')
+    table.string('lat')
+    table.string('contactBy')
+    table.string('occurance')
+    table.string('when')
     table.string('pay')
     table.boolean('accepted')
     table.string('accepterId')
