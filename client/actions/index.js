@@ -3,6 +3,8 @@ import { getAllJobs, postJob, getJobById } from '../apis'
 export const SET_JOBS = 'SET_JOBS'
 export const ADD_JOB = 'ADD_JOB'
 export const SET_ERROR = 'SET_ERROR'
+export const GET_JOB_DETAILS = 'GET_JOB_DETAILS'
+export const JOB_LOADING = 'JOB_LOADING'
 
 // Simple actions
 
@@ -23,6 +25,12 @@ export function setError(errMessage) {
   return {
     type: SET_ERROR,
     payload: errMessage,
+  }
+}
+
+export function setLoading() {
+  return {
+    type: JOB_LOADING,
   }
 }
 
@@ -50,13 +58,24 @@ export function fetchJobs(region) {
 
 export function fetchJobByID(id) {
   return (dispatch) => {
+    // try {
+    //   dispatch(setLoading())
+
+    //   const job = await getJobById(id)
+    //   dispatch(getJobDetails(job))
+    // } catch (error) {
+    //   console.log(error.message)
+    // }
+
+    dispatch(setLoading())
+
     return getJobById(id)
       .then((res) => {
         dispatch(getJobDetails(res))
         return null
       })
       .catch((err) => {
-        console.log(err.message)
+        console.log(err.message, 'got an error')
       })
   }
 }

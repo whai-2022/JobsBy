@@ -1,28 +1,7 @@
-import { SET_JOBS, GET_JOB_DETAILS } from '../actions'
+import { SET_JOBS, GET_JOB_DETAILS, JOB_LOADING } from '../actions'
 
 const initialJobState = {
-  jobs: [
-    {
-      id: 1,
-      title: 'dishes',
-      description: 'piles and piles of dishes',
-      requirements: 'none',
-      locationRegion: 'Kaipara',
-      locationSuburb: 'Paparoa',
-      typeId: 1,
-      pay: '0.001 BTC',
-    },
-    {
-      id: 2,
-      title: 'Clean out my car',
-      description: 'General cleaning and vacuuming in my rusty old Outlander',
-      requirements: 'Elbow grease',
-      locationRegion: 'Auckland',
-      locationSuburb: 'Mt. Eden',
-      typeId: 1,
-      pay: '$40',
-    },
-  ],
+  jobs: [],
   job: {
     id: 2,
     title: 'Clean out my car',
@@ -33,17 +12,18 @@ const initialJobState = {
     typeId: 1,
     pay: '$40',
   },
+  loading: false, // loading individual job
 }
 
 const jobsReducer = (state = initialJobState, action) => {
   switch (action.type) {
     case SET_JOBS:
-      console.log(action)
-      return action.jobs
-    // return { jobs: action.jobs }
+      // console.log(action)
+      return { ...state, jobs: action.jobs }
     case GET_JOB_DETAILS:
-      return { job: action.job }
-
+      return { ...state, job: action.payload, loading: false }
+    case JOB_LOADING:
+      return { ...state, loading: true }
     default:
       return state
   }

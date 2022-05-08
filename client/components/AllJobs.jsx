@@ -27,7 +27,6 @@ function AllJobs() {
 
   const { jobs } = useSelector((state) => state.jobsReducer)
   const dispatch = useDispatch()
-
   // console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
 
   const handleAddressChange = (e) => {
@@ -109,7 +108,7 @@ function AllJobs() {
       </FormControl>
 
       {/* Cards of jobs available*/}
-      {/* <VStack spacing={6}>
+      <VStack spacing={6}>
         {jobs.map((job, i) => {
           return (
             <Job
@@ -122,7 +121,7 @@ function AllJobs() {
             suburb={job.locationSuburb} />
           )})}
         
-      </VStack> */}
+      </VStack>
     </>
   )
 }

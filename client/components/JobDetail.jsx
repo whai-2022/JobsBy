@@ -9,13 +9,14 @@ import { Heading } from '@chakra-ui/react'
 export default function JobDetail() {
   const { id } = useParams()
 
-  const { job } = useSelector((state) => state.jobsReducer)
+  const { job, loading } = useSelector((state) => state.jobsReducer)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchJobByID(id))
   }, [])
 
+  if (loading) return <p>Loading...</p>
   return (
     <Heading>{job.title}</Heading>
   )
