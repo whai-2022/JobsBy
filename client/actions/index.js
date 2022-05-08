@@ -1,6 +1,10 @@
-import { getAllJobs } from '../apis'
+import { getAllJobs, postJob } from '../apis'
 
 export const SET_JOBS = 'SET_JOBS'
+export const ADD_JOB = 'ADD_JOB'
+export const SET_ERROR = 'SET_ERROR'
+
+// Simple actions
 
 export function setJobs(jobs) {
   return {
@@ -8,6 +12,21 @@ export function setJobs(jobs) {
     jobs: jobs,
   }
 }
+export function addJob(job) {
+  return {
+    type: ADD_JOB,
+    payload: job,
+  }
+}
+
+export function setError(errMessage) {
+  return {
+    type: SET_ERROR,
+    payload: errMessage,
+  }
+}
+
+// Fancy thunks
 
 export function fetchJobs(region) {
   return (dispatch) => {
@@ -21,3 +40,15 @@ export function fetchJobs(region) {
       })
   }
 }
+
+export function createJob(job) {
+  return (dispatch) => {
+    return postJob(job)
+      .then((job) => {
+        addJob(job)
+      })
+      .catch((errMessage) => {
+        dispatch(setError(errMessage))
+      }
+      )}
+  }
