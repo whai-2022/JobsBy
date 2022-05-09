@@ -51,3 +51,12 @@ export function getUserJobs(userId) {
     .then((res) => res.body)
     .catch((err) => console.log(err.status, 'error'))
 }
+
+// accepts job
+export function acceptJob(jobId, accepterId) {
+  return request
+    .patch(`${allJobsURL}/${jobId}`)
+    .send({ accepterId })
+    .then(res => res.body)
+    .catch((err) => console.log(err.message))
+}
