@@ -38,7 +38,6 @@ function App() {
           <Route path='/alljobs/:id' element={<JobDetail />} />
           <Route path='/postjob' element={<PostJob />} />
           <Route path='/job' element={<Job />} />
-          {/* TODO: when my profile is made (maybe), we can make this myProfile/myJobs ? */}
           <Route path='/myJobs' element={<MyJobs />} />
         </Routes>
       </Container>
