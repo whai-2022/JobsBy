@@ -11,7 +11,7 @@ import { Heading, Box, Text, Button} from '@chakra-ui/react'
 export default function JobDetail() {
   const { id } = useParams()
 
-  const { job, loading } = useSelector((state) => state.jobsReducer)
+  const { job, loading } = useSelector((state) => state.jobs)
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
@@ -85,6 +85,15 @@ export default function JobDetail() {
         <Text>{job.requirements}</Text>
       </Box>
 
+      <Box textAlign='left' m={2}>
+        <Text
+          fontWeight='bold'>
+          Contact:
+        </Text>
+        {job.email}
+      </Box>
+      
+      
 
       <Button m={2} onClick={handleAcceptJob}>Accept Job</Button>
     </Box>
