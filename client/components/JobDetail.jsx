@@ -17,7 +17,7 @@ export default function JobDetail() {
 
   const handleAcceptJob = () => {
     dispatch(acceptJob(id, user.sub))
-    // then navigate to my jobs ?
+    // TODO: navigate to myJobs after accepting the job
     alert('You have successfully accepted the job.')
   }
 

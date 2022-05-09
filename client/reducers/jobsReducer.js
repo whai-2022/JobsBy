@@ -1,4 +1,4 @@
-import { SET_JOBS, GET_JOB_DETAILS, JOB_LOADING } from '../actions'
+import { SET_JOBS, GET_JOB_DETAILS, JOB_LOADING, ACCEPT_JOB } from '../actions'
 
 const initialJobState = {
   jobs: [],
@@ -18,12 +18,13 @@ const initialJobState = {
 const jobsReducer = (state = initialJobState, action) => {
   switch (action.type) {
     case SET_JOBS:
-      // console.log(action)
       return { ...state, jobs: action.jobs }
     case GET_JOB_DETAILS:
       return { ...state, job: action.payload, loading: false }
     case JOB_LOADING:
       return { ...state, loading: true }
+    case ACCEPT_JOB:
+      return { ...state, jobs: [...state.jobs.filter(job => job.id !== action.payload.id), action.payload] }
     default:
       return state
   }

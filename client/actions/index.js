@@ -69,15 +69,6 @@ export function fetchJobs(region) {
 
 export function fetchJobByID(id) {
   return (dispatch) => {
-    // try {
-    //   dispatch(setLoading())
-
-    //   const job = await getJobById(id)
-    //   dispatch(getJobDetails(job))
-    // } catch (error) {
-    //   console.log(error.message)
-    // }
-
     dispatch(setLoading())
 
     return getJobById(id)
@@ -116,7 +107,7 @@ export function createJob(job) {
 }
 
 export function acceptJob(jobId, accepterId) {
-  return async (dispatch) => {
+  return (dispatch) => {
     return api
       .acceptJob(jobId, accepterId)
       .then((job) => {
