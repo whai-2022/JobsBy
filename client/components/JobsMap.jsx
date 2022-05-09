@@ -3,11 +3,10 @@ import { MapContainer, TileLayer, Popup, Marker, useMap } from 'react-leaflet'
 import { Link } from 'react-router-dom'
 
 function JobsMap({ position, jobs }) {
-  // console.log(jobs)
   return (
     <MapContainer
       center={position}
-      zoom={12}
+      zoom={11}
       scrollWheelZoom={true}
       className="map-container"
     >

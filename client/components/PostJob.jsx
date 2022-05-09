@@ -3,10 +3,13 @@ import * as api from '../apis'
 import { createJob } from '../actions'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+// TODO: check if this works from top level in app, if so, individual SkipNavContent in this component as it would double up.
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 import {
   // distribute element(s) vertically
   VStack,
+  // distribute element(s) horizontally
+  HStack,
   // renders a div
   Box,
   // can be defined as h1, h2, h3, etc.
@@ -21,15 +24,17 @@ import {
   Button,
   // groups buttons w/related actions
   // ButtonGroup,
+  // Icon
+  Icon,
   // list components
-  // List,
+  List,
   ListItem,
-  // ListIcon,
-  // OrderedList,
+  ListIcon,
+  OrderedList,
   UnorderedList,
   // colors
-  // useColorMode,
-  // UseColorModeValue,
+  useColorMode,
+  UseColorModeValue,
   // -- FORM SPECIFIC --
   // Form components must be wrapped by FormControl, or else you will get misleading error messages
   // FormControl passes id to Input as id, and to FormLabel as htmlFor
@@ -43,7 +48,7 @@ import {
   //  tells more details about the form section
   FormHelperText,
   // message that shows up when an error occurs
-  // FormErrorMessage,
+  FormErrorMessage,
   // select one choice from options
   Radio,
   RadioGroup,
@@ -52,9 +57,18 @@ import {
   CheckboxGroup,
   Checkbox,
 } from '@chakra-ui/react'
-// icons from react-icons
-import { BsFillHandIndexThumbFill } from 'react-icons/bs'
+import { BsFillHandIndexThumbFill, BsChatTextFill } from 'react-icons/bs'
+import {
+  MdPerson,
+  MdLocationPin,
+  MdAttachMoney,
+  MdWork,
+  MdDescription,
+} from 'react-icons/md'
+import { FaCalendarAlt, FaHandshake, FaTools } from 'react-icons/fa'
+import { FiRepeat } from 'react-icons/fi'
 import { useAuth0 } from '@auth0/auth0-react'
+import { EmailIcon, PhoneIcon } from '@chakra-ui/icons'
 
 function PostJob() {
   const { user } = useAuth0()
@@ -165,13 +179,20 @@ function PostJob() {
   return (
     <>
       <SkipNavContent>
-        <VStack w="full" h="full" p={10} spacing={10} alignItems="flex-start">
+        <VStack
+          w="full"
+          h="full"
+          p={10}
+          spacing={10}
+          alignItems="flex-start"
+          bg="#F7FAFC"
+        >
           <Heading as="h1" size="xl" textAlign="left">
             List a Job
           </Heading>
           {/* STRETCH: Translate form */}
           <Box
-            bg="#E6FFFA"
+            bg="#B2F5EA"
             w="100%"
             color="#black"
             padding="10px"
@@ -210,8 +231,12 @@ function PostJob() {
           {/* OCCURRENCE */}
           {/* a11y: short & specific labels, associated with form field */}
           <FormControl id="occurrence">
-            <FormLabel>How often does this job need to be done?</FormLabel>
+            <FormLabel>
+              How often does this job need to be done?{' '}
+              <Icon as={FiRepeat} w={6} h={6} />
+            </FormLabel>
             <Input
+              variant="filled"
               name="occurrence"
               value={newJob.occurrence}
               onChange={handleInputChange}
@@ -230,10 +255,10 @@ function PostJob() {
             >
               <Stack spacing={5} direction="row">
                 <Radio value="paid" id="paid" aria-label="paid">
-                  Paid
+                  Paid <Icon as={MdAttachMoney} w={6} h={6} />
                 </Radio>
-                <Radio value="volunteer" id="volunteer" aria-label="paid">
-                  Volunteer
+                <Radio value="volunteer" id="volunteer" aria-label="volunteer">
+                  Volunteer <Icon as={FaHandshake} w={6} h={6} />
                 </Radio>
               </Stack>
             </RadioGroup>
@@ -241,10 +266,18 @@ function PostJob() {
 
           {/* PAY */}
           <FormControl id="pay">
-            <FormLabel>If a paid job, what is the rate per hour?</FormLabel>
-            <Input name="pay" value={newJob.pay} onChange={handleInputChange} />
+            <FormLabel>
+              If paid, what is the rate per hour?{' '}
+              <Icon as={MdAttachMoney} w={6} h={6} />
+            </FormLabel>
+            <Input
+              variant="filled"
+              name="pay"
+              value={newJob.pay}
+              onChange={handleInputChange}
+            />
             <FormHelperText>
-              The rate must not be less than the{' '}
+              Paid jobs must not pay less than the{' '}
               <Link
                 href="https://www.employment.govt.nz/hours-and-wages/pay/minimum-wage/minimum-wage-rates/"
                 aria-label="minimum wage rates"
@@ -256,8 +289,11 @@ function PostJob() {
 
           {/* WHEN */}
           <FormControl id="when">
-            <FormLabel>Start Date</FormLabel>
+            <FormLabel>
+              Start Date <Icon as={FaCalendarAlt} w={6} h={6} />
+            </FormLabel>
             <Input
+              variant="filled"
               name="when"
               value={newJob.when}
               onSubmit={handleSubmit}
@@ -270,8 +306,11 @@ function PostJob() {
           {/* TODO: ensure address field is accessible 
               & TEST if autocomplete is accessible */}
           <FormControl id="address" isRequired>
-            <FormLabel>Address</FormLabel>
+            <FormLabel>
+              Address <Icon as={MdLocationPin} w={6} h={6} />
+            </FormLabel>
             <Input
+              variant="filled"
               list="addresses"
               name="address"
               value={address}
@@ -290,8 +329,11 @@ function PostJob() {
 
           {/* NAME */}
           <FormControl id="name" isRequired>
-            <FormLabel>Name</FormLabel>
+            <FormLabel>
+              Name <Icon as={MdPerson} w={8} h={8} />
+            </FormLabel>
             <Input
+              variant="filled"
               name="name"
               value={newJob.name}
               onSubmit={handleSubmit}
@@ -302,8 +344,13 @@ function PostJob() {
 
           {/* EMAIL */}
           <FormControl id="email">
-            <FormLabel>Email</FormLabel>
+            <HStack>
+              <FormLabel>
+                Email <Icon as={EmailIcon} w={6} h={6} />
+              </FormLabel>
+            </HStack>
             <Input
+              variant="filled"
               type="email"
               value={newJob.email}
               onSubmit={handleSubmit}
@@ -314,8 +361,13 @@ function PostJob() {
           {/* PHONE */}
           {/* a11y: phone number should not be required */}
           <FormControl id="phone">
-            <FormLabel>Phone</FormLabel>
+            <HStack>
+              <FormLabel>
+                Phone <Icon as={PhoneIcon} w={5} h={5} />
+              </FormLabel>
+            </HStack>
             <Input
+              variant="filled"
               name="phone"
               type="tel"
               value={newJob.phone}
@@ -339,7 +391,7 @@ function PostJob() {
                   name="contactByEmail"
                   onChange={handleCheckboxChange}
                 >
-                  Email
+                  Email <Icon as={EmailIcon} w={6} h={6} />
                 </Checkbox>
                 <Checkbox
                   id="contactByPhone"
@@ -347,7 +399,7 @@ function PostJob() {
                   name="contactByPhone"
                   onChange={handleCheckboxChange}
                 >
-                  Phone
+                  Phone <Icon as={PhoneIcon} w={5} h={5} />
                 </Checkbox>
                 <Checkbox
                   id="contactByText"
@@ -355,7 +407,7 @@ function PostJob() {
                   name="contactByText"
                   onChange={handleCheckboxChange}
                 >
-                  Text
+                  Text <Icon as={BsChatTextFill} w={6} h={6} />
                 </Checkbox>
               </Stack>
             </CheckboxGroup>
@@ -366,8 +418,11 @@ function PostJob() {
 
           {/* TITLE */}
           <FormControl id="title" isRequired>
-            <FormLabel>Title</FormLabel>
+            <FormLabel>
+              Title <Icon as={MdWork} w={6} h={6} />
+            </FormLabel>
             <Input
+              variant="filled"
               name="title"
               type="title"
               value={newJob.title}
@@ -378,8 +433,11 @@ function PostJob() {
 
           {/* DESCRIPTION */}
           <FormControl id="description">
-            <FormLabel>Description</FormLabel>
+            <FormLabel>
+              Description <Icon as={MdDescription} w={6} h={6} />
+            </FormLabel>
             <Textarea
+              variant="filled"
               name="description"
               value={newJob.description}
               onChange={handleInputChange}
@@ -388,8 +446,11 @@ function PostJob() {
           </FormControl>
 
           <FormControl id="requirements">
-            <FormLabel>Special Requirements</FormLabel>
+            <FormLabel>
+              Special Requirements <Icon as={FaTools} w={6} h={6} />
+            </FormLabel>
             <Input
+              variant="filled"
               name="requirements"
               value={newJob.requirements}
               onChange={handleInputChange}
@@ -407,7 +468,7 @@ function PostJob() {
           <FormControl>
             <Button
               rightIcon={<BsFillHandIndexThumbFill />}
-              colorScheme="blue"
+              colorScheme="telegram"
               onClick={handleSubmit}
               size="lg"
             >

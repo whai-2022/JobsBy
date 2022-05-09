@@ -4,30 +4,31 @@ const router = express.Router()
 
 const db = require('../db/db')
 
-// route  GET /api/allJobs/region/:region
-// gets all jobs by region
-router.get('/region/:region', (req, res) => {
-  const region = req.params.region
-  // console.log('getting jobs by region', region)
-  db.getAllJobs(region)
-    .then((jobs) => {
-      res.json(jobs)
-    })
-    .catch((e) => {
-      // console.log(e.message)
-      res.status(500).send(e.message)
-    })
-})
-
 // route  GET /api/allJobs/:id
 // Gets a job by id
 router.get('/:id', (req, res) => {
   const id = +req.params.id // converts to a number
+
   db.getJobById(id)
     .then((job) => {
       res.json(job)
     })
     .catch((e) => {
+      res.status(500).send(e.message)
+    })
+})
+
+// route  GET /api/allJobs/region/:region
+// gets all jobs by region
+router.get('/region/:region', (req, res) => {
+  const region = req.params.region
+  // console.log('getting jobs by region from db', region)
+  db.getAllJobs(region)
+    .then((jobs) => {
+      res.json(jobs)
+    })
+    .catch((e) => {
+      console.log(e.message)
       res.status(500).send(e.message)
     })
 })
