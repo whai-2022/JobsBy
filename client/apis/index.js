@@ -9,7 +9,7 @@ const apiKey2 = 'wcyCeEHbpFxfjDPDJD3UWQ'
 export function getAutocompleteAddresses(address) {
   return request
     .get(
-      `https://api.addressable.co.nz/v2/autocomplete?api_key=${apiKey2}&country_code=NZ&q=${address.replaceAll(
+      `https://api.addressable.co.nz/v2/autocomplete?api_key=${apiKey1}&country_code=NZ&q=${address.replaceAll(
         ' ',
         '+'
       )}`
@@ -25,7 +25,7 @@ export function postJob(job) {
     .post(allJobsURL)
     .send(job)
     .then((response) => response.body)
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
 }
 
 // gets a full list of jobs from database

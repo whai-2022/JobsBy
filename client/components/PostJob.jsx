@@ -3,6 +3,7 @@ import * as api from '../apis'
 import { createJob } from '../actions'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { SkipNavContent } from '@chakra-ui/skip-nav'
 import {
   // distribute element(s) vertically
   VStack,
@@ -84,7 +85,7 @@ function PostJob() {
     requirements: '',
     type: '',
     contactBy: '',
-    occurrence: '', 
+    occurrence: '',
     when: '',
     pay: '',
     accepted: false,
@@ -130,281 +131,300 @@ function PostJob() {
     evt.preventDefault()
     // destructure address object (api data needs us to get the first item in the array)
     const { region, lon, lat } = addresses[0]
-    // const [region, lon, lat] = ['Auckland', '-35', '174']
 
     const job = {
       ...newJob,
-      contactBy: Object.keys(newJob.contactBy).filter(Boolean),
+      contactBy: Object.keys(newJob.contactBy).filter(Boolean).join(','),
+      /* (Prior to the above refactor with .filter(Boolean)) contactBy: Object.keys(newJob.contactBy).filter((key) => newJob.contactBy[key]).join(',') */
+      /* Functionality Comment for Team's Learning:
+        Object.keys(newJob.contactBy) -> e.g ['contactByText', 'contactByPhone']
+        .join(",") -> "contactByText,contactByPhone"
+      */
+      /* NB: when reading contactBy data, split by commas to turn "contactByText,contactByPhone" back into ['contactByText', 'contactByPhone']
+          .split(",")
+        Note on how to read contactBy data:
+          "contactByText,contactByPhone"
+          .split(",") -> ['contactByText', 'contactByPhone']
+          let key = {
+            contactByText: 'text',
+            contactByPhone: 'phone',
+            contactByEmail: 'email'
+          }
+          key[contactBy]
+      */
       userId: user.sub,
       region,
       lon,
       lat,
     }
-    // console.log(job)
     dispatch(createJob(job))
     // TODO: navigate to newly added Job (once job details view is live). Possibly, with async await (after getting id back)
     navigate('/')
   }
 
-  console.log(newJob)
-
   return (
     <>
-      <VStack w="full" h="full" p={10} spacing={10} alignItems="flex-start">
-        <Heading as="h1" size="xl" textAlign="left">
-          List a Job
-        </Heading>
-        {/* STRETCH: Translate form */}
-        <Box
-          bg="purple"
-          w="100%"
-          color="white"
-          padding="10px"
-          borderRadius="lg"
-        >
-          <Heading as="h3" size="sm" textAlign="left">
-            Form Instructions
+      <SkipNavContent>
+        <VStack w="full" h="full" p={10} spacing={10} alignItems="flex-start">
+          <Heading as="h1" size="xl" textAlign="left">
+            List a Job
           </Heading>
-          <UnorderedList textAlign="left">
-            {/* a11y: provide instructions on what the form requires */}
-            {/* a11y: say how long the form will take to complete. Make sure form does not time out.
-          TODO: enable save as you go */}
-            <ListItem>Time to complete ~ 30 minutes</ListItem>
-            <ListItem>All fields marked “required” must be completed.</ListItem>
-            <ListItem>
-              Data entered will be viewed by the public. Please use discretion
-              with sharing personal information.
-            </ListItem>
-            <ListItem>
-              The address field contains an autocomplete option.
-            </ListItem>
-            <ListItem>
-              Extra help can be found immediately after each field.
-            </ListItem>
-          </UnorderedList>
-        </Box>
-        <Heading as="h2" size="md">
-          Job Form
-        </Heading>
-        {/* a11y: form fields in a logical order to tab through */}
-        {/* TODO a11y: highlight field when tabbing through */}
-        {/* a11y: define what the fields require. Ex: if in a particular format */}
-
-        {/* OCCURRENCE */}
-        {/* a11y: short & specific labels, associated with form field */}
-        <FormControl id="occurrence">
-          <FormLabel>How often does this job need to be done?</FormLabel>
-          <Input
-            name="occurrence"
-            value={newJob.occurrence}
-            onChange={handleInputChange}
-          />
-          <FormHelperText>One-off, weekly, or monthly</FormHelperText>
-        </FormControl>
-
-        {/* TYPE */}
-        <FormControl as="fieldset" id="type" isRequired>
-          <FormLabel as="legend">Type of job</FormLabel>
-          <RadioGroup
-            variantColor="green"
-            name="type"
-            value={newJob.type}
-            onChange={(value) => handleValueChange('type', value)}
+          {/* STRETCH: Translate form */}
+          <Box
+            bg="#E6FFFA"
+            w="100%"
+            color="#black"
+            padding="10px"
+            borderRadius="lg"
           >
-            <Stack spacing={5} direction="row">
-              <Radio value="paid" id="paid" aria-label="paid">
-                Paid
-              </Radio>
-              {/* <VisuallyHidden>Paid</VisuallyHidden> */}
-              <Radio value="volunteer" id="volunteer" aria-label="paid">
-                Volunteer
-              </Radio>
-              {/* <VisuallyHidden>Volunteer</VisuallyHidden> */}
-            </Stack>
-          </RadioGroup>
-        </FormControl>
+            <Heading as="h2" size="sm" textAlign="left">
+              Form Instructions
+            </Heading>
+            <UnorderedList textAlign="left">
+              {/* a11y: provide instructions on what the form requires */}
+              {/* a11y: say how long the form will take to complete. Make sure form does not time out.
+            TODO: enable save as you go */}
+              <ListItem>Time to complete ~ 30 minutes</ListItem>
+              <ListItem>
+                All fields marked “required” must be completed.
+              </ListItem>
+              <ListItem>
+                Data entered will be viewed by the public. Please use discretion
+                with sharing personal information.
+              </ListItem>
+              <ListItem>
+                The address field contains an autocomplete option.
+              </ListItem>
+              <ListItem>
+                Extra help can be found immediately after each field.
+              </ListItem>
+            </UnorderedList>
+          </Box>
+          <Heading as="h3" size="md">
+            Job Form
+          </Heading>
+          {/* a11y: form fields in a logical order to tab through */}
+          {/* TODO a11y: highlight field when tabbing through */}
+          {/* a11y: define what the fields require. Ex: if in a particular format */}
 
-        {/* PAY */}
-        <FormControl id="pay">
-          <FormLabel>If a paid job, what is the rate per hour?</FormLabel>
-          <Input name="pay" value={newJob.pay} onChange={handleInputChange} />
-          <FormHelperText>
-            The rate must not be less than the{' '}
-            <Link
-              href="https://www.employment.govt.nz/hours-and-wages/pay/minimum-wage/minimum-wage-rates/"
-              aria-label="minimum wage rates"
+          {/* OCCURRENCE */}
+          {/* a11y: short & specific labels, associated with form field */}
+          <FormControl id="occurrence">
+            <FormLabel>How often does this job need to be done?</FormLabel>
+            <Input
+              name="occurrence"
+              value={newJob.occurrence}
+              onChange={handleInputChange}
+            />
+            <FormHelperText>One-off, weekly, or monthly</FormHelperText>
+          </FormControl>
+
+          {/* TYPE */}
+          <FormControl as="fieldset" id="type" isRequired>
+            <FormLabel as="legend">Type of job</FormLabel>
+            <RadioGroup
+              colorScheme="green"
+              name="type"
+              value={newJob.type}
+              onChange={(value) => handleValueChange('type', value)}
             >
-              minimum wage
-            </Link>
-          </FormHelperText>
-        </FormControl>
+              <Stack spacing={5} direction="row">
+                <Radio value="paid" id="paid" aria-label="paid">
+                  Paid
+                </Radio>
+                <Radio value="volunteer" id="volunteer" aria-label="paid">
+                  Volunteer
+                </Radio>
+              </Stack>
+            </RadioGroup>
+          </FormControl>
 
-        {/* WHEN */}
-        <FormControl id="when">
-          <FormLabel>Start Date</FormLabel>
-          <Input
-            name="when"
-            value={newJob.when}
-            onSubmit={handleSubmit}
-            onChange={handleInputChange}
-          />
-          <FormHelperText>Anytime, ASAP, or DD/MM/YYYY</FormHelperText>
-        </FormControl>
-
-        {/* ADDRESS */}
-        {/* TODO: ensure address field is accessible 
-            & TEST if autocomplete is accessible */}
-        <FormControl id="address" isRequired>
-          <FormLabel>Address</FormLabel>
-          <Input
-            list="addresses"
-            name="address"
-            value={address}
-            onChange={handleAddressChange}
-          />
-          <datalist id="addresses" name="addresses">
-            {addresses.map((address, idx) => (
-              <option value={address.formatted} key={`address-${idx}`} />
-            ))}
-          </datalist>
-          <FormHelperText>
-            For safety, we suggest setting the address to a landmark near the
-            job site, such as a library or grocery store
-          </FormHelperText>
-        </FormControl>
-
-        {/* NAME */}
-        <FormControl id="name" isRequired>
-          <FormLabel>Name</FormLabel>
-          <Input
-            name="name"
-            value={newJob.name}
-            onSubmit={handleSubmit}
-            onChange={handleInputChange}
-          />
-          <FormHelperText>Contact person&apos;s details</FormHelperText>
-        </FormControl>
-
-        {/* EMAIL */}
-        <FormControl id="email">
-          <FormLabel>Email</FormLabel>
-          <Input
-            type="email"
-            value={newJob.email}
-            onSubmit={handleSubmit}
-            onChange={handleInputChange}
-          />
-        </FormControl>
-
-        {/* PHONE */}
-        {/* a11y: phone number should not be required */}
-        <FormControl id="phone">
-          <FormLabel>Phone</FormLabel>
-          <Input
-            name="phone"
-            type="tel"
-            value={newJob.phone}
-            onSubmit={handleSubmit}
-            onChange={handleInputChange}
-          />
-        </FormControl>
-
-        {/* CONTACT */}
-        <FormControl as="fieldset" id="contactBy">
-          <FormLabel as="legend" htmlFor="contactBy">
-            What&apos;s the best way to get in touch?
-          </FormLabel>
-          {/* TODO: Add isFocusable ? */}
-          <CheckboxGroup size="md" colorScheme="green" name="contactBy">
-            <Stack spacing={[1, 5]} direction={['column', 'row']}>
-              <Checkbox
-                isChecked={newJob.contactBy.contactByEmail}
-                name="contactByEmail"
-                onChange={handleCheckboxChange}
+          {/* PAY */}
+          <FormControl id="pay">
+            <FormLabel>If a paid job, what is the rate per hour?</FormLabel>
+            <Input name="pay" value={newJob.pay} onChange={handleInputChange} />
+            <FormHelperText>
+              The rate must not be less than the{' '}
+              <Link
+                href="https://www.employment.govt.nz/hours-and-wages/pay/minimum-wage/minimum-wage-rates/"
+                aria-label="minimum wage rates"
               >
-                Email
-              </Checkbox>
-              <Checkbox
-                isChecked={newJob.contactBy.contactByPhone}
-                name="contactByPhone"
-                onChange={handleCheckboxChange}
-              >
-                Phone
-              </Checkbox>
-              <Checkbox
-                isChecked={newJob.contactBy.contactByText}
-                name="contactByText"
-                onChange={handleCheckboxChange}
-              >
-                Text
-              </Checkbox>
-            </Stack>
-          </CheckboxGroup>
-          {/* <FormHelperText>
-            How would you like job seekers to contact you?
-          </FormHelperText> */}
-        </FormControl>
+                minimum wage
+              </Link>
+            </FormHelperText>
+          </FormControl>
 
-        {/* TITLE */}
-        <FormControl id="title" isRequired>
-          <FormLabel>Title</FormLabel>
-          <Input
-            name="title"
-            type="title"
-            value={newJob.title}
-            onChange={handleInputChange}
-          />
-          <FormHelperText>A short, clear job title</FormHelperText>
-        </FormControl>
+          {/* WHEN */}
+          <FormControl id="when">
+            <FormLabel>Start Date</FormLabel>
+            <Input
+              name="when"
+              value={newJob.when}
+              onSubmit={handleSubmit}
+              onChange={handleInputChange}
+            />
+            <FormHelperText>Anytime, ASAP, or DD/MM/YYYY</FormHelperText>
+          </FormControl>
 
-        {/* DESCRIPTION */}
-        <FormControl id="description">
-          <FormLabel>Description</FormLabel>
-          <Textarea
-            name="description"
-            value={newJob.description}
-            onChange={handleInputChange}
-          />
-          <FormHelperText>Details about the job</FormHelperText>
-        </FormControl>
+          {/* ADDRESS */}
+          {/* TODO: ensure address field is accessible 
+              & TEST if autocomplete is accessible */}
+          <FormControl id="address" isRequired>
+            <FormLabel>Address</FormLabel>
+            <Input
+              list="addresses"
+              name="address"
+              value={address}
+              onChange={handleAddressChange}
+            />
+            <datalist id="addresses" name="addresses">
+              {addresses.map((address, idx) => (
+                <option value={address.formatted} key={`address-${idx}`} />
+              ))}
+            </datalist>
+            <FormHelperText>
+              For safety, we suggest setting the address to a landmark near the
+              job site, such as a library or grocery store
+            </FormHelperText>
+          </FormControl>
 
-        <FormControl id="requirements">
-          <FormLabel>Special Requirements</FormLabel>
-          <Input
-            name="requirements"
-            value={newJob.requirements}
-            onChange={handleInputChange}
-          />
-          <FormHelperText>
-            Such as a professional license, prior experience, the ability to
-            lift 15kg
-          </FormHelperText>
-        </FormControl>
+          {/* NAME */}
+          <FormControl id="name" isRequired>
+            <FormLabel>Name</FormLabel>
+            <Input
+              name="name"
+              value={newJob.name}
+              onSubmit={handleSubmit}
+              onChange={handleInputChange}
+            />
+            <FormHelperText>Contact person&apos;s details</FormHelperText>
+          </FormControl>
 
-        {/* TODO: Any additional submit instructions?
-        // Your advertisement must comply with our community guidelines to be posted. For information about our community guidelines, please read them.
-        // Community guidelines pop up or link to a page with a link to return to form.
-        */}
-        <FormControl>
+          {/* EMAIL */}
+          <FormControl id="email">
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
+              value={newJob.email}
+              onSubmit={handleSubmit}
+              onChange={handleInputChange}
+            />
+          </FormControl>
+
+          {/* PHONE */}
+          {/* a11y: phone number should not be required */}
+          <FormControl id="phone">
+            <FormLabel>Phone</FormLabel>
+            <Input
+              name="phone"
+              type="tel"
+              value={newJob.phone}
+              onSubmit={handleSubmit}
+              onChange={handleInputChange}
+            />
+          </FormControl>
+
+          {/* CONTACT */}
+          <FormControl as="fieldset" id="contactBy">
+            <FormLabel as="legend" htmlFor="contactBy">
+              What&apos;s the best way to get in touch?
+            </FormLabel>
+            {/* TODO: Add isFocusable ? */}
+            <CheckboxGroup size="md" colorScheme="green" name="contactBy">
+              <Stack spacing={[1, 5]} direction={['column', 'row']}>
+                <Checkbox
+                  // added id for lighthouse unique input requirement
+                  id="contactByEmail"
+                  isChecked={newJob.contactBy.contactByEmail}
+                  name="contactByEmail"
+                  onChange={handleCheckboxChange}
+                >
+                  Email
+                </Checkbox>
+                <Checkbox
+                  id="contactByPhone"
+                  isChecked={newJob.contactBy.contactByPhone}
+                  name="contactByPhone"
+                  onChange={handleCheckboxChange}
+                >
+                  Phone
+                </Checkbox>
+                <Checkbox
+                  id="contactByText"
+                  isChecked={newJob.contactBy.contactByText}
+                  name="contactByText"
+                  onChange={handleCheckboxChange}
+                >
+                  Text
+                </Checkbox>
+              </Stack>
+            </CheckboxGroup>
+            {/* <FormHelperText>
+              How would you like job seekers to contact you?
+            </FormHelperText> */}
+          </FormControl>
+
+          {/* TITLE */}
+          <FormControl id="title" isRequired>
+            <FormLabel>Title</FormLabel>
+            <Input
+              name="title"
+              type="title"
+              value={newJob.title}
+              onChange={handleInputChange}
+            />
+            <FormHelperText>A short, clear job title</FormHelperText>
+          </FormControl>
+
+          {/* DESCRIPTION */}
+          <FormControl id="description">
+            <FormLabel>Description</FormLabel>
+            <Textarea
+              name="description"
+              value={newJob.description}
+              onChange={handleInputChange}
+            />
+            <FormHelperText>Details about the job</FormHelperText>
+          </FormControl>
+
+          <FormControl id="requirements">
+            <FormLabel>Special Requirements</FormLabel>
+            <Input
+              name="requirements"
+              value={newJob.requirements}
+              onChange={handleInputChange}
+            />
+            <FormHelperText>
+              Such as a professional license, prior experience, the ability to
+              lift 15kg
+            </FormHelperText>
+          </FormControl>
+
+          {/* TODO: Any additional submit instructions?
+          // Your advertisement must comply with our community guidelines to be posted. For information about our community guidelines, please read them.
+          // Community guidelines pop up or link to a page with a link to return to form.
+          */}
+          <FormControl>
+            <Button
+              rightIcon={<BsFillHandIndexThumbFill />}
+              colorScheme="blue"
+              onClick={handleSubmit}
+              size="lg"
+            >
+              Submit Form
+            </Button>
+            {/* // STRETCH TODO: Button to transform upon submit (for slow internet connections)
           <Button
-            rightIcon={<BsFillHandIndexThumbFill />}
+            isLoading
+            loadingText="Submitting"
+            //TODO: ensure this isn't too faint on submit
             colorScheme="blue"
-            onClick={handleSubmit}
+            variant="ghost"
             size="lg"
-          >
-            Submit Form
-          </Button>
-          {/* // STRETCH TODO: Button to transform upon submit (for slow internet connections)
-        <Button
-          isLoading
-          loadingText="Submitting"
-          //TODO: ensure this isn't too faint on submit
-          colorScheme="blue"
-          variant="ghost"
-          size="lg"
-        ></Button> */}
-        </FormControl>
-      </VStack>
+          ></Button> */}
+          </FormControl>
+        </VStack>
+      </SkipNavContent>
     </>
   )
 }
