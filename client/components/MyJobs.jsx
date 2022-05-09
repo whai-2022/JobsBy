@@ -6,9 +6,11 @@ import { Heading, VStack, LinkBox, Box, Badge } from "@chakra-ui/react" // TODO:
 import { useSelector, useDispatch} from "react-redux"
 
 function MyJobs() {
+  // const [error, setError] = useState(null)
 
   const myJobs = useSelector((state) => state.myJobs)
   // myJobs = {jobs = [res.body/actual jobs]}
+  console.log(myJobs)
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -74,3 +76,17 @@ function MyJobs() {
 }
 
 export default MyJobs
+
+
+
+// {jobs.map((job) => {
+//   return <>
+//     <Job
+//       key={i}
+//       title={job.title}
+//       description={job.description}
+//       pay={job.pay}
+//       region={job.locationRegion}
+//       suburb={job.locationSuburb} />
+//     </>
+//   })}
