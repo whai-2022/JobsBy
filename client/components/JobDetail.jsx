@@ -40,43 +40,51 @@ export default function JobDetail() {
       borderRadius='lg'
     >
       <Heading
+        as='h2'
         m={4}
       >
         {job.title}
       </Heading>
       <Box textAlign='left' m={2}>
-        <Text
+        <Heading
+          as='h3'
+          fontSize="lg"
           fontWeight='bold'>
           Description:
-        </Text>
-        {job.description}
+        </Heading>
+        <Text>{job.description}</Text>
       </Box>
 
       <Box textAlign='left' m={2}>
-        <Text
+        <Heading
+          as='h3'
+          fontSize="lg"
           fontWeight='bold'>
           Region:
-        </Text>
-        {job.region}
+        </Heading>
+        <Text>{job.region}</Text>
       </Box>
 
       <Box textAlign='left' m={2}>
-        <Text
+        <Heading
+          as='h3'
+          fontSize="lg"
           fontWeight='bold'>
           Pay:
-        </Text>
-        {job.pay}
+        </Heading>
+        <Text>{job.pay}</Text>
       </Box>
 
       <Box textAlign='left' m={2}>
-        <Text
+        <Heading
+          as='h3'
+          fontSize="lg"
           fontWeight='bold'>
           Requirements:
-        </Text>
-        {job.requirements}
+        </Heading>
+        <Text>{job.requirements}</Text>
       </Box>
 
-      
 
       <Button m={2} onClick={handleAcceptJob}>Accept Job</Button>
     </Box>
