@@ -11,7 +11,7 @@ import { Heading, Box, Text, Button} from '@chakra-ui/react'
 export default function JobDetail() {
   const { id } = useParams()
 
-  const { job, loading } = useSelector((state) => state.jobsReducer)
+  const { job, loading } = useSelector((state) => state.jobs)
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
