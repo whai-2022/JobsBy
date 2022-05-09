@@ -87,6 +87,9 @@ function AllJobs() {
             type="address"
             value={address}
             onChange={handleAddressChange}
+            // focusBorderColor="purple.700"
+            // bg="cyan.100"
+            // variant="flushed"
           />
           <FormHelperText textAlign="left" mb={6}>
             We&apos;ll never share your address.
