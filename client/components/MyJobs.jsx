@@ -11,13 +11,15 @@ function MyJobs() {
   const myJobs = useSelector((state) => state.myJobs)
   // myJobs = {jobs = [res.body/actual jobs]}
   console.log(myJobs)
+  const { loading } = useSelector((state) => state.jobsReducer)
+
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchUserJobs('Auth0||something')) // TODO: use userId later
   }, [])
 
-
+  if (loading) return <p>Loading...</p>
   return (
     <>
       <Heading m={9} fontSize='2xl'>My Jobs</Heading>
