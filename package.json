@@ -30,7 +30,13 @@
     ],
     "plugins": [
       "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-object-rest-spread"
+      "@babel/plugin-proposal-object-rest-spread",
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "regenerator": true
+        }
+      ]
     ]
   },
   "eslintConfig": {
@@ -43,6 +49,7 @@
     "@babel/core": "^7.12.16",
     "@babel/plugin-proposal-class-properties": "^7.12.13",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.17.10",
     "@babel/preset-env": "^7.12.16",
     "@babel/preset-react": "^7.12.13",
     "@testing-library/jest-dom": "^5.11.9",
@@ -80,7 +87,11 @@
     "@auth0/auth0-react": "^1.10.1",
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.8",
+<<<<<<< HEAD
     "@chakra-ui/skip-nav": "^1.2.6",
+=======
+    "@chakra-ui/theme": "^1.14.1",
+>>>>>>> dev
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@fontsource/open-sans": "^4.5.8",

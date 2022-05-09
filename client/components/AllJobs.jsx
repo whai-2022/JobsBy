@@ -26,7 +26,7 @@ function AllJobs() {
   const [error, setError] = useState(null)
   // after a valid address is selected, the first address object is the final address object we need
 
-  const { jobs } = useSelector((state) => state.jobsReducer)
+  const { jobs } = useSelector((state) => state.jobs)
   const dispatch = useDispatch()
   // after a valid address is selected, the first address object is the final address object we need
 

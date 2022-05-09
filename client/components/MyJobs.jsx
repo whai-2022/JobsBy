@@ -25,6 +25,7 @@ function MyJobs() {
           Here are the jobs you have posted:
         </Heading>
 
+<<<<<<< HEAD
         <VStack spacing={6}>
           {myJobs?.jobs.map((jobPosting, i) => {
             return (
@@ -51,6 +52,33 @@ function MyJobs() {
                     textTransform="uppercase"
                     ml="2"
                   >
+=======
+            {myJobs?.jobs.map((jobPosting, i) => {
+              return (
+                <LinkBox as={LinkTo} to={`/alljobs/${jobPosting.id}`}
+                  p={3}
+                  shadow='md'
+                  overflow='hidden'
+                  borderWidth='1px'
+                  w='100%'
+                  borderRadius='lg'
+                  key={`${jobPosting.id} ${i}`}>
+                    <Box
+                    p={2}
+                    display='flex'
+                    alignItems='baseline'>
+                    <Badge borderRadius='full' px='2' colorScheme='blue'>
+                      Awaiting Response
+                    </Badge>
+                    <Box
+                      color='gray.500'
+                      fontWeight='semibold'
+                      letterSpacing='wide'
+                      fontSize='xs'
+                      textTransform='uppercase'
+                      ml='2'
+                    >
+>>>>>>> dev
                     {jobPosting.region}
                   </Box>
                 </Box>

@@ -12,7 +12,7 @@ import { SkipNavContent } from '@chakra-ui/skip-nav'
 export default function JobDetail() {
   const { id } = useParams()
 
-  const { job, loading } = useSelector((state) => state.jobsReducer)
+  const { job, loading } = useSelector((state) => state.jobs)
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
@@ -31,6 +31,7 @@ export default function JobDetail() {
   if (!isAuthenticated) return <p>Please login to see this job.</p>
   if (loading) return <p>Loading...</p>
   return (
+<<<<<<< HEAD
     <SkipNavContent>
       <Box
         borderWidth="1px"
@@ -60,6 +61,71 @@ export default function JobDetail() {
           <Text fontWeight="bold">Requirements:</Text>
           {job.requirements}
         </Box>
+=======
+    <Box
+      borderWidth='1px'
+      p={2}
+      shadow='md'
+      overflow='hidden' 
+      w='100%'
+      borderRadius='lg'
+    >
+      <Heading
+        as='h2'
+        m={4}
+      >
+        {job.title}
+      </Heading>
+      <Box textAlign='left' m={2}>
+        <Heading
+          as='h3'
+          fontSize="lg"
+          fontWeight='bold'>
+          Description:
+        </Heading>
+        <Text>{job.description}</Text>
+      </Box>
+
+      <Box textAlign='left' m={2}>
+        <Heading
+          as='h3'
+          fontSize="lg"
+          fontWeight='bold'>
+          Region:
+        </Heading>
+        <Text>{job.region}</Text>
+      </Box>
+
+      <Box textAlign='left' m={2}>
+        <Heading
+          as='h3'
+          fontSize="lg"
+          fontWeight='bold'>
+          Pay:
+        </Heading>
+        <Text>{job.pay}</Text>
+      </Box>
+
+      <Box textAlign='left' m={2}>
+        <Heading
+          as='h3'
+          fontSize="lg"
+          fontWeight='bold'>
+          Requirements:
+        </Heading>
+        <Text>{job.requirements}</Text>
+      </Box>
+
+      <Box textAlign='left' m={2}>
+        <Text
+          fontWeight='bold'>
+          Contact:
+        </Text>
+        {job.email}
+      </Box>
+      
+      
+>>>>>>> dev
 
         <Button m={2} onClick={handleAcceptJob}>
           Accept Job
