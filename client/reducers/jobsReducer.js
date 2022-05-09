@@ -24,7 +24,14 @@ const jobsReducer = (state = initialJobState, action) => {
     case JOB_LOADING:
       return { ...state, loading: true }
     case ACCEPT_JOB:
-      return { ...state, jobs: [...state.jobs.filter(job => job.id !== action.payload.id), action.payload] }
+      return {
+        ...state,
+        jobs: [
+          ...state.jobs.filter((job) => job.id !== action.payload.id),
+          action.payload,
+        ],
+        job: action.payload,
+      }
     default:
       return state
   }
