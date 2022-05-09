@@ -69,21 +69,19 @@ import {
 } from 'react-icons/md'
 import { FaCalendarAlt, FaHandshake, FaTools } from 'react-icons/fa'
 import { FiRepeat } from 'react-icons/fi'
+import { SiMinutemailer } from 'react-icons/si'
 import { useAuth0 } from '@auth0/auth0-react'
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons'
 
 function PostJob() {
   const { user } = useAuth0()
-  // console.log(user.sub)
-  // // to get the auth0Id -> user.sub
-  // userId: user.sub
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
-  // console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
+  // For Team's Learning: after a valid address is selected, the first address object is the final address object we need
   const handleAddressChange = (evt) => {
     setAddress(evt.target.value)
     api
-      // auto-complete address field
+      // For Team's Learning: auto-complete address field
       .getAutocompleteAddresses(evt.target.value)
       .then((res) => {
         setAddresses(res)
@@ -109,7 +107,6 @@ function PostJob() {
   })
 
   function handleInputChange(evt) {
-    console.log(evt)
     setNewJob({
       ...newJob,
       [evt.target.name]: evt.target.value,
@@ -117,7 +114,6 @@ function PostJob() {
   }
 
   function handleValueChange(field, value) {
-    console.log(field, value)
     setNewJob({
       ...newJob,
       [field]: value,
@@ -150,8 +146,9 @@ function PostJob() {
 
     const job = {
       ...newJob,
-      contactBy: Object.keys(newJob.contactBy).filter(Boolean).join(','),
-      /* (Prior to the above refactor with .filter(Boolean)) contactBy: Object.keys(newJob.contactBy).filter((key) => newJob.contactBy[key]).join(',') */
+      contactBy: Object.keys(newJob.contactBy)
+        .filter((key) => newJob.contactBy[key])
+        .join(','),
       /* Functionality Comment for Team's Learning:
         Object.keys(newJob.contactBy) -> e.g ['contactByText', 'contactByPhone']
         .join(",") -> "contactByText,contactByPhone"
@@ -428,9 +425,10 @@ function PostJob() {
           </FormControl>
 
           {/* CONTACT */}
-          <FormControl as="fieldset" id="contactBy">
+          <FormControl as="fieldset" id="contactBy" isRequired>
             <FormLabel as="legend" htmlFor="contactBy">
-              What&apos;s the best way to get in touch?
+              What&apos;s the best way to get in touch?{' '}
+              <em aria-hidden="true">(Required)</em>
             </FormLabel>
             {/* TODO: Add isFocusable ? */}
             <CheckboxGroup
@@ -547,7 +545,8 @@ function PostJob() {
           */}
           <FormControl>
             <Button
-              rightIcon={<BsFillHandIndexThumbFill />}
+              // rightIcon={<BsFillHandIndexThumbFill />}
+              rightIcon={<SiMinutemailer />}
               colorScheme="purple"
               onClick={handleSubmit}
               size="lg"

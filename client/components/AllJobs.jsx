@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import * as api from '../apis'
 import Job from './Job'
 import JobsMap from './JobsMap'
-import { fetchJobs } from '../actions'
+import { fetchJobsByRegion } from '../actions'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 import {
@@ -24,11 +24,11 @@ function AllJobs() {
   const [searchTerm, setSearchTerm] = useState('')
   const [position, setPosition] = useState([-36.856912, 174.763399])
   const [error, setError] = useState(null)
-  // console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
+  // after a valid address is selected, the first address object is the final address object we need
 
   const { jobs } = useSelector((state) => state.jobsReducer)
   const dispatch = useDispatch()
-  // console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
+  // after a valid address is selected, the first address object is the final address object we need
 
   const handleAddressChange = (e) => {
     setAddress(e.target.value)
@@ -59,14 +59,13 @@ function AllJobs() {
 
   useEffect(() => {
     if (!searchTerm) return
-    // console.log('search term is', searchTerm)
     search()
   }, [searchTerm])
 
   const submitSearch = () => {
     if (addresses.length) {
       setPosition([addresses[0].lat, addresses[0].lon])
-      dispatch(fetchJobs(addresses[0].region)) // fetch jobs by region
+      dispatch(fetchJobsByRegion(addresses[0].region))
     }
   }
 

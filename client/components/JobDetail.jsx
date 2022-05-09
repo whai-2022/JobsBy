@@ -26,8 +26,7 @@ export default function JobDetail() {
 
   useEffect(() => {
     dispatch(fetchJobByID(id))
-  }, [])
-  console.log(job)
+  }, []) // you probably want to call this code whenever id changes
 
   if (!isAuthenticated) return <p>Please login to see this job.</p>
   if (loading) return <p>Loading...</p>

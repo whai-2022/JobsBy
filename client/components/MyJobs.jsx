@@ -7,11 +7,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function MyJobs() {
-  // const [error, setError] = useState(null)
-
   const myJobs = useSelector((state) => state.myJobs)
-  // myJobs = {jobs = [res.body/actual jobs]}
-  console.log(myJobs)
+  // For Team's Learning (above does this): myJobs = {jobs = [res.body/actual jobs]}
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -62,7 +59,7 @@ function MyJobs() {
                 </Box>
                 <Box m={2}>{jobPosting.pay}</Box>
                 <Box m={2}>{jobPosting.date}</Box>
-                {/* <button className='button' onClick={handleClick}>Delete</button> */}
+                {/* TODO: <button className='button' onClick={handleClick}>Delete</button> */}
               </LinkBox>
             )
           })}
@@ -73,15 +70,3 @@ function MyJobs() {
 }
 
 export default MyJobs
-
-// {jobs.map((job) => {
-//   return <>
-//     <Job
-//       key={i}
-//       title={job.title}
-//       description={job.description}
-//       pay={job.pay}
-//       region={job.locationRegion}
-//       suburb={job.locationSuburb} />
-//     </>
-//   })}
