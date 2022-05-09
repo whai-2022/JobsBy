@@ -2,6 +2,7 @@ import request from 'superagent'
 
 const jobsURL = '/'
 const allJobsURL = '/api/allJobs'
+const myJobsURL = '/api/myJobs/jobsListed'
 const apiKey1 = 'QG8WqWD76jb02uxJAAQZWQ'
 const apiKey2 = 'wcyCeEHbpFxfjDPDJD3UWQ'
 
@@ -41,4 +42,12 @@ export function getJobById(id) {
     .get(`/api/allJobs/${id}`)
     .then((res) => res.body)
     .catch((err) => console.log(err.status, 'error!'))
+}
+
+// gets all jobs by specific user
+export function getUserJobs(userId) {
+  return request
+    .get(`${myJobsURL}/${userId}`)
+    .then((res) => res.body)
+    .catch((err) => console.log(err.status, 'error'))
 }

@@ -38,6 +38,7 @@ function acceptJob(id, accepterId, db = connection) {
 }
 
 function getJobsByUserId(userId, db = connection) {
+  console.log(userId)
   return db('jobs').select().where('userId', userId)
 }
 
