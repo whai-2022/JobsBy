@@ -22,6 +22,7 @@ router.get('/jobsDone/:accepterId', (req, res) => {
   const accepterId = req.params.accepterId
   db.getJobsByAccepterId(accepterId)
     .then((jobs) => {
+      console.log('HERE', jobs)
       res.json(jobs)
     })
     .catch((e) => {

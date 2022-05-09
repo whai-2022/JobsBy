@@ -1,25 +1,29 @@
-import { REQUEST_USER_JOBS } from '../actions'
+import { REQUEST_USER_JOBS, REQUEST_ACCEPTED_JOBS } from '../actions'
 
 const initialJobState = {
-  jobs: [],
+  myJobs: [],
+  acceptedJobs: [],
 }
 
 function myJobsReducer(state = initialJobState, action) {
+  console.log(action)
   switch (action.type) {
     case REQUEST_USER_JOBS:
-      return action.payload
+      return { ...state, myJobs: action.payload }
+    case REQUEST_ACCEPTED_JOBS:
+      return { ...state, acceptedJobs: action.payload }
     default:
       return state
   }
 }
 
-function acceptedJobsReducer(state = initialJobState, action) {
-  switch (action.type) {
-    case REQUEST_USER_JOBS:
-      return action.payload
-    default:
-      return state
-  }
-}
+// function acceptedJobsReducer(state = initialJobState, action) {
+//   switch (action.type) {
+//     case REQUEST_ACCEPTED_JOBS:
+//       return { ...state, acceptedJobs: action.payload }
+//     default:
+//       return state
+//   }
+// }
 
-export default { myJobsReducer, acceptedJobsReducer }
+export default myJobsReducer

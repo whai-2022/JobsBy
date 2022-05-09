@@ -57,14 +57,14 @@ export function getJobDetails(job) {
 export function requestUserJobs(jobs) {
   return {
     type: REQUEST_USER_JOBS,
-    payload: { jobs: jobs },
+    payload: jobs,
   }
 }
 
 export function requestAcceptedJobs(jobs) {
   return {
     type: REQUEST_ACCEPTED_JOBS,
-    payload: { jobs: jobs },
+    payload: jobs,
   }
 }
 

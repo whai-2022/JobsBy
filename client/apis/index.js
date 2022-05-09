@@ -3,7 +3,7 @@ import request from 'superagent'
 // const jobsURL = '/'
 const allJobsURL = '/api/allJobs'
 const myJobsURL = '/api/myJobs/jobsListed'
-const acceptedJobsURL = '/api/myjobs/jobsdone'
+const acceptedJobsURL = '/api/myJobs/jobsDone'
 const apiKey1 = 'QG8WqWD76jb02uxJAAQZWQ'
 // const apiKey2 = 'wcyCeEHbpFxfjDPDJD3UWQ'
 
@@ -55,7 +55,7 @@ export function getUserJobs(userId) {
 
 export function getJobsByAccepterId(accepterId) {
   return request
-    .get(`/${acceptedJobsURL}/${accepterId}`)
+    .get(`${acceptedJobsURL}/${accepterId}`)
     .then((res) => res.body)
     .catch((err) => console.log(err.status, 'error'))
 }
