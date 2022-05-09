@@ -234,7 +234,7 @@ function PostJob() {
           {/* OCCURRENCE */}
           {/* a11y: short & specific labels, associated with form field */}
           <FormControl id="occurrence">
-            <FormLabel>How often does this job need to be done? </FormLabel>
+            <FormLabel>How often does this job need to be done?</FormLabel>
             <InputGroup>
               <InputLeftElement>
                 <Icon as={FiRepeat} w={6} h={6} />
@@ -256,7 +256,9 @@ function PostJob() {
 
           {/* TYPE */}
           <FormControl as="fieldset" id="type" isRequired>
-            <FormLabel as="legend">Type of job</FormLabel>
+            <FormLabel as="legend">
+              Type of job <em aria-hidden="true">(Required)</em>
+            </FormLabel>
             <RadioGroup
               colorScheme="purple"
               name="type"
@@ -265,10 +267,15 @@ function PostJob() {
               isFocusable
             >
               <Stack spacing={5} direction="row">
-                <Radio value="paid" id="paid" aria-label="paid">
+                <Radio bg="cyan.100" value="paid" id="paid" aria-label="paid">
                   Paid <Icon as={MdAttachMoney} w={6} h={6} />
                 </Radio>
-                <Radio value="volunteer" id="volunteer" aria-label="volunteer">
+                <Radio
+                  bg="cyan.100"
+                  value="volunteer"
+                  id="volunteer"
+                  aria-label="volunteer"
+                >
                   Volunteer <Icon as={FaHandshake} w={6} h={6} />
                 </Radio>
               </Stack>
@@ -328,7 +335,9 @@ function PostJob() {
           {/* TODO: ensure address field is accessible 
               & TEST if autocomplete is accessible */}
           <FormControl id="address" isRequired>
-            <FormLabel>Address</FormLabel>
+            <FormLabel>
+              Address <em aria-hidden="true">(Required)</em>
+            </FormLabel>
             <InputGroup>
               <InputLeftElement>
                 <Icon as={MdLocationPin} w={6} h={6} />
@@ -356,7 +365,9 @@ function PostJob() {
 
           {/* NAME */}
           <FormControl id="name" isRequired>
-            <FormLabel>Name</FormLabel>
+            <FormLabel>
+              Name <em aria-hidden="true">(Required)</em>
+            </FormLabel>
             <InputGroup>
               <InputLeftElement>
                 <Icon as={MdPerson} w={8} h={8} />
@@ -378,9 +389,7 @@ function PostJob() {
 
           {/* EMAIL */}
           <FormControl id="email">
-            <HStack>
-              <FormLabel>Email</FormLabel>
-            </HStack>
+            <FormLabel>Email</FormLabel>
             <InputGroup>
               <InputLeftElement>
                 <Icon as={EmailIcon} w={6} h={6} />
@@ -400,9 +409,7 @@ function PostJob() {
           {/* PHONE */}
           {/* a11y: phone number should not be required */}
           <FormControl id="phone">
-            <HStack>
-              <FormLabel>Phone</FormLabel>
-            </HStack>
+            <FormLabel>Phone</FormLabel>
             <InputGroup>
               <InputLeftElement>
                 <Icon as={PhoneIcon} w={5} h={5} />
@@ -435,6 +442,7 @@ function PostJob() {
               <Stack spacing={[1, 5]} direction={['column', 'row']}>
                 <Checkbox
                   // added id for lighthouse unique input requirement
+                  borderColor="cyan.500"
                   id="contactByEmail"
                   isChecked={newJob.contactBy.contactByEmail}
                   name="contactByEmail"
@@ -444,6 +452,7 @@ function PostJob() {
                   Email <Icon as={EmailIcon} w={6} h={6} />
                 </Checkbox>
                 <Checkbox
+                  borderColor="cyan.500"
                   id="contactByPhone"
                   isChecked={newJob.contactBy.contactByPhone}
                   name="contactByPhone"
@@ -453,6 +462,7 @@ function PostJob() {
                   Phone <Icon as={PhoneIcon} w={5} h={5} />
                 </Checkbox>
                 <Checkbox
+                  borderColor="cyan.500"
                   id="contactByText"
                   isChecked={newJob.contactBy.contactByText}
                   name="contactByText"
@@ -470,7 +480,9 @@ function PostJob() {
 
           {/* TITLE */}
           <FormControl id="title" isRequired>
-            <FormLabel>Title</FormLabel>
+            <FormLabel>
+              Title <em aria-hidden="true">(Required)</em>
+            </FormLabel>
             <InputGroup>
               <InputLeftElement>
                 <Icon as={MdWork} w={6} h={6} />
