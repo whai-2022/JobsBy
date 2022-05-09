@@ -54,7 +54,7 @@ import { BsFillHandIndexThumbFill } from 'react-icons/bs'
 import { useAuth0 } from '@auth0/auth0-react'
 
 function PostJob() {
-  const { user } = useAuth0()
+  const { isAuthenticated, user } = useAuth0()
   // console.log(user.sub)
   // // to get the auth0Id -> user.sub
   // userId: user.sub
@@ -146,6 +146,7 @@ function PostJob() {
 
   console.log(newJob)
 
+  if (!isAuthenticated) return <p>Please login to list a job.</p>
   return (
     <>
       <VStack w="full" h="full" p={10} spacing={10} alignItems="flex-start">

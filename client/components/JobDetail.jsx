@@ -76,7 +76,6 @@ export default function JobDetail() {
         {job.requirements}
       </Box>
 
-      
 
       <Button m={2} onClick={handleAcceptJob}>Accept Job</Button>
     </Box>
