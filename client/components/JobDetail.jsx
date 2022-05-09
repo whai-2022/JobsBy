@@ -76,6 +76,14 @@ export default function JobDetail() {
         {job.requirements}
       </Box>
 
+      <Box textAlign='left' m={2}>
+        <Text
+          fontWeight='bold'>
+          Contact:
+        </Text>
+        {job.email}
+      </Box>
+      
       
 
       <Button m={2} onClick={handleAcceptJob}>Accept Job</Button>

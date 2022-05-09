@@ -3,7 +3,7 @@ const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 
 module.exports = {
-  getAllJobs,
+  getJobsByRegion,
   getJobById,
   addJob,
   deleteJob,
@@ -13,8 +13,7 @@ module.exports = {
   updateJobById,
 }
 
-function getAllJobs(region, db = connection) {
-  // search by region
+function getJobsByRegion(region, db = connection) {
   return db('jobs').select().where('accepted', false).where('region', region)
 }
 
@@ -38,7 +37,6 @@ function acceptJob(id, accepterId, db = connection) {
 }
 
 function getJobsByUserId(userId, db = connection) {
-  console.log(userId)
   return db('jobs').select().where('userId', userId)
 }
 
