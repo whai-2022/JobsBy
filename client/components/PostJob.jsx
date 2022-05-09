@@ -43,6 +43,8 @@ import {
   FormLabel,
   // input text
   Input,
+  InputGroup,
+  InputLeftElement,
   // multiple lines of text
   Textarea,
   //  tells more details about the form section
@@ -185,14 +187,15 @@ function PostJob() {
           p={10}
           spacing={10}
           alignItems="flex-start"
-          bg="#F7FAFC"
+          bg="gray.50"
         >
-          <Heading as="h1" size="xl" textAlign="left">
+          <Heading as="h1" size="xl" alignSelf="center">
             List a Job
           </Heading>
           {/* STRETCH: Translate form */}
           <Box
             bg="#B2F5EA"
+            boxShadow="lg"
             w="100%"
             color="#black"
             padding="10px"
@@ -201,7 +204,7 @@ function PostJob() {
             <Heading as="h2" size="sm" textAlign="left">
               Form Instructions
             </Heading>
-            <UnorderedList textAlign="left">
+            <UnorderedList fontSize="md" textAlign="left">
               {/* a11y: provide instructions on what the form requires */}
               {/* a11y: say how long the form will take to complete. Make sure form does not time out.
             TODO: enable save as you go */}
@@ -221,9 +224,9 @@ function PostJob() {
               </ListItem>
             </UnorderedList>
           </Box>
-          <Heading as="h3" size="md">
-            Job Form
-          </Heading>
+          <VisuallyHidden>
+            <Heading as="h3">Job Form</Heading>
+          </VisuallyHidden>
           {/* a11y: form fields in a logical order to tab through */}
           {/* TODO a11y: highlight field when tabbing through */}
           {/* a11y: define what the fields require. Ex: if in a particular format */}
@@ -231,27 +234,35 @@ function PostJob() {
           {/* OCCURRENCE */}
           {/* a11y: short & specific labels, associated with form field */}
           <FormControl id="occurrence">
-            <FormLabel>
-              How often does this job need to be done?{' '}
-              <Icon as={FiRepeat} w={6} h={6} />
-            </FormLabel>
-            <Input
-              variant="filled"
-              name="occurrence"
-              value={newJob.occurrence}
-              onChange={handleInputChange}
-            />
-            <FormHelperText>One-off, weekly, or monthly</FormHelperText>
+            <FormLabel>How often does this job need to be done? </FormLabel>
+            <InputGroup>
+              <InputLeftElement>
+                <Icon as={FiRepeat} w={6} h={6} />
+              </InputLeftElement>
+              <Input
+                focusBorderColor="purple.700"
+                bg="cyan.100"
+                // _focus={{ background: 'white', borderColor: "purple.700"}}
+                variant="flushed"
+                name="occurrence"
+                value={newJob.occurrence}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
+            <FormHelperText color="cyan.900">
+              One-off, weekly, or monthly
+            </FormHelperText>
           </FormControl>
 
           {/* TYPE */}
           <FormControl as="fieldset" id="type" isRequired>
             <FormLabel as="legend">Type of job</FormLabel>
             <RadioGroup
-              colorScheme="green"
+              colorScheme="purple"
               name="type"
               value={newJob.type}
               onChange={(value) => handleValueChange('type', value)}
+              isFocusable
             >
               <Stack spacing={5} direction="row">
                 <Radio value="paid" id="paid" aria-label="paid">
@@ -266,17 +277,21 @@ function PostJob() {
 
           {/* PAY */}
           <FormControl id="pay">
-            <FormLabel>
-              If paid, what is the rate per hour?{' '}
-              <Icon as={MdAttachMoney} w={6} h={6} />
-            </FormLabel>
-            <Input
-              variant="filled"
-              name="pay"
-              value={newJob.pay}
-              onChange={handleInputChange}
-            />
-            <FormHelperText>
+            <FormLabel>If paid, what is the rate per hour? </FormLabel>
+            <InputGroup>
+              <InputLeftElement>
+                <Icon as={MdAttachMoney} w={6} h={6} />
+              </InputLeftElement>
+              <Input
+                focusBorderColor="purple.700"
+                bg="cyan.100"
+                variant="flushed"
+                name="pay"
+                value={newJob.pay}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
+            <FormHelperText color="cyan.900">
               Paid jobs must not pay less than the{' '}
               <Link
                 href="https://www.employment.govt.nz/hours-and-wages/pay/minimum-wage/minimum-wage-rates/"
@@ -289,39 +304,51 @@ function PostJob() {
 
           {/* WHEN */}
           <FormControl id="when">
-            <FormLabel>
-              Start Date <Icon as={FaCalendarAlt} w={6} h={6} />
-            </FormLabel>
-            <Input
-              variant="filled"
-              name="when"
-              value={newJob.when}
-              onSubmit={handleSubmit}
-              onChange={handleInputChange}
-            />
-            <FormHelperText>Anytime, ASAP, or DD/MM/YYYY</FormHelperText>
+            <FormLabel>Start Date</FormLabel>
+            <InputGroup>
+              <InputLeftElement>
+                <Icon as={FaCalendarAlt} w={6} h={6} />
+              </InputLeftElement>
+              <Input
+                focusBorderColor="purple.700"
+                bg="cyan.100"
+                variant="flushed"
+                name="when"
+                value={newJob.when}
+                onSubmit={handleSubmit}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
+            <FormHelperText color="cyan.900">
+              Anytime, ASAP, or DD/MM/YYYY
+            </FormHelperText>
           </FormControl>
 
           {/* ADDRESS */}
           {/* TODO: ensure address field is accessible 
               & TEST if autocomplete is accessible */}
           <FormControl id="address" isRequired>
-            <FormLabel>
-              Address <Icon as={MdLocationPin} w={6} h={6} />
-            </FormLabel>
-            <Input
-              variant="filled"
-              list="addresses"
-              name="address"
-              value={address}
-              onChange={handleAddressChange}
-            />
+            <FormLabel>Address</FormLabel>
+            <InputGroup>
+              <InputLeftElement>
+                <Icon as={MdLocationPin} w={6} h={6} />
+              </InputLeftElement>
+              <Input
+                focusBorderColor="purple.700"
+                bg="cyan.100"
+                variant="flushed"
+                list="addresses"
+                name="address"
+                value={address}
+                onChange={handleAddressChange}
+              />
+            </InputGroup>
             <datalist id="addresses" name="addresses">
               {addresses.map((address, idx) => (
                 <option value={address.formatted} key={`address-${idx}`} />
               ))}
             </datalist>
-            <FormHelperText>
+            <FormHelperText color="cyan.900">
               For safety, we suggest setting the address to a landmark near the
               job site, such as a library or grocery store
             </FormHelperText>
@@ -329,51 +356,68 @@ function PostJob() {
 
           {/* NAME */}
           <FormControl id="name" isRequired>
-            <FormLabel>
-              Name <Icon as={MdPerson} w={8} h={8} />
-            </FormLabel>
-            <Input
-              variant="filled"
-              name="name"
-              value={newJob.name}
-              onSubmit={handleSubmit}
-              onChange={handleInputChange}
-            />
-            <FormHelperText>Contact person&apos;s details</FormHelperText>
+            <FormLabel>Name</FormLabel>
+            <InputGroup>
+              <InputLeftElement>
+                <Icon as={MdPerson} w={8} h={8} />
+              </InputLeftElement>
+              <Input
+                focusBorderColor="purple.700"
+                bg="cyan.100"
+                variant="flushed"
+                name="name"
+                value={newJob.name}
+                onSubmit={handleSubmit}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
+            <FormHelperText color="cyan.900">
+              Contact person&apos;s details
+            </FormHelperText>
           </FormControl>
 
           {/* EMAIL */}
           <FormControl id="email">
             <HStack>
-              <FormLabel>
-                Email <Icon as={EmailIcon} w={6} h={6} />
-              </FormLabel>
+              <FormLabel>Email</FormLabel>
             </HStack>
-            <Input
-              variant="filled"
-              type="email"
-              value={newJob.email}
-              onSubmit={handleSubmit}
-              onChange={handleInputChange}
-            />
+            <InputGroup>
+              <InputLeftElement>
+                <Icon as={EmailIcon} w={6} h={6} />
+              </InputLeftElement>
+              <Input
+                focusBorderColor="purple.700"
+                bg="cyan.100"
+                variant="flushed"
+                type="email"
+                value={newJob.email}
+                onSubmit={handleSubmit}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
           </FormControl>
 
           {/* PHONE */}
           {/* a11y: phone number should not be required */}
           <FormControl id="phone">
             <HStack>
-              <FormLabel>
-                Phone <Icon as={PhoneIcon} w={5} h={5} />
-              </FormLabel>
+              <FormLabel>Phone</FormLabel>
             </HStack>
-            <Input
-              variant="filled"
-              name="phone"
-              type="tel"
-              value={newJob.phone}
-              onSubmit={handleSubmit}
-              onChange={handleInputChange}
-            />
+            <InputGroup>
+              <InputLeftElement>
+                <Icon as={PhoneIcon} w={5} h={5} />
+              </InputLeftElement>
+              <Input
+                focusBorderColor="purple.700"
+                bg="cyan.100"
+                variant="flushed"
+                name="phone"
+                type="tel"
+                value={newJob.phone}
+                onSubmit={handleSubmit}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
           </FormControl>
 
           {/* CONTACT */}
@@ -382,7 +426,12 @@ function PostJob() {
               What&apos;s the best way to get in touch?
             </FormLabel>
             {/* TODO: Add isFocusable ? */}
-            <CheckboxGroup size="md" colorScheme="green" name="contactBy">
+            <CheckboxGroup
+              size="md"
+              colorScheme="purple"
+              name="contactBy"
+              isFocusable
+            >
               <Stack spacing={[1, 5]} direction={['column', 'row']}>
                 <Checkbox
                   // added id for lighthouse unique input requirement
@@ -390,6 +439,7 @@ function PostJob() {
                   isChecked={newJob.contactBy.contactByEmail}
                   name="contactByEmail"
                   onChange={handleCheckboxChange}
+                  aria-label="email"
                 >
                   Email <Icon as={EmailIcon} w={6} h={6} />
                 </Checkbox>
@@ -398,6 +448,7 @@ function PostJob() {
                   isChecked={newJob.contactBy.contactByPhone}
                   name="contactByPhone"
                   onChange={handleCheckboxChange}
+                  aria-label="phone"
                 >
                   Phone <Icon as={PhoneIcon} w={5} h={5} />
                 </Checkbox>
@@ -406,6 +457,7 @@ function PostJob() {
                   isChecked={newJob.contactBy.contactByText}
                   name="contactByText"
                   onChange={handleCheckboxChange}
+                  aria-label="text"
                 >
                   Text <Icon as={BsChatTextFill} w={6} h={6} />
                 </Checkbox>
@@ -418,17 +470,24 @@ function PostJob() {
 
           {/* TITLE */}
           <FormControl id="title" isRequired>
-            <FormLabel>
-              Title <Icon as={MdWork} w={6} h={6} />
-            </FormLabel>
-            <Input
-              variant="filled"
-              name="title"
-              type="title"
-              value={newJob.title}
-              onChange={handleInputChange}
-            />
-            <FormHelperText>A short, clear job title</FormHelperText>
+            <FormLabel>Title</FormLabel>
+            <InputGroup>
+              <InputLeftElement>
+                <Icon as={MdWork} w={6} h={6} />
+              </InputLeftElement>
+              <Input
+                focusBorderColor="purple.700"
+                bg="cyan.100"
+                variant="flushed"
+                name="title"
+                type="title"
+                value={newJob.title}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
+            <FormHelperText color="cyan.900">
+              A short, clear job title
+            </FormHelperText>
           </FormControl>
 
           {/* DESCRIPTION */}
@@ -437,25 +496,34 @@ function PostJob() {
               Description <Icon as={MdDescription} w={6} h={6} />
             </FormLabel>
             <Textarea
-              variant="filled"
+              focusBorderColor="purple.700"
+              bg="cyan.100"
+              variant="flushed"
               name="description"
               value={newJob.description}
               onChange={handleInputChange}
             />
-            <FormHelperText>Details about the job</FormHelperText>
+            <FormHelperText color="cyan.900">
+              Details about the job
+            </FormHelperText>
           </FormControl>
 
           <FormControl id="requirements">
-            <FormLabel>
-              Special Requirements <Icon as={FaTools} w={6} h={6} />
-            </FormLabel>
-            <Input
-              variant="filled"
-              name="requirements"
-              value={newJob.requirements}
-              onChange={handleInputChange}
-            />
-            <FormHelperText>
+            <FormLabel>Special Requirements</FormLabel>
+            <InputGroup>
+              <InputLeftElement>
+                <Icon as={FaTools} w={6} h={6} />
+              </InputLeftElement>
+              <Input
+                focusBorderColor="purple.700"
+                bg="cyan.100"
+                variant="flushed"
+                name="requirements"
+                value={newJob.requirements}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
+            <FormHelperText color="cyan.900">
               Such as a professional license, prior experience, the ability to
               lift 15kg
             </FormHelperText>
@@ -468,7 +536,7 @@ function PostJob() {
           <FormControl>
             <Button
               rightIcon={<BsFillHandIndexThumbFill />}
-              colorScheme="telegram"
+              colorScheme="purple"
               onClick={handleSubmit}
               size="lg"
             >

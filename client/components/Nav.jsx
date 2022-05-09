@@ -21,7 +21,12 @@ function Nav() {
   return (
     <>
       <Menu>
-        <MenuButton as={IconButton} icon={<HamburgerIcon />}>
+        <MenuButton
+          as={IconButton}
+          name="nav-button"
+          aria-label="nav-button"
+          icon={<HamburgerIcon />}
+        >
           Test
         </MenuButton>
       </Menu>
