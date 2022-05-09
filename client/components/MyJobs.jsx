@@ -1,30 +1,30 @@
-import React, { useEffect } from "react"
-import { fetchUserJobs } from "../actions"
-import {Link as LinkTo} from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { fetchUserJobs } from '../actions'
+import { Link as LinkTo } from 'react-router-dom'
 
-import { Heading, VStack, LinkBox, Box, Badge } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
-import { useSelector, useDispatch} from "react-redux"
+import { Heading, VStack, LinkBox, Box, Badge } from '@chakra-ui/react' // TODO: Text, Button add later - to go to full job desc.
+import { useSelector, useDispatch } from 'react-redux'
+import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function MyJobs() {
-  // const [error, setError] = useState(null)
-
   const myJobs = useSelector((state) => state.myJobs)
-  // myJobs = {jobs = [res.body/actual jobs]}
-  console.log(myJobs)
+  // For Team's Learning (above does this): myJobs = {jobs = [res.body/actual jobs]}
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchUserJobs('Auth0||something')) // TODO: use userId later
   }, [])
 
-
   return (
     <>
-      <Heading m={9} fontSize='2xl'>My Jobs</Heading>
-      <Heading m={9} fontSize='lg'>Here are the jobs you have posted:</Heading>
-
-      <VStack spacing={6}>
-
+      <SkipNavContent>
+        <VStack spacing={6}>
+          <Heading m={9} fontSize="2xl">
+            My Jobs
+          </Heading>
+          <Heading m={9} fontSize="lg">
+            Here are the jobs you have posted:
+          </Heading>
             {myJobs?.jobs.map((jobPosting, i) => {
               return (
                 <LinkBox as={LinkTo} to={`/alljobs/${jobPosting.id}`}
@@ -51,42 +51,21 @@ function MyJobs() {
                       ml='2'
                     >
                     {jobPosting.region}
-                    </Box>
-                    </Box>
-                    <Box
-                      mt={1}
-                      fontWeight='bold'
-                      fontSize='xl'
-                    >
-                      {jobPosting.title}
-                    </Box>
-                      <Box m={2}>
-                        {jobPosting.pay}
-                      </Box>
-                      <Box m={2}>
-                        {jobPosting.date}
-                      </Box>
-                  {/* <button className='button' onClick={handleClick}>Delete</button> */}
-                </LinkBox>
-              )
-            })}
-      </VStack>
+                  </Box>
+                </Box>
+                <Box mt={1} fontWeight="bold" fontSize="xl">
+                  {jobPosting.title}
+                </Box>
+                <Box m={2}>{jobPosting.pay}</Box>
+                <Box m={2}>{jobPosting.date}</Box>
+                {/* TODO: <button className='button' onClick={handleClick}>Delete</button> */}
+              </LinkBox>
+            )
+          })}
+        </VStack>
+      </SkipNavContent>
     </>
   )
 }
 
 export default MyJobs
-
-
-
-// {jobs.map((job) => {
-//   return <>
-//     <Job
-//       key={i}
-//       title={job.title}
-//       description={job.description}
-//       pay={job.pay}
-//       region={job.locationRegion}
-//       suburb={job.locationSuburb} />
-//     </>
-//   })}
