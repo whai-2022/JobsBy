@@ -1,10 +1,12 @@
-import { getAllJobs, getUserJobs, postJob } from '../apis'
+import { getAllJobs, postJob, getJobById, getUserJobs } from '../apis'
 
 export const REQUEST_USER_JOBS = 'REQUEST_USER_JOBS'
 
 export const SET_JOBS = 'SET_JOBS'
 export const ADD_JOB = 'ADD_JOB'
 export const SET_ERROR = 'SET_ERROR'
+export const GET_JOB_DETAILS = 'GET_JOB_DETAILS'
+export const JOB_LOADING = 'JOB_LOADING'
 
 // Simple actions
 
@@ -28,7 +30,20 @@ export function setError(errMessage) {
   }
 }
 
+export function setLoading() {
+  return {
+    type: JOB_LOADING,
+  }
+}
+
 // Fancy thunks
+
+export function getJobDetails(job) {
+  return {
+    type: GET_JOB_DETAILS,
+    payload: job,
+  }
+}
 
 export function requestUserJobs(jobs) {
   return {
@@ -46,6 +61,30 @@ export function fetchJobs(region) {
       })
       .catch((err) => {
         console.log(err.message)
+      })
+  }
+}
+
+export function fetchJobByID(id) {
+  return (dispatch) => {
+    // try {
+    //   dispatch(setLoading())
+
+    //   const job = await getJobById(id)
+    //   dispatch(getJobDetails(job))
+    // } catch (error) {
+    //   console.log(error.message)
+    // }
+
+    dispatch(setLoading())
+
+    return getJobById(id)
+      .then((res) => {
+        dispatch(getJobDetails(res))
+        return null
+      })
+      .catch((err) => {
+        console.log(err.message, 'got an error')
       })
   }
 }

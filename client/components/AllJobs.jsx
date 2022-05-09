@@ -27,7 +27,6 @@ function AllJobs() {
 
   const { jobs } = useSelector((state) => state.jobsReducer)
   const dispatch = useDispatch()
-
   // console.log(addresses[0]) // after a valid address is selected, the first address object is the final address object we need
 
   const handleAddressChange = (e) => {
@@ -112,21 +111,16 @@ function AllJobs() {
       <VStack spacing={6}>
         {jobs.map((job, i) => {
           return (
-            <>
-              {/* <Box m={1} fontSize='sm'>
-              Select job for more details
-            </Box> */}
-              <Job
-                key={i}
-                title={job.title}
-                description={job.description}
-                pay={job.pay}
-                region={job.locationRegion}
-                suburb={job.locationSuburb}
-              />
-            </>
-          )
-        })}
+            <Job
+            key={i}
+            id={job.id}
+            title={job.title}
+            description={job.description}
+            pay={job.pay}
+            region={job.locationRegion}
+            suburb={job.locationSuburb} />
+          )})}
+        
       </VStack>
     </>
   )
