@@ -78,7 +78,7 @@ export default function JobDetail() {
 
       
 
-      <Button onClick={handleAcceptJob}>Accept Job</Button>
+      <Button m={2} onClick={handleAcceptJob}>Accept Job</Button>
     </Box>
   )
 }
