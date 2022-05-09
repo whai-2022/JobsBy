@@ -18,6 +18,8 @@ export default function JobDetail() {
 
   if (loading) return <p>Loading...</p>
   return (
+    
     <Heading>{job.title}</Heading>
+
   )
 }

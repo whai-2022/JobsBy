@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const jobsURL = '/'
+// const jobsURL = '/'
 const allJobsURL = '/api/allJobs'
 const myJobsURL = '/api/myJobs/jobsListed'
 const apiKey1 = 'QG8WqWD76jb02uxJAAQZWQ'

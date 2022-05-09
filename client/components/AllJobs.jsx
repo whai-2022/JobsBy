@@ -117,8 +117,8 @@ function AllJobs() {
             title={job.title}
             description={job.description}
             pay={job.pay}
-            region={job.locationRegion}
-            suburb={job.locationSuburb} />
+            region={job.region}
+            />
           )})}
         
       </VStack>

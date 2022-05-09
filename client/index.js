@@ -65,9 +65,6 @@ const theme = extendTheme({
     80: '20rem',
     96: '24rem',
   },
-  // components: {
-  //   Form
-  // }
 })
 
 document.addEventListener('DOMContentLoaded', () => {
