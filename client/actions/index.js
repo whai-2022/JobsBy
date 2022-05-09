@@ -1,4 +1,10 @@
-import { getAllJobs, postJob, getJobById, getUserJobs } from '../apis'
+import {
+  getAllJobs,
+  postJob,
+  getJobById,
+  getUserJobs,
+  getJobsByAccepterId,
+} from '../apis'
 import * as api from '../apis'
 
 export const REQUEST_USER_JOBS = 'REQUEST_USER_JOBS'
@@ -9,6 +15,7 @@ export const SET_ERROR = 'SET_ERROR'
 export const GET_JOB_DETAILS = 'GET_JOB_DETAILS'
 export const JOB_LOADING = 'JOB_LOADING'
 export const ACCEPT_JOB = 'ACCEPT_JOB'
+export const REQUEST_ACCEPTED_JOBS = 'REQUEST_ACCEPTED_JOBS'
 
 // Simple actions
 
@@ -54,6 +61,13 @@ export function requestUserJobs(jobs) {
   }
 }
 
+export function requestAcceptedJobs(jobs) {
+  return {
+    type: REQUEST_ACCEPTED_JOBS,
+    payload: { jobs: jobs },
+  }
+}
+
 export function fetchJobs(region) {
   return (dispatch) => {
     return getAllJobs(region)
@@ -94,6 +108,20 @@ export function fetchUserJobs(userId) {
       })
   }
 }
+
+export function fetchAcceptedJobs(accepterId) {
+  return (dispatch) => {
+    return getJobsByAccepterId(accepterId)
+      .then((res) => {
+        dispatch(requestAcceptedJobs(res))
+        return null
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }
+}
+
 export function createJob(job) {
   return (dispatch) => {
     return postJob(job)

@@ -1,29 +1,27 @@
 import React, { useEffect } from "react"
-import { fetchUserJobs } from "../actions"
+import { fetchAcceptedJobs } from "../actions"
 import {Link as LinkTo} from 'react-router-dom'
 
 import { Heading, VStack, LinkBox, Box, Badge } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
 import { useSelector, useDispatch} from "react-redux"
 
-function MyJobs() {
+function AcceptedJobs() {
 
-  const myJobs = useSelector((state) => state.myJobs)
-  // myJobs = {jobs = [res.body/actual jobs]}
+  const acceptedJobs = useSelector((state) => state.acceptedJobs)
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(fetchUserJobs('Auth0||something')) // TODO: use userId later
+    dispatch(fetchAcceptedJobs('Auth0||hello')) // TODO: use userId later
   }, [])
 
 
   return (
     <>
-      <Heading m={9} fontSize='2xl'>My Jobs</Heading>
-      <Heading m={9} fontSize='lg'>Here are the jobs you have posted:</Heading>
+      <Heading m={9} fontSize='lg'>Here are the jobs you have accepted:</Heading>
 
       <VStack spacing={6}>
 
-            {myJobs?.jobs.map((jobPosting, i) => {
+            {acceptedJobs?.jobs.map((jobPosting, i) => {
               return (
                 <LinkBox as={LinkTo} to={`/alljobs/${jobPosting.id}`}
                   p={3}
@@ -73,4 +71,4 @@ function MyJobs() {
   )
 }
 
-export default MyJobs
+export default AcceptedJobs
