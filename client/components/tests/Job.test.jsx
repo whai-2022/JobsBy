@@ -24,12 +24,14 @@ describe('<Job />', () => {
           region={job.region}
         />
       </Router>
-    ) 
-    
+    )
+
     expect(screen.getByText(job.description)).toBeInTheDocument()
     expect(screen.getByText(job.title)).toBeInTheDocument()
     expect(screen.getByText(job.region)).toBeInTheDocument()
     expect(screen.getByText(job.pay)).toBeInTheDocument()
-    expect(screen.getByRole('link').href).toBe(`http://localhost/alljobs/${job.id}`)
+    expect(screen.getByRole('link').href).toBe(
+      `http://localhost/alljobs/${job.id}`
+    )
   })
 })
