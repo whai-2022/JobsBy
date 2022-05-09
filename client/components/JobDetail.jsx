@@ -1,5 +1,6 @@
 import React, { useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router'
 import { useAuth0 } from '@auth0/auth0-react'
 
 import { useParams } from 'react-router-dom'
@@ -13,12 +14,13 @@ export default function JobDetail() {
   const { job, loading } = useSelector((state) => state.jobsReducer)
   const dispatch = useDispatch()
 
+  const navigate = useNavigate()
+
   const { isAuthenticated, user } = useAuth0()
 
   const handleAcceptJob = () => {
     dispatch(acceptJob(id, user.sub))
-    // TODO: navigate to myJobs after accepting the job
-    alert('You have successfully accepted the job.')
+    navigate('/myJobs')
   }
 
   useEffect(() => {
