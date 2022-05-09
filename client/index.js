@@ -17,15 +17,15 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)))
 //color from below is used on the Link elements in Home for example.
 const theme = extendTheme({
   styles: {
-    global: {
-      'html, body': {
-        backgroundColor: '#EDFDFD',
-        lineHeight: 'tall',
-      },
-      Box: {
-        backgroundColor: '#217876',
-      },
-    },
+    // global: {
+    //   'html, body': {
+    //     backgroundColor: '#EDFDFD',
+    //     lineHeight: 'tall',
+    //   },
+    //   Box: {
+    //     backgroundColor: '#217876',
+    //   },
+    // },
   },
   colors: {
     teal: {
