@@ -138,6 +138,7 @@ function PostJob() {
       lon,
       lat,
     }
+    //guess what i'm going to say about the next line of code?
     // console.log(job)
     dispatch(createJob(job))
     // TODO: navigate to newly added Job (once job details view is live). Possibly, with async await (after getting id back)

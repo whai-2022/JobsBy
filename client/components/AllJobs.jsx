@@ -43,6 +43,8 @@ function AllJobs() {
     return () => clearInterval(interval)
   }, [address])
 
+  //nice use of useEffect
+
   const search = () => {
     api
       .getAutocompleteAddresses(searchTerm)
@@ -50,6 +52,7 @@ function AllJobs() {
         setAddresses(res)
       })
       .catch((err) => {
+        //remove console log
         console.log(err)
         setAddresses([])
         setError(err.message)
@@ -58,6 +61,7 @@ function AllJobs() {
 
   useEffect(() => {
     if (!searchTerm) return
+    // remove commented out code and console logs
     // console.log('search term is', searchTerm)
     search()
   }, [searchTerm])
@@ -66,6 +70,8 @@ function AllJobs() {
     if (addresses.length) {
       setPosition([addresses[0].lat, addresses[0].lon])
       dispatch(fetchJobs(addresses[0].region)) // fetch jobs by region
+      //if you change your fetchJobs action creator to fetchJobsByRegion the comment
+      //wouldn't be needed
     }
   }
 

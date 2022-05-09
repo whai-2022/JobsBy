@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Container } from '@chakra-ui/react'
 
+//remove uncommented code
 // import { useAuth0 } from '@auth0/auth0-react'
 
 import Header from './Header'

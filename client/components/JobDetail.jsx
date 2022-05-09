@@ -13,8 +13,10 @@ export default function JobDetail() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    //if you already have all jobs in your store you could just use a find instead of hitting your api again
+    // if you don't then this is fine
     dispatch(fetchJobByID(id))
-  }, [])
+  }, []) // you probably want to call this code whenever id changes
 
   if (loading) return <p>Loading...</p>
   return (

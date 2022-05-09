@@ -1,3 +1,4 @@
+// good start, but still a lot of coverage missing
 const request = require('supertest')
 const server = require('../../server')
 const db = require('../../../server/db/db')
