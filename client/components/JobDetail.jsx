@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -6,7 +6,8 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useParams } from 'react-router-dom'
 import { fetchJobByID, acceptJob } from '../actions'
 
-import { Heading, Box, Text, Button} from '@chakra-ui/react'
+import { Heading, Box, Text, Button } from '@chakra-ui/react'
+import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 export default function JobDetail() {
   const { id } = useParams()
@@ -25,20 +26,20 @@ export default function JobDetail() {
 
   useEffect(() => {
     dispatch(fetchJobByID(id))
-  }, [])
-  console.log(job)
+  }, []) // you probably want to call this code whenever id changes
 
   if (!isAuthenticated) return <p>Please login to see this job.</p>
   if (loading) return <p>Loading...</p>
   return (
-    <Box
-      borderWidth='1px'
-      p={2}
-      shadow='md'
-      overflow='hidden' 
-      w='100%'
-      borderRadius='lg'
-    >
+    <SkipNavContent>
+      <Box
+        borderWidth='1px'
+        p={2}
+        shadow='md'
+        overflow='hidden' 
+        w='100%'
+        borderRadius='lg'
+      >
       <Heading
         as='h2'
         m={4}
@@ -92,10 +93,10 @@ export default function JobDetail() {
         </Text>
         {job.email}
       </Box>
-      
-      
-
-      <Button m={2} onClick={handleAcceptJob}>Accept Job</Button>
-    </Box>
+        <Button m={2} onClick={handleAcceptJob}>
+          Accept Job
+        </Button>
+      </Box>
+    </SkipNavContent>
   )
 }

@@ -1,10 +1,11 @@
-import React, { useEffect } from "react"
-import { fetchUserJobs } from "../actions"
-import {Link as LinkTo} from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { fetchUserJobs } from '../actions'
+import { Link as LinkTo } from 'react-router-dom'
 
 import AcceptedJobs from './AcceptedJobs'
 
 import { Heading, VStack, LinkBox, Box, Badge } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
+import { SkipNavContent } from '@chakra-ui/skip-nav'
 import { useSelector, useDispatch} from "react-redux"
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -27,6 +28,7 @@ function MyJobs() {
   if (!isAuthenticated) return null
   return (
     <>
+    <SkipNavContent>
     <AcceptedJobs />
 
       <Heading m={9} fontSize='lg'>Here are the jobs you have posted:</Heading>
@@ -81,6 +83,7 @@ function MyJobs() {
         })}
   </VStack>
       ) : <p>No jobs.</p>}
+      </SkipNavContent>
     </>
   )
 }

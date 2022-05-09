@@ -45,8 +45,6 @@ export function setLoading() {
   }
 }
 
-// Fancy thunks
-
 export function getJobDetails(job) {
   return {
     type: GET_JOB_DETAILS,
@@ -68,7 +66,9 @@ export function requestAcceptedJobs(jobs) {
   }
 }
 
-export function fetchJobs(region) {
+// Fancy thunks
+
+export function fetchJobsByRegion(region) {
   return (dispatch) => {
     return getAllJobs(region)
       .then((res) => {
