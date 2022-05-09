@@ -1,10 +1,12 @@
 import React, { useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router'
+import { useAuth0 } from '@auth0/auth0-react'
 
 import { useParams } from 'react-router-dom'
-import { fetchJobByID } from '../actions'
+import { fetchJobByID, acceptJob } from '../actions'
 
-import { Heading, Box, Text} from '@chakra-ui/react'
+import { Heading, Box, Text, Button} from '@chakra-ui/react'
 
 export default function JobDetail() {
   const { id } = useParams()
@@ -12,14 +14,23 @@ export default function JobDetail() {
   const { job, loading } = useSelector((state) => state.jobsReducer)
   const dispatch = useDispatch()
 
+  const navigate = useNavigate()
+
+  const { isAuthenticated, user } = useAuth0()
+
+  const handleAcceptJob = () => {
+    dispatch(acceptJob(id, user.sub))
+    navigate('/myJobs')
+  }
+
   useEffect(() => {
     dispatch(fetchJobByID(id))
   }, [])
   console.log(job)
 
+  if (!isAuthenticated) return <p>Please login to see this job.</p>
   if (loading) return <p>Loading...</p>
   return (
-    <>
     <Box
       borderWidth='1px'
       p={2}
@@ -67,9 +78,7 @@ export default function JobDetail() {
 
       
 
-      
+      <Button onClick={handleAcceptJob}>Accept Job</Button>
     </Box>
-  </>
-
   )
 }
