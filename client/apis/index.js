@@ -6,12 +6,14 @@ const myJobsURL = '/api/myJobs/jobsListed'
 const acceptedJobsURL = '/api/myJobs/jobsDone'
 const apiKey1 = 'QG8WqWD76jb02uxJAAQZWQ'
 // const apiKey2 = 'wcyCeEHbpFxfjDPDJD3UWQ'
+// const apiKey3 = 'gSnstGhj27bhsCpZR1Ri4A'
+const apiKey4 = 'd5d7vnRinIwJCVRtlTXBAw'
 
 // gets a list of suggested matching addresses
 export function getAutocompleteAddresses(address) {
   return request
     .get(
-      `https://api.addressable.co.nz/v2/autocomplete?api_key=${apiKey1}&country_code=NZ&q=${address.replaceAll(
+      `https://api.addressable.co.nz/v2/autocomplete?api_key=${apiKey4}&country_code=NZ&q=${address.replaceAll(
         ' ',
         '+'
       )}`
