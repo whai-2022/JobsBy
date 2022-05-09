@@ -11,7 +11,7 @@ function AcceptedJobs() {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(fetchAcceptedJobs('Auth0||hello')) // TODO: use userId later
+    dispatch(fetchAcceptedJobs('Auth0||Something')) // TODO: use userId later
   }, [])
 
 

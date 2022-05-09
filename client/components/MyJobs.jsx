@@ -2,10 +2,13 @@ import React, { useEffect } from "react"
 import { fetchUserJobs } from "../actions"
 import {Link as LinkTo} from 'react-router-dom'
 
+import AcceptedJobs from './AcceptedJobs'
+
 import { Heading, VStack, LinkBox, Box, Badge } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
 import { useSelector, useDispatch} from "react-redux"
 
 function MyJobs() {
+  <AcceptedJobs />
   // const [error, setError] = useState(null)
 
   const myJobs = useSelector((state) => state.myJobs)
@@ -22,6 +25,7 @@ function MyJobs() {
   if (loading) return <p>Loading...</p>
   return (
     <>
+
       <Heading m={9} fontSize='2xl'>My Jobs</Heading>
       <Heading m={9} fontSize='lg'>Here are the jobs you have posted:</Heading>
 
