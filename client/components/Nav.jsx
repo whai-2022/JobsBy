@@ -1,6 +1,8 @@
 import React from 'react'
 
+//link is never used - your linter should tell you this
 import { Link } from 'react-router-dom'
+//remove commented out code
 // import { useAuth0 } from '@auth0/auth0-react'
 
 import {

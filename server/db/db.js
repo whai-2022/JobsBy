@@ -13,6 +13,7 @@ module.exports = {
   updateJobById,
 }
 
+//I think this would be better called getJobsByRegion as it doesn't get all jobs
 function getAllJobs(region, db = connection) {
   // search by region
   return db('jobs').select().where('accepted', false).where('region', region)
@@ -38,6 +39,7 @@ function acceptJob(id, accepterId, db = connection) {
 }
 
 function getJobsByUserId(userId, db = connection) {
+  //remove console logs
   console.log(userId)
   return db('jobs').select().where('userId', userId)
 }

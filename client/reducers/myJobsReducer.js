@@ -1,5 +1,7 @@
 import { REQUEST_USER_JOBS } from '../actions'
 
+// I would make this inital state an empty array otherwise you will be using
+// state.myJobs.jobs when state.myJobs would be easier to remember
 const initialJobState = {
   jobs: [],
 }

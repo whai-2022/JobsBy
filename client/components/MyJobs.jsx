@@ -5,6 +5,7 @@ import { Heading, VStack } from "@chakra-ui/react" // TODO: Text, Button add lat
 import { useSelector, useDispatch} from "react-redux"
 
 function MyJobs() {
+  //remove commented out code
   // const [error, setError] = useState(null)
 
   const myJobs = useSelector((state) => state.myJobs)
@@ -45,6 +46,7 @@ export default MyJobs
 
 
 
+//remove commented out code, save snippets somewhere else
 // {jobs.map((job) => {
 //   return <>
 //     <Job

@@ -13,6 +13,7 @@ import App from './components/App'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)))
 
+//nice use of chakra themes, I think the theme would be better in its own file
 //extension for chakra, to which can be added any necessary extras
 //color from below is used on the Link elements in Home for example.
 const theme = extendTheme({
