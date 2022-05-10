@@ -7,6 +7,7 @@ import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 import {
   Text,
+  Box,
   Button,
   Heading,
   VStack,
@@ -71,14 +72,27 @@ function AllJobs() {
 
   return (
     <>
-      <SkipNavContent>
-        <Heading m={8}>Find a job in your area.</Heading>
+      {/* <SkipNavContent> */}
+      <VStack
+          w="full"
+          h="full"
+          p={10}
+          spacing={10}
+          alignItems="flex-start"
+          bg="gray.50"
+        >
+        <Heading as="h1" size="xl" alignSelf="center">Find a job in your area.</Heading>
         <Container centerContent>
-          <JobsMap position={position} jobs={jobs} />
+            <JobsMap
+              position={position}
+              jobs={jobs}
+            />
         </Container>
 
         {/* Input field for address to be searched */}
-        <FormControl w="90%" m={6} isRequired={true}>
+        <FormControl
+          m={6}
+          isRequired={true}>
           <FormLabel htmlFor="address">Address:</FormLabel>
           <Input
             list="addresses"
@@ -87,9 +101,9 @@ function AllJobs() {
             type="address"
             value={address}
             onChange={handleAddressChange}
-            // focusBorderColor="purple.700"
-            // bg="cyan.100"
-            // variant="flushed"
+            focusBorderColor="purple.700"
+            bg="cyan.100"
+            variant="flushed"
           />
           <FormHelperText textAlign="left" mb={6}>
             We&apos;ll never share your address.
@@ -109,7 +123,7 @@ function AllJobs() {
             </Text>
           )}
         </FormControl>
-
+        </VStack>
         {/* Cards of jobs available*/}
         <VStack spacing={6}>
           {jobs.map((job, i) => {
@@ -124,8 +138,9 @@ function AllJobs() {
               />
             )
           })}
-        </VStack>
-      </SkipNavContent>
+          </VStack>
+        
+      {/* </SkipNavContent> */}
     </>
   )
 }

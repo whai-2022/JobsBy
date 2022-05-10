@@ -2,12 +2,12 @@ import React from 'react'
 import { Link as LinkTo } from 'react-router-dom'
 
 import { Box, Badge, LinkBox } from '@chakra-ui/react'
-import { SkipNavContent } from '@chakra-ui/skip-nav'
+// import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function Job({ title, description, pay, region, id }) {
   return (
     <>
-      <SkipNavContent>
+      {/* <SkipNavContent> */}
         <LinkBox
           as={LinkTo}
           to={`/alljobs/${id}`}
@@ -41,7 +41,7 @@ function Job({ title, description, pay, region, id }) {
           </Box>
           <Box m={2}>{pay}</Box>
         </LinkBox>
-      </SkipNavContent>
+      {/* </SkipNavContent> */}
     </>
   )
 }
