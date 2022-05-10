@@ -21,7 +21,7 @@ function AcceptedJobs() {
 
   return (
     <>
-          <Heading m={9} fontSize='2xl'>My Jobs</Heading>
+      <Heading m={9} fontSize='2xl'>My Jobs</Heading>
 
       <Heading m={9} fontSize='lg'>Here are the jobs you have accepted:</Heading>
 
@@ -42,8 +42,8 @@ function AcceptedJobs() {
                 p={2}
                 display='flex'
                 alignItems='baseline'>
-                <Badge borderRadius='full' px='2' colorScheme='teal'>
-                  Awaiting Response
+                <Badge borderRadius='full' px='2' colorScheme='purple'>
+                  {jobPosting.accepted ? 'Accepted' : 'Awaiting Response'}
                 </Badge>
                 <Box
                   color='gray.500'

@@ -19,7 +19,7 @@ function Job({ title, description, pay, region, id }) {
       >
         <SkipNavContent>
           <Box p={2} display="flex" alignItems="baseline">
-            <Badge borderRadius="full" px="2" colorScheme="teal">
+            <Badge borderRadius="full" px="2" colorScheme="blue">
               Available
             </Badge>
             <Box
