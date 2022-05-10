@@ -36,7 +36,7 @@ function Splash() {
         spacing={{ base: 5, md: 5 }}
         py={{ base: 2, md: 2 }}
         boxSize='90%'>
-        <Image src= 'images/group1.png'></Image>
+        <Image src= 'images/group.png'></Image>
         </Stack>
 
       </Container>
