@@ -23,9 +23,10 @@ function Nav() {
       align='center'
       justify='space-between'
       wrap='wrap'
+      padding={2}
       // bg='gray.50'
       >
-    <Box>
+    <Box padding={4}>
         <Menu>
         <MenuButton
           as={IconButton}
@@ -42,7 +43,7 @@ function Nav() {
       </Menu>
       </Box>
       <span>
-        <Box boxSize='160px'>
+        <Box boxSize='160px' padding={2}>
         <Image src= 'images/logoFULL.png'></Image>
         </Box>
     </span>

@@ -18,7 +18,7 @@ const LoggedIn = () => {
   return (
     <Container className='login'>
       {isAuthenticated && (
-        <p> {`Welcome back, ${user.email}`} </p>
+        <p> {`Welcome back, ${user.email}. Press Enter below to find your next job.`} </p>
       )}
       <Box m={4}>
           {isAuthenticated && (
