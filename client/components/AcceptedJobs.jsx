@@ -33,6 +33,7 @@ function AcceptedJobs() {
             <LinkBox as={LinkTo} to={`/alljobs/${jobPosting.id}`}
               p={3}
               shadow='md'
+              bg="gray.50"
               overflow='hidden'
               borderWidth='1px'
               w='100%'

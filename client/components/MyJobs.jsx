@@ -44,13 +44,16 @@ function MyJobs() {
               shadow='md'
               overflow='hidden'
               borderWidth='1px'
+              bg="gray.50"
               w='100%'
               borderRadius='lg'
-              key={`${jobPosting.id} ${i}`}>
+              key={`${jobPosting.id} ${i}`}
+            >
                 <Box
                 p={2}
                 display='flex'
-                alignItems='baseline'>
+                alignItems='baseline'
+                >
                 <Badge borderRadius='full' px='2' colorScheme='teal'>
                   Awaiting Response
                 </Badge>
