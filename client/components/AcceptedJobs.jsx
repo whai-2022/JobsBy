@@ -42,9 +42,10 @@ function AcceptedJobs() {
               borderRadius='lg'
               key={`${jobPosting.id} ${i}`}>
                 <Box
-                p={2}
-                display='flex'
-                alignItems='baseline'>
+                  p={2}
+                  display='flex'
+                  alignItems='baseline'
+                >
                 <Badge borderRadius='full' px='2' colorScheme='teal'>
                   {jobPosting.accepted ? 'Accepted' : 'Awaiting Response'}
                 </Badge>
