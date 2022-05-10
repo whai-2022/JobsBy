@@ -39,6 +39,7 @@ export default function JobDetail() {
         overflow="hidden"
         w="100%"
         borderRadius="lg"
+        bg="gray.50"
       >
         <Heading as="h2" m={4}>
           {job.title}
@@ -72,11 +73,11 @@ export default function JobDetail() {
         </Box>
 
         <Box textAlign="left" m={2}>
-          <Text fontWeight="bold">Contact:</Text>
+          <Text fontWeight="bold">For more information, contact:</Text>
           {job.email}
         </Box>
         {job.accepted ? <Text fontWeight="bold">This job is closed.</Text> : (
-          <Button m={2} onClick={handleAcceptJob}>
+          <Button m={2} onClick={handleAcceptJob} colorScheme="teal">
             Accept Job
           </Button>
         )}
