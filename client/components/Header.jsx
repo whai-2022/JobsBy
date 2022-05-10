@@ -1,13 +1,11 @@
+import { Image, Box } from '@chakra-ui/react'
 import React from 'react'
 
 function Header() {
   return (
-    <div>
-      <h1>
-        <u>JobsBy</u>
-      </h1>
-      {/* TODO: <em>Possibly insert Menu here...    </em> */}
-    </div>
+      <Box boxSize='sm'>
+      <img src="./images/build.png" alt="Mountain"></img>
+    </Box>
   )
 }
 

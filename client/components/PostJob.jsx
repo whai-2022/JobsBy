@@ -397,6 +397,7 @@ function PostJob() {
                 focusBorderColor="purple.700"
                 bg="cyan.100"
                 variant="flushed"
+                name="email"
                 type="email"
                 value={newJob.email}
                 onSubmit={handleSubmit}
