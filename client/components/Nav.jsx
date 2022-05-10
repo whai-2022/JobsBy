@@ -7,11 +7,7 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
   MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
   IconButton,
 } from '@chakra-ui/react'
 
@@ -23,12 +19,16 @@ function Nav() {
       <Menu>
         <MenuButton
           as={IconButton}
-          name="nav-button"
-          aria-label="nav-button"
+          aria-label="Options"
           icon={<HamburgerIcon />}
-        >
-          Test
-        </MenuButton>
+          variant="outline"
+        />
+        <MenuList>
+          <MenuItemOption><Link to="/home">Home</Link></MenuItemOption>
+          <MenuItemOption><Link to="/alljobs">Find Job</Link></MenuItemOption>
+          <MenuItemOption><Link to="/postjob">Post Job</Link></MenuItemOption>
+          <MenuItemOption><Link to="/myJobs">My Jobs</Link></MenuItemOption>
+        </MenuList>
       </Menu>
     </>
   )

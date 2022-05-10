@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 // TODO: check if this works from top level in app, if so, individual SkipNavContent in this component as it would double up.
 import { SkipNavContent } from '@chakra-ui/skip-nav'
+import LoggedIn from './LoggedIn'
 import {
   // distribute element(s) vertically
   VStack,
@@ -74,7 +75,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons'
 
 function PostJob() {
-  const { user } = useAuth0()
+  const { isAuthenticated, user } = useAuth0()
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
   // For Team's Learning: after a valid address is selected, the first address object is the final address object we need
@@ -175,6 +176,7 @@ function PostJob() {
     navigate('/')
   }
 
+  if (!isAuthenticated) return <p>Please login to post a job. <LoggedIn /></p>
   return (
     <>
       <SkipNavContent>

@@ -3,6 +3,7 @@ import { fetchUserJobs } from '../actions'
 import { Link as LinkTo } from 'react-router-dom'
 
 import AcceptedJobs from './AcceptedJobs'
+import LoggedIn from './LoggedIn'
 
 import { Heading, VStack, LinkBox, Box, Badge } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
 import { SkipNavContent } from '@chakra-ui/skip-nav'
@@ -25,7 +26,7 @@ function MyJobs() {
     }
   }, [])
 
-  if (!isAuthenticated) return null
+  if (!isAuthenticated) return <p>Please login to view your jobs. <LoggedIn /></p>
   return (
     <>
     <SkipNavContent>
