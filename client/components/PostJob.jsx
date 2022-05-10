@@ -9,14 +9,10 @@ import LoggedIn from './LoggedIn'
 import {
   // distribute element(s) vertically
   VStack,
-  // distribute element(s) horizontally
-  HStack,
   // renders a div
   Box,
   // can be defined as h1, h2, h3, etc.
   Heading,
-  // renders <p> tag by default
-  Text,
   // visually hidden allows you to add text for a screen reader that will not show up visually on the screen
   VisuallyHidden,
   // links go somewhere
@@ -28,14 +24,8 @@ import {
   // Icon
   Icon,
   // list components
-  List,
   ListItem,
-  ListIcon,
-  OrderedList,
   UnorderedList,
-  // colors
-  useColorMode,
-  UseColorModeValue,
   // -- FORM SPECIFIC --
   // Form components must be wrapped by FormControl, or else you will get misleading error messages
   // FormControl passes id to Input as id, and to FormLabel as htmlFor
@@ -50,8 +40,8 @@ import {
   Textarea,
   //  tells more details about the form section
   FormHelperText,
-  // message that shows up when an error occurs
-  FormErrorMessage,
+  // // STRETCH TODO: message that shows up when an error occurs
+  // FormErrorMessage,
   // select one choice from options
   Radio,
   RadioGroup,
@@ -60,7 +50,7 @@ import {
   CheckboxGroup,
   Checkbox,
 } from '@chakra-ui/react'
-import { BsFillHandIndexThumbFill, BsChatTextFill } from 'react-icons/bs'
+import { BsChatTextFill } from 'react-icons/bs'
 import {
   MdPerson,
   MdLocationPin,
