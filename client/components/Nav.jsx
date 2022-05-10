@@ -20,7 +20,7 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 function Nav() {
   return (
     <>
-      <Flex aria-hidden="true">
+      <Flex>
         <VStack>
           <nav alignSelf="flex-start">
             <Menu>
