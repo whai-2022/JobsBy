@@ -206,7 +206,11 @@ function PostJob() {
               <Heading as="h2" size="sm" textAlign="left">
                 Form Instructions
               </Heading>
-              <UnorderedList fontSize="md" textAlign="left">
+              <UnorderedList
+                fontSize="md"
+                textAlign="left"
+                color={useColorModeValue('black', 'teal.300')}
+              >
                 {/* a11y: provide instructions on what the form requires */}
                 {/* a11y: say how long the form will take to complete. Make sure form does not time out.
             TODO: enable save as you go */}
@@ -243,7 +247,7 @@ function PostJob() {
                 <Input
                   focusBorderColor={useColorModeValue(
                     'purple.700',
-                    'purple.400'
+                    'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
@@ -301,7 +305,7 @@ function PostJob() {
                 <Input
                   focusBorderColor={useColorModeValue(
                     'purple.700',
-                    'purple.400'
+                    'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
@@ -331,7 +335,7 @@ function PostJob() {
                 <Input
                   focusBorderColor={useColorModeValue(
                     'purple.700',
-                    'purple.400'
+                    'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
@@ -360,7 +364,7 @@ function PostJob() {
                 <Input
                   focusBorderColor={useColorModeValue(
                     'purple.700',
-                    'purple.400'
+                    'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
@@ -393,7 +397,7 @@ function PostJob() {
                 <Input
                   focusBorderColor={useColorModeValue(
                     'purple.700',
-                    'purple.400'
+                    'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
@@ -418,7 +422,7 @@ function PostJob() {
                 <Input
                   focusBorderColor={useColorModeValue(
                     'purple.700',
-                    'purple.400'
+                    'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
@@ -442,7 +446,7 @@ function PostJob() {
                 <Input
                   focusBorderColor={useColorModeValue(
                     'purple.700',
-                    'purple.400'
+                    'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
@@ -519,7 +523,7 @@ function PostJob() {
                 <Input
                   focusBorderColor={useColorModeValue(
                     'purple.700',
-                    'purple.400'
+                    'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
@@ -540,7 +544,7 @@ function PostJob() {
                 Description <Icon as={MdDescription} w={6} h={6} />
               </FormLabel>
               <Textarea
-                focusBorderColor={useColorModeValue('purple.700', 'purple.400')}
+                focusBorderColor={useColorModeValue('purple.700', 'purple.300')}
                 bg={useColorModeValue('cyan.100', 'gray.600')}
                 variant="flushed"
                 name="description"
@@ -561,7 +565,7 @@ function PostJob() {
                 <Input
                   focusBorderColor={useColorModeValue(
                     'purple.700',
-                    'purple.400'
+                    'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
@@ -584,7 +588,7 @@ function PostJob() {
               <Button
                 // rightIcon={<BsFillHandIndexThumbFill />}
                 rightIcon={<SiMinutemailer />}
-                colorScheme="purple"
+                colorScheme={useColorModeValue('purple', 'blue')}
                 onClick={handleSubmit}
                 size="lg"
               >

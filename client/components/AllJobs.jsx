@@ -3,12 +3,18 @@ import * as api from '../apis'
 import Job from './Job'
 import JobsMap from './JobsMap'
 import { fetchJobsByRegion } from '../actions'
+
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 import { useAuth0 } from '@auth0/auth0-react'
 import LoggedIn from './LoggedIn'
 
+import { FaSearchLocation } from 'react-icons/fa'
+
+import { MdLocationPin } from 'react-icons/md'
+
 import {
   Text,
+  Icon,
   Button,
   Heading,
   VStack,
@@ -17,7 +23,11 @@ import {
   Input,
   FormHelperText,
   Container,
+  InputGroup,
+  InputLeftElement,
+  useColorModeValue,
 } from '@chakra-ui/react'
+
 import { useSelector, useDispatch } from 'react-redux'
 
 function AllJobs() {
@@ -73,28 +83,44 @@ function AllJobs() {
     }
   }
 
-  if (!isAuthenticated) return <p>Please login to find a job. <LoggedIn /></p>
+  if (!isAuthenticated)
+    return (
+      <p>
+        Please login to find a job. <LoggedIn />
+      </p>
+    )
   return (
     <>
-      <SkipNavContent>
-        <Heading m={8}>Find a job in your area.</Heading>
-        <Container centerContent>
-          <JobsMap position={position} jobs={jobs} />
+      {/* <SkipNavContent> */}
+      <VStack w="full" h="full" p={4} spacing={6}>
+        <Heading as="h1" size="xl" alignSelf="center">
+          Find a job in your area
+        </Heading>
+        <Container position="relative" centerContent>
+          <JobsMap position={position} jobs={jobs} padding="10px" />
         </Container>
 
         {/* Input field for address to be searched */}
-        <FormControl w="90%" m={6} isRequired={true}>
+        <FormControl m={6} isRequired={true}>
           <FormLabel htmlFor="address">Address:</FormLabel>
-          <Input
-            list="addresses"
-            id="address"
-            name="address"
-            type="address"
-            value={address}
-            onChange={handleAddressChange}
-          />
+          <InputGroup>
+            <InputLeftElement>
+              <Icon as={MdLocationPin} w={6} h={6} />
+            </InputLeftElement>
+            <Input
+              list="addresses"
+              id="address"
+              name="address"
+              type="address"
+              value={address}
+              onChange={handleAddressChange}
+              focusBorderColor={useColorModeValue('purple.700', 'purple.300')}
+              bg={useColorModeValue('cyan.100', 'gray.600')}
+              variant="flushed"
+            />
+          </InputGroup>
           <FormHelperText textAlign="left" mb={6}>
-            We&apos;ll never share your address.
+            We&apos;ll never share your address
           </FormHelperText>
 
           <datalist id="addresses" name="addresses">
@@ -102,7 +128,13 @@ function AllJobs() {
               <option value={address.formatted} key={`address-${idx}`} />
             ))}
           </datalist>
-          <Button type="submit" onClick={submitSearch}>
+          <Button
+            type="submit"
+            onClick={submitSearch}
+            rightIcon={<FaSearchLocation />}
+            colorScheme={useColorModeValue('purple', 'blue')}
+            size="lg"
+          >
             Search
           </Button>
           {error && (
@@ -111,9 +143,7 @@ function AllJobs() {
             </Text>
           )}
         </FormControl>
-
-        {/* Cards of jobs available*/}
-        <VStack spacing={6}>
+        <VStack spacing={6} m={2}>
           {jobs.map((job, i) => {
             return (
               <Job
@@ -127,7 +157,10 @@ function AllJobs() {
             )
           })}
         </VStack>
-      </SkipNavContent>
+      </VStack>
+      {/* Cards of jobs available*/}
+
+      {/* </SkipNavContent> */}
     </>
   )
 }

@@ -9,6 +9,7 @@ function ColorModeButton() {
     // button that togglesColorMode
     <IconButton
       icon={useColorModeValue(<MoonIcon />, <SunIcon />)}
+      colorScheme={useColorModeValue('purple', 'blue')}
       onClick={toggleColorMode}
       aria-label="light / dark mode"
     >
