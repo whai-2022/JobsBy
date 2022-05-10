@@ -2,7 +2,7 @@ import React from 'react'
 import { Link as LinkTo } from 'react-router-dom'
 
 import { Box, Badge, LinkBox } from '@chakra-ui/react'
-// import { SkipNavContent } from '@chakra-ui/skip-nav'
+import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function Job({ title, description, pay, region, id }) {
   return (

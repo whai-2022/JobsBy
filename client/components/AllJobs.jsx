@@ -3,11 +3,16 @@ import * as api from '../apis'
 import Job from './Job'
 import JobsMap from './JobsMap'
 import { fetchJobsByRegion } from '../actions'
+
 import { SkipNavContent } from '@chakra-ui/skip-nav'
+
+import { FaSearchLocation } from 'react-icons/fa'
+
+import { MdLocationPin } from 'react-icons/md'
 
 import {
   Text,
-  Box,
+  Icon,
   Button,
   Heading,
   VStack,
@@ -16,7 +21,10 @@ import {
   Input,
   FormHelperText,
   Container,
+  InputGroup,
+  InputLeftElement
 } from '@chakra-ui/react'
+
 import { useSelector, useDispatch } from 'react-redux'
 
 function AllJobs() {
@@ -86,6 +94,7 @@ function AllJobs() {
             <JobsMap
               position={position}
               jobs={jobs}
+              padding="10px"
             />
         </Container>
 
@@ -94,17 +103,22 @@ function AllJobs() {
           m={6}
           isRequired={true}>
           <FormLabel htmlFor="address">Address:</FormLabel>
-          <Input
-            list="addresses"
-            id="address"
-            name="address"
-            type="address"
-            value={address}
-            onChange={handleAddressChange}
-            focusBorderColor="purple.700"
-            bg="cyan.100"
-            variant="flushed"
-          />
+          <InputGroup>
+            <InputLeftElement>
+              <Icon as={MdLocationPin} w={6} h={6} />
+            </InputLeftElement>
+            <Input
+              list="addresses"
+              id="address"
+              name="address"
+              type="address"
+              value={address}
+              onChange={handleAddressChange}
+              focusBorderColor="purple.700"
+              bg="cyan.100"
+              variant="flushed"
+            />
+          </InputGroup>
           <FormHelperText textAlign="left" mb={6}>
             We&apos;ll never share your address.
           </FormHelperText>
@@ -114,7 +128,12 @@ function AllJobs() {
               <option value={address.formatted} key={`address-${idx}`} />
             ))}
           </datalist>
-          <Button type="submit" onClick={submitSearch}>
+          <Button
+            type="submit"
+            onClick={submitSearch}
+            rightIcon={<FaSearchLocation />}
+            colorScheme="purple"
+            size="lg">
             Search
           </Button>
           {error && (
@@ -123,9 +142,7 @@ function AllJobs() {
             </Text>
           )}
         </FormControl>
-        </VStack>
-        {/* Cards of jobs available*/}
-        <VStack spacing={6}>
+        <VStack spacing={6} m={2}>
           {jobs.map((job, i) => {
             return (
               <Job
@@ -139,6 +156,9 @@ function AllJobs() {
             )
           })}
           </VStack>
+        </VStack>
+        {/* Cards of jobs available*/}
+        
         
       {/* </SkipNavContent> */}
     </>
