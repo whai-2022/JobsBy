@@ -209,7 +209,7 @@ function PostJob() {
               <UnorderedList
                 fontSize="md"
                 textAlign="left"
-                color={useColorModeValue('black', 'teal.300')}
+                color={useColorModeValue('black', 'teal.200')}
               >
                 {/* a11y: provide instructions on what the form requires */}
                 {/* a11y: say how long the form will take to complete. Make sure form does not time out.
