@@ -20,6 +20,8 @@ function Splash() {
           align={'center'}
           spacing={{ base: 5, md: 5 }}
           py={{ base: 20, md: 28 }}
+          // pt={{ base: 20, md: 28 }}
+          // pb={{ base: 5, md: 28 }}
         >
           <Heading
             fontWeight={650}
@@ -46,7 +48,10 @@ function Splash() {
           py={{ base: 2, md: 2 }}
           boxSize="90%"
         >
-          <Image src="images/group.png"></Image>
+          <Image
+            src="images/group.png"
+            alt="group of 6 people wearing teal and purple, doing various community jobs"
+          ></Image>
         </Stack>
       </Container>
     </SkipNavContent>

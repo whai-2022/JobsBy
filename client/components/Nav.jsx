@@ -63,7 +63,10 @@ function Nav() {
         <span>
           <Box boxSize="160px" padding={2}>
             <Image
-              src="images/logoFULL.png"
+              src={useColorModeValue(
+                'images/newLogo.png',
+                'images/newLogoDarkMode.png'
+              )}
               alt="JobsyBy, Community for Community - Logo"
             ></Image>
           </Box>
