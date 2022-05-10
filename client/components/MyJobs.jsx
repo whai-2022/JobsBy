@@ -24,7 +24,7 @@ function MyJobs() {
     if (isAuthenticated) {
       dispatch(fetchUserJobs(user.sub)) 
     }
-  }, [])
+  }, [isAuthenticated])
 
   if (!isAuthenticated) return <p>Please login to view your jobs. <LoggedIn /></p>
   return (
@@ -52,10 +52,9 @@ function MyJobs() {
                 <Box
                 p={2}
                 display='flex'
-                alignItems='baseline'
-                >
-                <Badge borderRadius='full' px='2' colorScheme='teal'>
-                  Awaiting Response
+                alignItems='baseline'>
+                <Badge borderRadius='full' px='2' colorScheme={jobPosting.accepted ? 'purple' : 'blue'}>
+                  {jobPosting.accepted ? 'Accepted' : 'Awaiting Response'}
                 </Badge>
                 <Box
                   color='gray.500'
