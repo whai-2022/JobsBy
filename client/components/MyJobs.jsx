@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { fetchUserJobs } from '../actions'
 import { Link as LinkTo } from 'react-router-dom'
+import { MdVolunteerActivism } from 'react-icons/md'
+import { GiReceiveMoney } from 'react-icons/gi'
 
 import AcceptedJobs from './AcceptedJobs'
 import LoggedIn from './LoggedIn'
@@ -11,6 +13,10 @@ import {
   LinkBox,
   Box,
   Badge,
+  Spacer,
+  Circle,
+  Text,
+  Icon,
   useColorModeValue,
 } from '@chakra-ui/react' // TODO: Text, Button add later - to go to full job desc.
 import { SkipNavContent } from '@chakra-ui/skip-nav'
@@ -42,7 +48,7 @@ function MyJobs() {
       <SkipNavContent>
         <AcceptedJobs />
 
-        <Heading m={9} as="h2">
+        <Heading m={6} fontSize="lg">
           Here are the jobs you have posted:
         </Heading>
 
@@ -66,7 +72,7 @@ function MyJobs() {
                     <Badge
                       borderRadius="full"
                       px="2"
-                      colorScheme={jobPosting.accepted ? 'teal' : 'purple'}
+                      colorScheme={jobPosting.accepted ? 'purple' : 'blue'}
                     >
                       {jobPosting.accepted ? 'Accepted' : 'Awaiting Response'}
                     </Badge>
@@ -80,11 +86,29 @@ function MyJobs() {
                     >
                       {jobPosting.region}
                     </Box>
+                    <Spacer />
+                    {jobPosting.type == 'paid' ? (
+                      <Box fontSize="s" alignContent="right">
+                        <Circle size="40px" bg="teal.600" color="white">
+                          <Icon as={GiReceiveMoney} boxSize={5} />
+                        </Circle>
+                      </Box>
+                    ) : (
+                      <Box fontSize="s" alignContent="right">
+                        <Circle size="40px" bg="blue.600" color="white">
+                          <Icon as={MdVolunteerActivism} boxSize={5} />
+                        </Circle>
+                      </Box>
+                    )}
                   </Box>
                   <Box mt={1} fontWeight="bold" fontSize="xl">
                     {jobPosting.title}
                   </Box>
-                  <Box m={2}>{jobPosting.pay}</Box>
+                  {jobPosting.type == 'paid' ? (
+                    <Box fontSize="sm">${jobPosting.pay}/hr</Box>
+                  ) : (
+                    <Text fontSize="sm">Voluntary Role</Text>
+                  )}
                   <Box m={2}>{jobPosting.date}</Box>
                   {/* <button className='button' onClick={handleClick}>Delete</button> */}
                 </LinkBox>

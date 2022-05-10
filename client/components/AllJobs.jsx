@@ -47,6 +47,7 @@ function AllJobs() {
   const handleAddressChange = (e) => {
     setAddress(e.target.value)
   }
+  console.log(jobs)
 
   // debounce / throttle
   // auc
@@ -153,6 +154,7 @@ function AllJobs() {
                 description={job.description}
                 pay={job.pay}
                 region={job.region}
+                type={job.type}
               />
             )
           })}

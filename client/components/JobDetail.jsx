@@ -77,7 +77,7 @@ export default function JobDetail() {
           {job.email}
         </Box>
         {job.accepted ? (
-          <Text fontWeight="bold">This job is closed.</Text>
+          <Text fontWeight="bold">This position has been filled.</Text>
         ) : (
           <Button m={2} onClick={handleAcceptJob} colorScheme="teal">
             Accept Job
