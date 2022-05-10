@@ -53,43 +53,43 @@ function Home() {
             p={4}
             s={6}
             borderRadius="lg"
-            bg={useColorModeValue('gray.50', 'purple.900')}
+            bg={useColorModeValue('gray.50', 'purple.800')}
             w="66%"
             // alignSelf="center"
-            borderColor="teal.400"
+            borderColor={useColorModeValue('teal.400', 'purple.800')}
             borderWidth="1px"
           >
             <Link
               as={LinkTo}
-              color={useColorModeValue('teal.500', 'teal.300')}
+              color={useColorModeValue('teal.500', 'teal.200')}
               to="/alljobs"
               aria-label="find available jobs"
               fontWeight="bold"
               m={6}
             >
-              Find a job.
+              Find a job
             </Link>
             <br />
             <Link
               as={LinkTo}
-              color={useColorModeValue('teal.500', 'teal.300')}
+              color={useColorModeValue('teal.500', 'teal.200')}
               to="/postjob"
               aria-label="post a new job"
               fontWeight="bold"
               m={6}
             >
-              Post a new job.{' '}
+              Post a new job{' '}
             </Link>
             <br />
             <Link
               as={LinkTo}
-              color={useColorModeValue('teal.500', 'teal.300')}
+              color={useColorModeValue('teal.500', 'teal.200')}
               to="/myJobs"
               aria-label="post a new job"
               fontWeight="bold"
               m={6}
             >
-              View my current jobs.{' '}
+              View my current jobs{' '}
             </Link>
           </Box>
         </Center>

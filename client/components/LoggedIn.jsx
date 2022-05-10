@@ -32,7 +32,7 @@ const LoggedIn = () => {
             maxW={'3x1'}
           >
             {' '}
-            {`Welcome back, ${user.email}.`}{' '}
+            {`Hello again, ${user.email}.`}{' '}
           </Text>
           <Text
             fontWeight={500}
@@ -47,19 +47,19 @@ const LoggedIn = () => {
       <Box m={4}>
         {isAuthenticated && (
           <Link as={LinkTo} to="/home" aria-label="Enter JobsBy website">
-            <Button colorScheme="teal">Enter</Button>
+            <Button colorScheme="purple">Enter</Button>
           </Link>
         )}
       </Box>
       {isAuthenticated ? (
         <>
-          <Button onClick={signOut} colorScheme="teal">
+          <Button onClick={signOut} colorScheme="purple">
             Logout
           </Button>
         </>
       ) : (
-        <Button onClick={signIn} colorScheme="teal">
-          Login
+        <Button onClick={signIn} colorScheme="purple">
+          Login / Sign Up
         </Button>
       )}
     </Container>

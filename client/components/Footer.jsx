@@ -40,7 +40,7 @@ function Footer() {
           </Stack>
 
           <Text>
-            <em>Community for community</em>
+            <em>Community for Community</em>
           </Text>
         </Container>
       </Box>
