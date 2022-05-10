@@ -1,16 +1,18 @@
 import React from 'react'
 import { Link as LinkTo } from 'react-router-dom'
+import { MdVolunteerActivism } from 'react-icons/md'
+import { GiReceiveMoney } from 'react-icons/gi'
 
-import { Box, Badge, LinkBox } from '@chakra-ui/react'
+import { Box, Badge, LinkBox, Icon, Text, Spacer, Circle} from '@chakra-ui/react'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
-function Job({ title, description, pay, region, id }) {
+function Job({ title, description, pay, region, id, type }) {
   return (
     <>
       <LinkBox
         as={LinkTo}
         to={`/alljobs/${id}`}
-        p={2}
+        p={3}
         shadow="md"
         overflow="hidden"
         borderWidth="1px"
@@ -20,7 +22,7 @@ function Job({ title, description, pay, region, id }) {
       >
         <SkipNavContent>
           <Box p={2} display="flex" alignItems="baseline">
-            <Badge borderRadius="full" px="2" colorScheme="blue">
+            <Badge borderRadius="full" px="2" colorScheme="teal">
               Available
             </Badge>
             <Box
@@ -33,6 +35,30 @@ function Job({ title, description, pay, region, id }) {
             >
               {region}
             </Box>
+            <Spacer />
+            {type == 'paid' ?
+            <Box
+              fontSize="s"
+              alignContent="right"
+            > 
+              <Circle size='40px' bg='teal.600' color='white'>
+                <Icon
+                  as={GiReceiveMoney}
+                  boxSize={5}
+                />
+              </Circle>
+            </Box>
+          : <Box
+              fontSize="s"
+              alignContent="right"
+            >      
+              <Circle size='40px' bg='blue.600' color='white' >
+                <Icon
+                  as={MdVolunteerActivism}
+                  boxSize={5}
+                />
+              </Circle>
+            </Box>}
           </Box>
           <Box mt={1} fontWeight="bold" fontSize="xl">
             {title}
@@ -40,10 +66,14 @@ function Job({ title, description, pay, region, id }) {
           <Box m={2} isTruncated>
             {description}
           </Box>
-          <Box m={2}>{pay}</Box>
-        
+          {type == 'paid' ?
+            <Box fontSize='sm'>
+              ${pay}/hr
+            </Box>
+          : <Text fontSize='sm'>Voluntary Role</Text>
+          }
         </SkipNavContent>
-        </LinkBox>
+      </LinkBox>
     </>
   )
 }

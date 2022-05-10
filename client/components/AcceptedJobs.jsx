@@ -1,8 +1,10 @@
 import React, { useEffect } from "react"
 import { fetchAcceptedJobs } from "../actions"
-import {Link as LinkTo} from 'react-router-dom'
+import { Link as LinkTo } from 'react-router-dom'
+import { MdVolunteerActivism } from 'react-icons/md'
+import { GiReceiveMoney } from 'react-icons/gi'
 
-import { Heading, VStack, LinkBox, Box, Badge } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
+import { Heading, VStack, LinkBox, Box, Badge, Spacer, Icon, Circle, Text} from "@chakra-ui/react"
 import { useSelector, useDispatch} from "react-redux"
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -40,22 +42,47 @@ function AcceptedJobs() {
               borderRadius='lg'
               key={`${jobPosting.id} ${i}`}>
                 <Box
-                p={2}
-                display='flex'
-                alignItems='baseline'>
-                <Badge borderRadius='full' px='2' colorScheme='teal'>
+                  p={2}
+                  display='flex'
+                  alignItems='baseline'
+                >
+                <Badge borderRadius='full' px='2' colorScheme='purple'>
                   {jobPosting.accepted ? 'Accepted' : 'Awaiting Response'}
                 </Badge>
-                <Box
-                  color='gray.500'
-                  fontWeight='semibold'
-                  letterSpacing='wide'
-                  fontSize='xs'
-                  textTransform='uppercase'
-                  ml='2'
-                >
-                {jobPosting.region}
-                </Box>
+                  <Box
+                    color='gray.500'
+                    fontWeight='semibold'
+                    letterSpacing='wide'
+                    fontSize='xs'
+                    textTransform='uppercase'
+                    ml='2'
+                  >
+                    {jobPosting.region}
+                  </Box>
+                  <Spacer />
+                    {jobPosting.type == 'paid' ?
+                  <Box
+                    fontSize="s"
+                    alignContent="right"
+                  > 
+                    <Circle size='40px' bg='teal.600' color='white'>
+                      <Icon
+                        as={GiReceiveMoney}
+                        boxSize={5}
+                      />
+                    </Circle>
+                  </Box>
+          :       <Box
+                    fontSize="s"
+                    alignContent="right"
+                  >      
+                    <Circle size='40px' bg='blue.600' color='white' >
+                      <Icon
+                        as={MdVolunteerActivism}
+                        boxSize={5}
+                      />
+                    </Circle>
+                  </Box>}
                 </Box>
                 <Box
                   mt={1}
@@ -64,12 +91,15 @@ function AcceptedJobs() {
                 >
                   {jobPosting.title}
                 </Box>
-                  <Box m={2}>
-                    {jobPosting.pay}
+                {jobPosting.type == 'paid' ?
+                  <Box fontSize='sm'>
+                    ${jobPosting.pay}/hr
                   </Box>
-                  <Box m={2}>
-                    {jobPosting.date}
-                  </Box>
+                : <Text fontSize='sm'>Voluntary Role</Text>
+                }
+                <Box m={2}>
+                  {jobPosting.date}
+                </Box>
               {/* <button className='button' onClick={handleClick}>Delete</button> */}
             </LinkBox>
           )
