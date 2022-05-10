@@ -4,7 +4,7 @@ import { Link as LinkTo } from 'react-router-dom'
 import { MdAttachMoney } from 'react-icons/md'
 import { FaHandshake } from 'react-icons/fa' 
 
-import { Heading, VStack, LinkBox, Box, Badge, Spacer, Icon } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
+import { Heading, VStack, LinkBox, Box, Badge, Spacer, Icon, Center, Text} from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
 import { useSelector, useDispatch} from "react-redux"
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -61,26 +61,27 @@ function AcceptedJobs() {
                 <Spacer />
                 {jobPosting.type == 'paid' ?
             <Box
-              fontSize="xs"
+              fontSize="s"
               alignContent="right"
             > 
+              <Center w='40px' h='40px' bg='teal' color='white' borderRadius="base">
               <Icon
                 as={MdAttachMoney}
-                color='teal'
                 boxSize={5}
-              />
-              {jobPosting.pay}
+                      />
+              </Center>
+              {/* {jobPosting.pay}/hr */}
             </Box>
           : <Box
-              fontSize="xs"
+              fontSize="s"
               alignContent="right"
-            >
-              <Icon
-                as={FaHandshake}
-                color='teal'
+            >      
+             <Center w='40px' h='40px' bg='teal' color='white' borderRadius="base">
+                <Icon
+                 as={FaHandshake}
                 boxSize={5}
-              />
-              Voluntary
+                />
+              </Center>
             </Box>}
                 </Box>
                 <Box
@@ -88,11 +89,14 @@ function AcceptedJobs() {
                   fontWeight='bold'
                   fontSize='xl'
                 >
-                  {jobPosting.title}
+                {jobPosting.title}
+              </Box>
+              {jobPosting.type == 'paid' ?
+                <Box fontSize='sm'>
+                  ${jobPosting.pay}/hr
                 </Box>
-                  {/* <Box m={2}>
-                    {jobPosting.pay}
-                  </Box> */}
+                : <Text fontSize='sm'>Voluntary Role</Text>
+              }
                   <Box m={2}>
                     {jobPosting.date}
                   </Box>
