@@ -1,11 +1,13 @@
-import { Image, Box } from '@chakra-ui/react'
+import { Image, Box, Flex } from '@chakra-ui/react'
 import React from 'react'
 
 function Header() {
   return (
-      <Box boxSize='sm'>
-      <img src="./images/build.png" alt="Mountain"></img>
+    <Flex align='center' mr={5}>
+    <Box boxSize='160px'>
+      <Image src= 'images/logoFULL.png'></Image>
     </Box>
+    </Flex>
   )
 }
 

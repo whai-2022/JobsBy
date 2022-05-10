@@ -3,6 +3,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 // import { useAuth0 } from '@auth0/auth0-react'
 
+import Header from './Header'
+
 import {
   Menu,
   MenuButton,
@@ -16,6 +18,7 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 function Nav() {
   return (
     <>
+    <Header />
       <Menu>
         <MenuButton
           as={IconButton}

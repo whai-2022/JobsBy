@@ -7,7 +7,7 @@ import { Container } from '@chakra-ui/react'
   More info: https://chakra-ui.com/docs/components/navigation/skip-nav */
 import { SkipNavLink } from '@chakra-ui/skip-nav'
 
-import Header from './Header'
+// import Header from './Header'
 import Splash from './Splash'
 import Home from './Home'
 import AllJobs from './AllJobs'
@@ -24,7 +24,7 @@ function App() {
     <>
       <header className="header">
         <SkipNavLink>Skip to content</SkipNavLink>
-        <Header />
+        {/* <Header /> */}
         <Nav />
       </header>
       <main>
