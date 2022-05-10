@@ -16,6 +16,7 @@ import Nav from './Nav'
 import Job from './Job'
 import JobDetail from './JobDetail'
 import MyJobs from './MyJobs'
+// import NavHead from './NavHead'
 
 function App() {
   //user.sub
@@ -26,6 +27,7 @@ function App() {
         <SkipNavLink>Skip to content</SkipNavLink>
         {/* <Header /> */}
         <Nav />
+        {/* <NavHead /> */}
       </header>
       <main>
         <Container maxW="container.sm" textAlign="center">

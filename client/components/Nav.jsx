@@ -3,14 +3,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 // import { useAuth0 } from '@auth0/auth0-react'
 
-import Header from './Header'
-
 import {
   Menu,
   MenuButton,
   MenuList,
   MenuItemOption,
   IconButton,
+  Flex,
+  Image,
+  Box,
 } from '@chakra-ui/react'
 
 import { HamburgerIcon } from '@chakra-ui/icons'
@@ -18,8 +19,14 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 function Nav() {
   return (
     <>
-    <Header />
-      <Menu>
+    <Flex 
+      align='center'
+      justify='space-between'
+      wrap='wrap'
+      // bg='gray.50'
+      >
+    <Box>
+        <Menu>
         <MenuButton
           as={IconButton}
           aria-label="Options"
@@ -33,6 +40,13 @@ function Nav() {
           <MenuItemOption><Link to="/myJobs">My Jobs</Link></MenuItemOption>
         </MenuList>
       </Menu>
+      </Box>
+      <span>
+        <Box boxSize='160px'>
+        <Image src= 'images/logoFULL.png'></Image>
+        </Box>
+    </span>
+    </Flex>
     </>
   )
 }
