@@ -32,7 +32,7 @@ function MyJobs() {
     <SkipNavContent>
     <AcceptedJobs />
 
-      <Heading m={9} as="h2">Here are the jobs you have posted:</Heading>
+      <Heading m={9} fontSize='lg'>Here are the jobs you have posted:</Heading>
 
       {myJobs.length > 0 ? (
         <VStack spacing={6}>

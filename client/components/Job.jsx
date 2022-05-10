@@ -4,7 +4,7 @@ import { Link as LinkTo } from 'react-router-dom'
 import { Box, Badge, LinkBox } from '@chakra-ui/react'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
-function Job({ title, description, pay, region, id }) {
+function Job({ title, description, pay, region, id, type }) {
   return (
     <>
       <LinkBox
@@ -20,7 +20,7 @@ function Job({ title, description, pay, region, id }) {
       >
         <SkipNavContent>
           <Box p={2} display="flex" alignItems="baseline">
-            <Badge borderRadius="full" px="2" colorScheme="blue">
+            <Badge borderRadius="full" px="2" colorScheme="purple">
               Available
             </Badge>
             <Box
@@ -41,6 +41,7 @@ function Job({ title, description, pay, region, id }) {
             {description}
           </Box>
           <Box m={2}>{pay}</Box>
+          <Box>{type}</Box>
         
         </SkipNavContent>
         </LinkBox>
