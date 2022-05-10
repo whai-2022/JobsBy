@@ -173,7 +173,7 @@ function PostJob() {
     }
     dispatch(createJob(job))
     // TODO: navigate to newly added Job (once job details view is live). Possibly, with async await (after getting id back)
-    navigate('/')
+    navigate('/myJobs')
   }
 
   if (!isAuthenticated) return <p>Please login to post a job. <LoggedIn /></p>
@@ -398,6 +398,7 @@ function PostJob() {
                 bg="cyan.100"
                 variant="flushed"
                 type="email"
+                name="email"
                 value={newJob.email}
                 onSubmit={handleSubmit}
                 onChange={handleInputChange}
