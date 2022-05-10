@@ -2,20 +2,26 @@ import React from 'react'
 
 import { Link as LinkTo } from 'react-router-dom'
 
-import { Heading, Text, Link } from '@chakra-ui/react'
+import { Heading, Text, Link, Box} from '@chakra-ui/react'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function Home() {
   return (
     <>
       <SkipNavContent>
-        <Heading>Welcome.</Heading>
+        <Heading as="h1" size="xl" alignSelf="center">Welcome.</Heading>
         <br />
         <Text fontSize="lg">
           Would you like to find a job to do, or post one for someone else to
           take on?
         </Text>
         <br />
+        <Box
+          p={2}
+          s={4}
+          borderRadius="lg"
+          bg="gray.50"
+        >
         <Link
           as={LinkTo}
           color="teal.500"
@@ -42,6 +48,7 @@ function Home() {
         >
           My jobs{' '}
         </Link>
+        </Box>
       </SkipNavContent>
     </>
   )
