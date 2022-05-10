@@ -32,7 +32,7 @@ function MyJobs() {
     <SkipNavContent>
     <AcceptedJobs />
 
-      <Heading m={9} fontSize='lg'>Here are the jobs you have posted:</Heading>
+      <Heading m={9} as="h2">Here are the jobs you have posted:</Heading>
 
       {myJobs.length > 0 ? (
         <VStack spacing={6}>
@@ -44,14 +44,16 @@ function MyJobs() {
               shadow='md'
               overflow='hidden'
               borderWidth='1px'
+              bg="gray.50"
               w='100%'
               borderRadius='lg'
-              key={`${jobPosting.id} ${i}`}>
+              key={`${jobPosting.id} ${i}`}
+            >
                 <Box
                 p={2}
                 display='flex'
                 alignItems='baseline'>
-                <Badge borderRadius='full' px='2' colorScheme={jobPosting.accepted ? 'purple' : 'blue'}>
+                <Badge borderRadius='full' px='2' colorScheme={jobPosting.accepted ? 'teal' : 'purple'}>
                   {jobPosting.accepted ? 'Accepted' : 'Awaiting Response'}
                 </Badge>
                 <Box

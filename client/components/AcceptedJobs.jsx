@@ -21,9 +21,9 @@ function AcceptedJobs() {
 
   return (
     <>
-      <Heading m={9} fontSize='2xl'>My Jobs</Heading>
+      <Heading m={6} as="h2">My Jobs</Heading>
 
-      <Heading m={9} fontSize='lg'>Here are the jobs you have accepted:</Heading>
+      <Heading m={6} fontSize='lg'>Here are the jobs you have accepted:</Heading>
 
       {acceptedJobs.length > 0 ? (
         <VStack spacing={6}>
@@ -33,6 +33,7 @@ function AcceptedJobs() {
             <LinkBox as={LinkTo} to={`/alljobs/${jobPosting.id}`}
               p={3}
               shadow='md'
+              bg="gray.50"
               overflow='hidden'
               borderWidth='1px'
               w='100%'
@@ -42,7 +43,7 @@ function AcceptedJobs() {
                 p={2}
                 display='flex'
                 alignItems='baseline'>
-                <Badge borderRadius='full' px='2' colorScheme='purple'>
+                <Badge borderRadius='full' px='2' colorScheme='teal'>
                   {jobPosting.accepted ? 'Accepted' : 'Awaiting Response'}
                 </Badge>
                 <Box
