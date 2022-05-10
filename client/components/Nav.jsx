@@ -9,27 +9,46 @@ import {
   MenuList,
   MenuItemOption,
   IconButton,
+  Flex,
+  VStack,
 } from '@chakra-ui/react'
+
+import ColorModeButton from './ColorModeButton'
 
 import { HamburgerIcon } from '@chakra-ui/icons'
 
 function Nav() {
   return (
     <>
-      <Menu>
-        <MenuButton
-          as={IconButton}
-          aria-label="Options"
-          icon={<HamburgerIcon />}
-          variant="outline"
-        />
-        <MenuList>
-          <MenuItemOption><Link to="/home">Home</Link></MenuItemOption>
-          <MenuItemOption><Link to="/alljobs">Find Job</Link></MenuItemOption>
-          <MenuItemOption><Link to="/postjob">Post Job</Link></MenuItemOption>
-          <MenuItemOption><Link to="/myJobs">My Jobs</Link></MenuItemOption>
-        </MenuList>
-      </Menu>
+      <Flex aria-hidden="true">
+        <VStack>
+          <nav alignSelf="flex-start">
+            <Menu>
+              <MenuButton
+                as={IconButton}
+                icon={<HamburgerIcon />}
+                variant="outline"
+                aria-label="navigation menu"
+              />
+              <MenuList>
+                <Link to="/home">
+                  <MenuItemOption>Home</MenuItemOption>
+                </Link>
+                <Link to="/alljobs">
+                  <MenuItemOption>Find Job</MenuItemOption>
+                </Link>
+                <Link to="/postjob">
+                  <MenuItemOption>Post Job</MenuItemOption>
+                </Link>
+                <Link to="/myJobs">
+                  <MenuItemOption>My Jobs</MenuItemOption>
+                </Link>
+              </MenuList>
+            </Menu>
+          </nav>
+          <ColorModeButton alignSelf="flex-end" />
+        </VStack>
+      </Flex>
     </>
   )
 }

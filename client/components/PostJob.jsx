@@ -49,6 +49,7 @@ import {
   // checkbox
   CheckboxGroup,
   Checkbox,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { BsChatTextFill } from 'react-icons/bs'
 import {
@@ -175,7 +176,13 @@ function PostJob() {
   return (
     <>
       <SkipNavContent>
-        <Heading as="h1" size="xl" alignSelf="center" bg="gray.50" pt="40px">
+        <Heading
+          as="h1"
+          size="xl"
+          alignSelf="center"
+          bg={useColorModeValue('gray.50', 'gray.800')}
+          pt="40px"
+        >
           List a Job
         </Heading>
         {/* STRETCH TODO: Translate form */}
@@ -186,13 +193,13 @@ function PostJob() {
             p={10}
             spacing={10}
             alignItems="flex-start"
-            bg="gray.50"
+            // if light mode, use gray.50, if dark mode use gray.800
+            bg={useColorModeValue('gray.50', 'gray.800')}
           >
             <Box
-              bg="#B2F5EA"
+              bg={useColorModeValue('teal.100', 'purple.800')}
               boxShadow="lg"
               w="100%"
-              color="#black"
               padding="10px"
               borderRadius="lg"
             >
@@ -234,15 +241,18 @@ function PostJob() {
                   <Icon as={FiRepeat} w={6} h={6} />
                 </InputLeftElement>
                 <Input
-                  focusBorderColor="purple.700"
-                  bg="cyan.100"
+                  focusBorderColor={useColorModeValue(
+                    'purple.700',
+                    'purple.400'
+                  )}
+                  bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
                   name="occurrence"
                   value={newJob.occurrence}
                   onChange={handleInputChange}
                 />
               </InputGroup>
-              <FormHelperText color="cyan.900">
+              <FormHelperText color={useColorModeValue('cyan.900', 'blue.300')}>
                 One-off, weekly, or monthly
               </FormHelperText>
             </FormControl>
@@ -261,11 +271,16 @@ function PostJob() {
                 isFocusable
               >
                 <Stack spacing={5} direction="row">
-                  <Radio bg="cyan.100" value="paid" id="paid" aria-label="paid">
+                  <Radio
+                    bg={useColorModeValue('cyan.100', 'gray.600')}
+                    value="paid"
+                    id="paid"
+                    aria-label="paid"
+                  >
                     Paid <Icon as={MdAttachMoney} w={6} h={6} />
                   </Radio>
                   <Radio
-                    bg="cyan.100"
+                    bg={useColorModeValue('cyan.100', 'gray.600')}
                     value="volunteer"
                     id="volunteer"
                     aria-label="volunteer"
@@ -284,15 +299,18 @@ function PostJob() {
                   <Icon as={MdAttachMoney} w={6} h={6} />
                 </InputLeftElement>
                 <Input
-                  focusBorderColor="purple.700"
-                  bg="cyan.100"
+                  focusBorderColor={useColorModeValue(
+                    'purple.700',
+                    'purple.400'
+                  )}
+                  bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
                   name="pay"
                   value={newJob.pay}
                   onChange={handleInputChange}
                 />
               </InputGroup>
-              <FormHelperText color="cyan.900">
+              <FormHelperText color={useColorModeValue('cyan.900', 'blue.300')}>
                 Paid jobs must not pay less than the{' '}
                 <Link
                   href="https://www.employment.govt.nz/hours-and-wages/pay/minimum-wage/minimum-wage-rates/"
@@ -311,8 +329,11 @@ function PostJob() {
                   <Icon as={FaCalendarAlt} w={6} h={6} />
                 </InputLeftElement>
                 <Input
-                  focusBorderColor="purple.700"
-                  bg="cyan.100"
+                  focusBorderColor={useColorModeValue(
+                    'purple.700',
+                    'purple.400'
+                  )}
+                  bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
                   name="when"
                   value={newJob.when}
@@ -320,7 +341,7 @@ function PostJob() {
                   onChange={handleInputChange}
                 />
               </InputGroup>
-              <FormHelperText color="cyan.900">
+              <FormHelperText color={useColorModeValue('cyan.900', 'blue.300')}>
                 Anytime, ASAP, or DD/MM/YYYY
               </FormHelperText>
             </FormControl>
@@ -337,8 +358,11 @@ function PostJob() {
                   <Icon as={MdLocationPin} w={6} h={6} />
                 </InputLeftElement>
                 <Input
-                  focusBorderColor="purple.700"
-                  bg="cyan.100"
+                  focusBorderColor={useColorModeValue(
+                    'purple.700',
+                    'purple.400'
+                  )}
+                  bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
                   list="addresses"
                   name="address"
@@ -351,7 +375,7 @@ function PostJob() {
                   <option value={address.formatted} key={`address-${idx}`} />
                 ))}
               </datalist>
-              <FormHelperText color="cyan.900">
+              <FormHelperText color={useColorModeValue('cyan.900', 'blue.300')}>
                 For safety, we suggest setting the address to a landmark near
                 the job site, such as a library or grocery store
               </FormHelperText>
@@ -367,8 +391,11 @@ function PostJob() {
                   <Icon as={MdPerson} w={8} h={8} />
                 </InputLeftElement>
                 <Input
-                  focusBorderColor="purple.700"
-                  bg="cyan.100"
+                  focusBorderColor={useColorModeValue(
+                    'purple.700',
+                    'purple.400'
+                  )}
+                  bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
                   name="name"
                   value={newJob.name}
@@ -376,7 +403,7 @@ function PostJob() {
                   onChange={handleInputChange}
                 />
               </InputGroup>
-              <FormHelperText color="cyan.900">
+              <FormHelperText color={useColorModeValue('cyan.900', 'blue.300')}>
                 Contact person&apos;s details
               </FormHelperText>
             </FormControl>
@@ -389,8 +416,11 @@ function PostJob() {
                   <Icon as={EmailIcon} w={6} h={6} />
                 </InputLeftElement>
                 <Input
-                  focusBorderColor="purple.700"
-                  bg="cyan.100"
+                  focusBorderColor={useColorModeValue(
+                    'purple.700',
+                    'purple.400'
+                  )}
+                  bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
                   name="email"
                   type="email"
@@ -410,8 +440,11 @@ function PostJob() {
                   <Icon as={PhoneIcon} w={5} h={5} />
                 </InputLeftElement>
                 <Input
-                  focusBorderColor="purple.700"
-                  bg="cyan.100"
+                  focusBorderColor={useColorModeValue(
+                    'purple.700',
+                    'purple.400'
+                  )}
+                  bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
                   name="phone"
                   type="tel"
@@ -484,8 +517,11 @@ function PostJob() {
                   <Icon as={MdWork} w={6} h={6} />
                 </InputLeftElement>
                 <Input
-                  focusBorderColor="purple.700"
-                  bg="cyan.100"
+                  focusBorderColor={useColorModeValue(
+                    'purple.700',
+                    'purple.400'
+                  )}
+                  bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
                   name="title"
                   type="title"
@@ -493,7 +529,7 @@ function PostJob() {
                   onChange={handleInputChange}
                 />
               </InputGroup>
-              <FormHelperText color="cyan.900">
+              <FormHelperText color={useColorModeValue('cyan.900', 'blue.300')}>
                 A short, clear job title
               </FormHelperText>
             </FormControl>
@@ -504,14 +540,14 @@ function PostJob() {
                 Description <Icon as={MdDescription} w={6} h={6} />
               </FormLabel>
               <Textarea
-                focusBorderColor="purple.700"
-                bg="cyan.100"
+                focusBorderColor={useColorModeValue('purple.700', 'purple.400')}
+                bg={useColorModeValue('cyan.100', 'gray.600')}
                 variant="flushed"
                 name="description"
                 value={newJob.description}
                 onChange={handleInputChange}
               />
-              <FormHelperText color="cyan.900">
+              <FormHelperText color={useColorModeValue('cyan.900', 'blue.300')}>
                 Details about the job
               </FormHelperText>
             </FormControl>
@@ -523,15 +559,18 @@ function PostJob() {
                   <Icon as={FaTools} w={6} h={6} />
                 </InputLeftElement>
                 <Input
-                  focusBorderColor="purple.700"
-                  bg="cyan.100"
+                  focusBorderColor={useColorModeValue(
+                    'purple.700',
+                    'purple.400'
+                  )}
+                  bg={useColorModeValue('cyan.100', 'gray.600')}
                   variant="flushed"
                   name="requirements"
                   value={newJob.requirements}
                   onChange={handleInputChange}
                 />
               </InputGroup>
-              <FormHelperText color="cyan.900">
+              <FormHelperText color={useColorModeValue('cyan.900', 'blue.300')}>
                 Such as a professional license, prior experience, the ability to
                 lift 15kg
               </FormHelperText>
