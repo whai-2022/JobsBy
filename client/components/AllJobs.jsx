@@ -87,12 +87,9 @@ function AllJobs() {
   return (
     <>
       {/* <SkipNavContent> */}
-      <VStack
-        w="full"
-        h="full"
-        p={4}
+      {/* <VStack
         spacing={6}
-      >
+      > */}
         <Heading as="h1" size="xl" alignSelf="center">Find a job in your area.</Heading>
         <Container position="relative" centerContent>
             <JobsMap
@@ -160,8 +157,8 @@ function AllJobs() {
               />
             )
           })}
-          </VStack>
         </VStack>
+        {/* </VStack> */}
         {/* Cards of jobs available*/}
         
         
