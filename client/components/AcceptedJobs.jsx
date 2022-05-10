@@ -21,9 +21,9 @@ function AcceptedJobs() {
 
   return (
     <>
-          <Heading m={9} fontSize='2xl'>My Jobs</Heading>
+      <Heading m={6} fontSize='2xl'>My Jobs</Heading>
 
-      <Heading m={9} fontSize='lg'>Here are the jobs you have accepted:</Heading>
+      <Heading m={6} fontSize='lg'>Here are the jobs you have accepted:</Heading>
 
       {acceptedJobs.length > 0 ? (
         <VStack spacing={6}>
