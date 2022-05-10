@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link as LinkTo } from 'react-router-dom'
 import { MdVolunteerActivism } from 'react-icons/md'
-import { GiReceiveMoney } from 'react-icons/gi'
+import { FaHandHoldingUsd } from 'react-icons/fa'
 
 import { Box, Badge, LinkBox, Icon, Text, Spacer, Circle} from '@chakra-ui/react'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
@@ -43,7 +43,7 @@ function Job({ title, description, pay, region, id, type }) {
             > 
               <Circle size='40px' bg='teal.600' color='white'>
                 <Icon
-                  as={GiReceiveMoney}
+                  as={FaHandHoldingUsd}
                   boxSize={5}
                 />
               </Circle>

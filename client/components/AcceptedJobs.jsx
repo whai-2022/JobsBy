@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { fetchAcceptedJobs } from "../actions"
 import { Link as LinkTo } from 'react-router-dom'
 import { MdVolunteerActivism } from 'react-icons/md'
-import { GiReceiveMoney } from 'react-icons/gi'
+import { FaHandHoldingUsd } from 'react-icons/fa'
 
 import { Heading, VStack, LinkBox, Box, Badge, Spacer, Icon, Circle, Text} from "@chakra-ui/react"
 import { useSelector, useDispatch} from "react-redux"
@@ -67,7 +67,7 @@ function AcceptedJobs() {
                   > 
                     <Circle size='40px' bg='teal.600' color='white'>
                       <Icon
-                        as={GiReceiveMoney}
+                        as={FaHandHoldingUsd}
                         boxSize={5}
                       />
                     </Circle>

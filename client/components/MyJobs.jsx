@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { fetchUserJobs } from '../actions'
 import { Link as LinkTo } from 'react-router-dom'
 import { MdVolunteerActivism } from 'react-icons/md'
-import { GiReceiveMoney } from 'react-icons/gi'
+import { FaHandHoldingUsd } from 'react-icons/fa'
 
 import AcceptedJobs from './AcceptedJobs'
 import LoggedIn from './LoggedIn'
@@ -76,7 +76,7 @@ function MyJobs() {
                   > 
                     <Circle size='40px' bg='teal.600' color='white'>
                       <Icon
-                        as={GiReceiveMoney}
+                        as={FaHandHoldingUsd}
                         boxSize={5}
                       />
                     </Circle>
