@@ -82,15 +82,15 @@ function AllJobs() {
     <>
       {/* <SkipNavContent> */}
       <VStack
-          w="full"
-          h="full"
-          p={10}
-          spacing={10}
-          alignItems="flex-start"
-          bg="gray.50"
+          // w="full"
+          // h="full"
+          // p={10}
+          // spacing={10}
+          // alignItems="flex-start"
+          // bg="gray.50"
         >
         <Heading as="h1" size="xl" alignSelf="center">Find a job in your area.</Heading>
-        <Container centerContent>
+        <Container position="relative" centerContent>
             <JobsMap
               position={position}
               jobs={jobs}
