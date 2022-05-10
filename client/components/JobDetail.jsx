@@ -6,7 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useParams } from 'react-router-dom'
 import { fetchJobByID, acceptJob } from '../actions'
 
-import { Heading, Box, Text, Button } from '@chakra-ui/react'
+import { Heading, Box, Text, Button, useColorModeValue } from '@chakra-ui/react'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 export default function JobDetail() {
@@ -39,6 +39,7 @@ export default function JobDetail() {
         overflow="hidden"
         w="100%"
         borderRadius="lg"
+        bg={useColorModeValue('gray.50', 'gray.600')}
       >
         <Heading as="h2" m={4}>
           {job.title}
@@ -72,11 +73,13 @@ export default function JobDetail() {
         </Box>
 
         <Box textAlign="left" m={2}>
-          <Text fontWeight="bold">Contact:</Text>
+          <Text fontWeight="bold">For more information, contact:</Text>
           {job.email}
         </Box>
-        {job.accepted ? <Text fontWeight="bold">This job is closed.</Text> : (
-          <Button m={2} onClick={handleAcceptJob}>
+        {job.accepted ? (
+          <Text fontWeight="bold">This position has been filled.</Text>
+        ) : (
+          <Button m={2} onClick={handleAcceptJob} colorScheme="teal">
             Accept Job
           </Button>
         )}
