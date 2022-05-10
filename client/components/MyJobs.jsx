@@ -53,7 +53,7 @@ function MyJobs() {
                 p={2}
                 display='flex'
                 alignItems='baseline'>
-                <Badge borderRadius='full' px='2' colorScheme={jobPosting.accepted ? 'purple' : 'blue'}>
+                <Badge borderRadius='full' px='2' colorScheme={jobPosting.accepted ? 'teal' : 'purple'}>
                   {jobPosting.accepted ? 'Accepted' : 'Awaiting Response'}
                 </Badge>
                 <Box
