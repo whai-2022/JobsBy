@@ -21,7 +21,7 @@ function AcceptedJobs() {
 
   return (
     <>
-      <Heading m={6} fontSize='2xl'>My Jobs</Heading>
+      <Heading m={6} as="h2">My Jobs</Heading>
 
       <Heading m={6} fontSize='lg'>Here are the jobs you have accepted:</Heading>
 
