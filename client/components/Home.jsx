@@ -2,17 +2,29 @@ import React from 'react'
 
 import { Link as LinkTo } from 'react-router-dom'
 
-import { Heading, Text, Link, Box, Center} from '@chakra-ui/react'
+import { Heading, Text, Link, Box, Center, Stack, Image} from '@chakra-ui/react'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function Home() {
   return (
     <>
       <SkipNavContent>
-        <Heading as="h1" size="xl" alignSelf="center">Welcome.</Heading>
+        <Stack direction={'row'} spacing={6} justify='center' pb={85}>
+        <Heading
+        fontSize='3xl'
+        alignSelf="center" 
+        color='teal.400'>Getting started</Heading>
+        <Box
+        align={'center'}
+        spacing={{ base: 5, md: 5 }}
+        py={{ base: 2, md: 2 }}
+        boxSize='60%'>
+        <Image src= 'images/washing.png'></Image>
+        </Box>
+        </Stack>
         <br />
-        <Text fontSize="lg">
-          Would you like to find a job to do, or post one for someone else to
+        <Text fontWeight={500} color={'gray.600'} maxW={'3x1'}>
+          Would you like to find a job for yourself or post one for someone else to
           take on?
         </Text>
         <br />
@@ -24,7 +36,7 @@ function Home() {
           bg="gray.50"
           w="66%"
           // alignSelf="center"
-          borderColor="cyan.400"
+          borderColor="teal.400"
           borderWidth='1px'
         >
         <Link

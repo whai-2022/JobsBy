@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Link as LinkTo} from 'react-router-dom'
-import { Button, Container, Box, Link } from '@chakra-ui/react'
+import { Button, Container, Box, Link, Text } from '@chakra-ui/react'
 
 const LoggedIn = () => {
   const { isAuthenticated, user, logout, loginWithRedirect } = useAuth0()
@@ -18,7 +18,10 @@ const LoggedIn = () => {
   return (
     <Container className='login'>
       {isAuthenticated && (
-        <p> {`Welcome back, ${user.email}`} </p>
+        <>
+        <Text fontWeight={500} color={'gray.600'} maxW={'3x1'}> {`Welcome back, ${user.email}.`} </Text>
+        <Text fontWeight={500} color={'gray.600'} maxW={'3x1'}> {`Press Enter below to find your next job.`} </Text>
+        </>
       )}
       <Box m={4}>
           {isAuthenticated && (

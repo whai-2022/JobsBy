@@ -9,6 +9,9 @@ import {
   MenuList,
   MenuItemOption,
   IconButton,
+  Flex,
+  Image,
+  Box,
 } from '@chakra-ui/react'
 
 import { HamburgerIcon } from '@chakra-ui/icons'
@@ -16,7 +19,15 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 function Nav() {
   return (
     <>
-      <Menu>
+    <Flex 
+      align='center'
+      justify='space-between'
+      wrap='wrap'
+      padding={2}
+      // bg='gray.50'
+      >
+    <Box padding={4}>
+        <Menu>
         <MenuButton
           as={IconButton}
           aria-label="Options"
@@ -30,6 +41,13 @@ function Nav() {
           <MenuItemOption><Link to="/myJobs">My Jobs</Link></MenuItemOption>
         </MenuList>
       </Menu>
+      </Box>
+      <span>
+        <Box boxSize='160px' padding={2}>
+        <Image src= 'images/logoFULL.png'></Image>
+        </Box>
+    </span>
+    </Flex>
     </>
   )
 }
