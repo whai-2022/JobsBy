@@ -41,7 +41,7 @@ function Job({ title, description, pay, region, id, type }) {
               fontSize="s"
               alignContent="right"
             > 
-              <Circle size='40px' bg='green.600' color='white'>
+              <Circle size='40px' bg='teal.600' color='white'>
                 <Icon
                   as={GiReceiveMoney}
                   boxSize={5}

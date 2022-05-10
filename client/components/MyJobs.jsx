@@ -55,7 +55,7 @@ function MyJobs() {
                 p={2}
                 display='flex'
                 alignItems='baseline'>
-                <Badge borderRadius='full' px='2' colorScheme={jobPosting.accepted ? 'teal' : 'purple'}>
+                <Badge borderRadius='full' px='2' colorScheme={jobPosting.accepted ? 'purple' : 'blue'}>
                   {jobPosting.accepted ? 'Accepted' : 'Awaiting Response'}
                 </Badge>
                 <Box
@@ -74,7 +74,7 @@ function MyJobs() {
                     fontSize="s"
                     alignContent="right"
                   > 
-                    <Circle size='40px' bg='green.600' color='white'>
+                    <Circle size='40px' bg='teal.600' color='white'>
                       <Icon
                         as={GiReceiveMoney}
                         boxSize={5}
