@@ -24,7 +24,8 @@ import {
   FormHelperText,
   Container,
   InputGroup,
-  InputLeftElement
+  InputLeftElement,
+  useColorModeValue,
 } from '@chakra-ui/react'
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -83,29 +84,25 @@ function AllJobs() {
     }
   }
 
-  if (!isAuthenticated) return <p>Please login to find a job. <LoggedIn /></p>
+  if (!isAuthenticated)
+    return (
+      <p>
+        Please login to find a job. <LoggedIn />
+      </p>
+    )
   return (
     <>
       {/* <SkipNavContent> */}
-      <VStack
-        w="full"
-        h="full"
-        p={4}
-        spacing={6}
-      >
-        <Heading as="h1" size="xl" alignSelf="center">Find a job in your area.</Heading>
+      <VStack w="full" h="full" p={4} spacing={6}>
+        <Heading as="h1" size="xl" alignSelf="center">
+          Find a job in your area
+        </Heading>
         <Container position="relative" centerContent>
-            <JobsMap
-              position={position}
-              jobs={jobs}
-              padding="10px"
-            />
+          <JobsMap position={position} jobs={jobs} padding="10px" />
         </Container>
 
         {/* Input field for address to be searched */}
-        <FormControl
-          m={6}
-          isRequired={true}>
+        <FormControl m={6} isRequired={true}>
           <FormLabel htmlFor="address">Address:</FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -118,13 +115,13 @@ function AllJobs() {
               type="address"
               value={address}
               onChange={handleAddressChange}
-              focusBorderColor="purple.700"
-              bg="cyan.100"
+              focusBorderColor={useColorModeValue('purple.700', 'purple.300')}
+              bg={useColorModeValue('cyan.100', 'gray.600')}
               variant="flushed"
             />
           </InputGroup>
           <FormHelperText textAlign="left" mb={6}>
-            We&apos;ll never share your address.
+            We&apos;ll never share your address
           </FormHelperText>
 
           <datalist id="addresses" name="addresses">
@@ -136,8 +133,9 @@ function AllJobs() {
             type="submit"
             onClick={submitSearch}
             rightIcon={<FaSearchLocation />}
-            colorScheme="purple"
-            size="lg">
+            colorScheme={useColorModeValue('purple', 'blue')}
+            size="lg"
+          >
             Search
           </Button>
           {error && (
@@ -160,11 +158,10 @@ function AllJobs() {
               />
             )
           })}
-          </VStack>
         </VStack>
-        {/* Cards of jobs available*/}
-        
-        
+      </VStack>
+      {/* Cards of jobs available*/}
+
       {/* </SkipNavContent> */}
     </>
   )

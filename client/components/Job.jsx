@@ -3,7 +3,16 @@ import { Link as LinkTo } from 'react-router-dom'
 import { MdVolunteerActivism } from 'react-icons/md'
 import { GiReceiveMoney } from 'react-icons/gi'
 
-import { Box, Badge, LinkBox, Icon, Text, Spacer, Circle} from '@chakra-ui/react'
+import {
+  Box,
+  Badge,
+  LinkBox,
+  Icon,
+  Text,
+  Spacer,
+  Circle,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function Job({ title, description, pay, region, id, type }) {
@@ -18,7 +27,7 @@ function Job({ title, description, pay, region, id, type }) {
         borderWidth="1px"
         w="100%"
         borderRadius="lg"
-        bg="gray.50"
+        bg={useColorModeValue('gray.50', 'aqua')}
       >
         <SkipNavContent>
           <Box p={2} display="flex" alignItems="baseline">
@@ -36,29 +45,19 @@ function Job({ title, description, pay, region, id, type }) {
               {region}
             </Box>
             <Spacer />
-            {type == 'paid' ?
-            <Box
-              fontSize="s"
-              alignContent="right"
-            > 
-              <Circle size='40px' bg='teal.600' color='white'>
-                <Icon
-                  as={GiReceiveMoney}
-                  boxSize={5}
-                />
-              </Circle>
-            </Box>
-          : <Box
-              fontSize="s"
-              alignContent="right"
-            >      
-              <Circle size='40px' bg='blue.600' color='white' >
-                <Icon
-                  as={MdVolunteerActivism}
-                  boxSize={5}
-                />
-              </Circle>
-            </Box>}
+            {type == 'paid' ? (
+              <Box fontSize="s" alignContent="right">
+                <Circle size="40px" bg="teal.600" color="white">
+                  <Icon as={GiReceiveMoney} boxSize={5} />
+                </Circle>
+              </Box>
+            ) : (
+              <Box fontSize="s" alignContent="right">
+                <Circle size="40px" bg="blue.600" color="white">
+                  <Icon as={MdVolunteerActivism} boxSize={5} />
+                </Circle>
+              </Box>
+            )}
           </Box>
           <Box mt={1} fontWeight="bold" fontSize="xl">
             {title}
@@ -66,12 +65,11 @@ function Job({ title, description, pay, region, id, type }) {
           <Box m={2} isTruncated>
             {description}
           </Box>
-          {type == 'paid' ?
-            <Box fontSize='sm'>
-              ${pay}/hr
-            </Box>
-          : <Text fontSize='sm'>Voluntary Role</Text>
-          }
+          {type == 'paid' ? (
+            <Box fontSize="sm">${pay}/hr</Box>
+          ) : (
+            <Text fontSize="sm">Voluntary Role</Text>
+          )}
         </SkipNavContent>
       </LinkBox>
     </>
