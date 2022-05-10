@@ -46,7 +46,10 @@ function Splash() {
           py={{ base: 2, md: 2 }}
           boxSize="90%"
         >
-          <Image src="images/group.png"></Image>
+          <Image
+            src="images/group.png"
+            alt="group of 6 people wearing teal and purple, doing various community jobs"
+          ></Image>
         </Stack>
       </Container>
     </SkipNavContent>
