@@ -33,69 +33,53 @@ export default function JobDetail() {
   return (
     <SkipNavContent>
       <Box
-        borderWidth='1px'
+        borderWidth="1px"
         p={2}
-        shadow='md'
-        overflow='hidden' 
-        w='100%'
-        borderRadius='lg'
+        shadow="md"
+        overflow="hidden"
+        w="100%"
+        borderRadius="lg"
       >
-      <Heading
-        as='h2'
-        m={4}
-      >
-        {job.title}
-      </Heading>
-      <Box textAlign='left' m={2}>
-        <Heading
-          as='h3'
-          fontSize="lg"
-          fontWeight='bold'>
-          Description:
+        <Heading as="h2" m={4}>
+          {job.title}
         </Heading>
-        <Text>{job.description}</Text>
-      </Box>
+        <Box textAlign="left" m={2}>
+          <Heading as="h3" fontSize="lg" fontWeight="bold">
+            Description:
+          </Heading>
+          <Text>{job.description}</Text>
+        </Box>
 
-      <Box textAlign='left' m={2}>
-        <Heading
-          as='h3'
-          fontSize="lg"
-          fontWeight='bold'>
-          Region:
-        </Heading>
-        <Text>{job.region}</Text>
-      </Box>
+        <Box textAlign="left" m={2}>
+          <Heading as="h3" fontSize="lg" fontWeight="bold">
+            Region:
+          </Heading>
+          <Text>{job.region}</Text>
+        </Box>
 
-      <Box textAlign='left' m={2}>
-        <Heading
-          as='h3'
-          fontSize="lg"
-          fontWeight='bold'>
-          Pay:
-        </Heading>
-        <Text>{job.pay}</Text>
-      </Box>
+        <Box textAlign="left" m={2}>
+          <Heading as="h3" fontSize="lg" fontWeight="bold">
+            Pay:
+          </Heading>
+          <Text>{job.pay}</Text>
+        </Box>
 
-      <Box textAlign='left' m={2}>
-        <Heading
-          as='h3'
-          fontSize="lg"
-          fontWeight='bold'>
-          Requirements:
-        </Heading>
-        <Text>{job.requirements}</Text>
-      </Box>
+        <Box textAlign="left" m={2}>
+          <Heading as="h3" fontSize="lg" fontWeight="bold">
+            Requirements:
+          </Heading>
+          <Text>{job.requirements}</Text>
+        </Box>
 
-      <Box textAlign='left' m={2}>
-        <Text
-          fontWeight='bold'>
-          Contact:
-        </Text>
-        {job.email}
-      </Box>
-        <Button m={2} onClick={handleAcceptJob}>
-          Accept Job
-        </Button>
+        <Box textAlign="left" m={2}>
+          <Text fontWeight="bold">Contact:</Text>
+          {job.email}
+        </Box>
+        {job.accepted ? <Text fontWeight="bold">This job is closed.</Text> : (
+          <Button m={2} onClick={handleAcceptJob}>
+            Accept Job
+          </Button>
+        )}
       </Box>
     </SkipNavContent>
   )

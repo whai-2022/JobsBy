@@ -7,17 +7,17 @@ import { SkipNavContent } from '@chakra-ui/skip-nav'
 function Job({ title, description, pay, region, id }) {
   return (
     <>
-      <SkipNavContent>
-        <LinkBox
-          as={LinkTo}
-          to={`/alljobs/${id}`}
-          p={2}
-          shadow="md"
-          overflow="hidden"
-          borderWidth="1px"
-          w="100%"
-          borderRadius="lg"
-        >
+      <LinkBox
+        as={LinkTo}
+        to={`/alljobs/${id}`}
+        p={2}
+        shadow="md"
+        overflow="hidden"
+        borderWidth="1px"
+        w="100%"
+        borderRadius="lg"
+      >
+        <SkipNavContent>
           <Box p={2} display="flex" alignItems="baseline">
             <Badge borderRadius="full" px="2" colorScheme="teal">
               Available
@@ -40,8 +40,8 @@ function Job({ title, description, pay, region, id }) {
             {description}
           </Box>
           <Box m={2}>{pay}</Box>
-        </LinkBox>
-      </SkipNavContent>
+        </SkipNavContent>
+      </LinkBox>
     </>
   )
 }
