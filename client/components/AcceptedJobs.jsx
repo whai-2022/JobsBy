@@ -19,7 +19,6 @@ function AcceptedJobs() {
     }
   }, [])
 
-  if (!isAuthenticated) return <p>Please login to see your jobs.</p>
   return (
     <>
           <Heading m={9} fontSize='2xl'>My Jobs</Heading>
