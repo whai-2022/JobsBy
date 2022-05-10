@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link as LinkTo } from 'react-router-dom'
+import { MdAttachMoney } from 'react-icons/md'
+import { FaHandshake } from 'react-icons/fa' 
 
-import { Box, Badge, LinkBox } from '@chakra-ui/react'
+import { Box, Badge, LinkBox, Icon, HStack, Text} from '@chakra-ui/react'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function Job({ title, description, pay, region, id, type }) {
@@ -14,7 +16,7 @@ function Job({ title, description, pay, region, id, type }) {
         shadow="md"
         overflow="hidden"
         borderWidth="1px"
-        w="100%"
+        w="full"
         borderRadius="lg"
         bg="gray.50"
       >
@@ -40,8 +42,27 @@ function Job({ title, description, pay, region, id, type }) {
           <Box m={2} isTruncated>
             {description}
           </Box>
-          <Box m={2}>{pay}</Box>
-          <Box>{type == 'paid'? 'paid icon here' : 'voluntary icon here'}</Box>
+          {type == 'paid' ?
+            <Box
+              alignItems="center"
+              fontSize="s"
+            >
+              <Icon
+                as={MdAttachMoney}
+                color='teal'
+              />
+              {pay}
+            </Box>
+          : <Box
+              alignItems="center"
+              fontSize="s"
+
+            >
+              <Icon
+                as={FaHandshake}
+                color='teal'
+              /> Voluntary
+            </Box>}
         
         </SkipNavContent>
         </LinkBox>
