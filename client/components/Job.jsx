@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link as LinkTo } from 'react-router-dom'
-import { MdAttachMoney } from 'react-icons/md'
-import { FaHandshake } from 'react-icons/fa' 
+import { MdVolunteerActivism } from 'react-icons/md'
+import { GiReceiveMoney } from 'react-icons/gi'
 
-import { Box, Badge, LinkBox, Icon, VStack, Text, Flex, Spacer} from '@chakra-ui/react'
+import { Box, Badge, LinkBox, Icon, Text, Spacer, Circle} from '@chakra-ui/react'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function Job({ title, description, pay, region, id, type }) {
@@ -12,7 +12,7 @@ function Job({ title, description, pay, region, id, type }) {
       <LinkBox
         as={LinkTo}
         to={`/alljobs/${id}`}
-        p={2}
+        p={3}
         shadow="md"
         overflow="hidden"
         borderWidth="1px"
@@ -24,7 +24,7 @@ function Job({ title, description, pay, region, id, type }) {
           <Box p={2} display="flex" alignItems="baseline">
             <Badge borderRadius="full" px="2" colorScheme="teal">
               Available
-              </Badge>
+            </Badge>
             <Box
               color="gray.500"
               fontWeight="semibold"
@@ -38,59 +38,42 @@ function Job({ title, description, pay, region, id, type }) {
             <Spacer />
             {type == 'paid' ?
             <Box
-              fontSize="xs"
+              fontSize="s"
               alignContent="right"
             > 
-              <Icon
-                as={MdAttachMoney}
-                color='teal'
-                boxSize={5}
-              />
-              {pay}
+              <Circle size='40px' bg='green.600' color='white'>
+                <Icon
+                  as={GiReceiveMoney}
+                  boxSize={5}
+                />
+              </Circle>
             </Box>
           : <Box
-              fontSize="xs"
+              fontSize="s"
               alignContent="right"
-            >
-              <Icon
-                as={FaHandshake}
-                color='teal'
-              />
-              Voluntary
+            >      
+              <Circle size='40px' bg='blue.600' color='white' >
+                <Icon
+                  as={MdVolunteerActivism}
+                  boxSize={5}
+                />
+              </Circle>
             </Box>}
-            </Box>
+          </Box>
           <Box mt={1} fontWeight="bold" fontSize="xl">
             {title}
           </Box>
           <Box m={2} isTruncated>
             {description}
           </Box>
-          {/* Version underneath description */}
-          {/* {type == 'paid' ?
-            <Box
-              alignItems="center"
-              fontSize="s"
-            > 
-              <Icon
-                as={MdAttachMoney}
-                color='teal'
-                boxSize={5}
-              />
-              {pay}
+          {type == 'paid' ?
+            <Box fontSize='sm'>
+              ${pay}/hr
             </Box>
-          : <VStack
-              alignItems="center"
-              fontSize="s"
-            >
-              <Icon
-                as={FaHandshake}
-                color='teal'
-              />
-              <Text>Volunteer Role </Text>
-            </VStack>}
-         */}
+          : <Text fontSize='sm'>Voluntary Role</Text>
+          }
         </SkipNavContent>
-        </LinkBox>
+      </LinkBox>
     </>
   )
 }
