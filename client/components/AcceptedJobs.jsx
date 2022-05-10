@@ -1,8 +1,10 @@
 import React, { useEffect } from "react"
 import { fetchAcceptedJobs } from "../actions"
-import {Link as LinkTo} from 'react-router-dom'
+import { Link as LinkTo } from 'react-router-dom'
+import { MdAttachMoney } from 'react-icons/md'
+import { FaHandshake } from 'react-icons/fa' 
 
-import { Heading, VStack, LinkBox, Box, Badge } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
+import { Heading, VStack, LinkBox, Box, Badge, Spacer, Icon } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
 import { useSelector, useDispatch} from "react-redux"
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -56,6 +58,30 @@ function AcceptedJobs() {
                 >
                 {jobPosting.region}
                 </Box>
+                <Spacer />
+                {jobPosting.type == 'paid' ?
+            <Box
+              fontSize="xs"
+              alignContent="right"
+            > 
+              <Icon
+                as={MdAttachMoney}
+                color='teal'
+                boxSize={5}
+              />
+              {jobPosting.pay}
+            </Box>
+          : <Box
+              fontSize="xs"
+              alignContent="right"
+            >
+              <Icon
+                as={FaHandshake}
+                color='teal'
+                boxSize={5}
+              />
+              Voluntary
+            </Box>}
                 </Box>
                 <Box
                   mt={1}
@@ -64,9 +90,9 @@ function AcceptedJobs() {
                 >
                   {jobPosting.title}
                 </Box>
-                  <Box m={2}>
+                  {/* <Box m={2}>
                     {jobPosting.pay}
-                  </Box>
+                  </Box> */}
                   <Box m={2}>
                     {jobPosting.date}
                   </Box>

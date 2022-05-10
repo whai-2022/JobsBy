@@ -16,7 +16,7 @@ function Job({ title, description, pay, region, id, type }) {
         shadow="md"
         overflow="hidden"
         borderWidth="1px"
-        w="full"
+        w="100%"
         borderRadius="lg"
         bg="gray.50"
       >
@@ -56,7 +56,7 @@ function Job({ title, description, pay, region, id, type }) {
                 as={FaHandshake}
                 color='teal'
               />
-                Voluntary
+              Voluntary
             </Box>}
             </Box>
           <Box mt={1} fontWeight="bold" fontSize="xl">
@@ -65,6 +65,7 @@ function Job({ title, description, pay, region, id, type }) {
           <Box m={2} isTruncated>
             {description}
           </Box>
+          {/* Version underneath description */}
           {/* {type == 'paid' ?
             <Box
               alignItems="center"
