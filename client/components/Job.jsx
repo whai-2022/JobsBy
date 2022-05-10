@@ -16,6 +16,7 @@ function Job({ title, description, pay, region, id }) {
         borderWidth="1px"
         w="100%"
         borderRadius="lg"
+        bg="gray.50"
       >
         <SkipNavContent>
           <Box p={2} display="flex" alignItems="baseline">
@@ -40,8 +41,9 @@ function Job({ title, description, pay, region, id }) {
             {description}
           </Box>
           <Box m={2}>{pay}</Box>
+        
         </SkipNavContent>
-      </LinkBox>
+        </LinkBox>
     </>
   )
 }
