@@ -1,11 +1,10 @@
 import React, { useEffect } from "react"
 import { fetchAcceptedJobs } from "../actions"
 import { Link as LinkTo } from 'react-router-dom'
-import { MdAttachMoney, MdVolunteerActivism } from 'react-icons/md'
+import { MdVolunteerActivism } from 'react-icons/md'
 import { GiReceiveMoney } from 'react-icons/gi'
-import { FaHandshake } from 'react-icons/fa' 
 
-import { Heading, VStack, LinkBox, Box, Badge, Spacer, Icon, Center, Circle, Text} from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
+import { Heading, VStack, LinkBox, Box, Badge, Spacer, Icon, Circle, Text} from "@chakra-ui/react"
 import { useSelector, useDispatch} from "react-redux"
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -49,58 +48,57 @@ function AcceptedJobs() {
                 <Badge borderRadius='full' px='2' colorScheme='teal'>
                   {jobPosting.accepted ? 'Accepted' : 'Awaiting Response'}
                 </Badge>
-                <Box
-                  color='gray.500'
-                  fontWeight='semibold'
-                  letterSpacing='wide'
-                  fontSize='xs'
-                  textTransform='uppercase'
-                  ml='2'
-                >
-                {jobPosting.region}
-                </Box>
-                <Spacer />
-                {jobPosting.type == 'paid' ?
-            <Box
-              fontSize="s"
-              alignContent="right"
-            > 
-              <Circle size='40px' bg='green.600' color='white'>
-              <Icon
-                as={GiReceiveMoney}
-                boxSize={5}
+                  <Box
+                    color='gray.500'
+                    fontWeight='semibold'
+                    letterSpacing='wide'
+                    fontSize='xs'
+                    textTransform='uppercase'
+                    ml='2'
+                  >
+                    {jobPosting.region}
+                  </Box>
+                  <Spacer />
+                    {jobPosting.type == 'paid' ?
+                  <Box
+                    fontSize="s"
+                    alignContent="right"
+                  > 
+                    <Circle size='40px' bg='green.600' color='white'>
+                      <Icon
+                        as={GiReceiveMoney}
+                        boxSize={5}
                       />
-              </Circle>
-              {/* {jobPosting.pay}/hr */}
-            </Box>
-          : <Box
-              fontSize="s"
-              alignContent="right"
-            >      
-             <Circle size='40px' bg='blue.600' color='white' >
-                <Icon
-                 as={MdVolunteerActivism}
-                  boxSize={5}
-                />
-              </Circle>
-            </Box>}
+                    </Circle>
+                  </Box>
+          :       <Box
+                    fontSize="s"
+                    alignContent="right"
+                  >      
+                    <Circle size='40px' bg='blue.600' color='white' >
+                      <Icon
+                        as={MdVolunteerActivism}
+                        boxSize={5}
+                      />
+                    </Circle>
+                  </Box>}
                 </Box>
                 <Box
                   mt={1}
                   fontWeight='bold'
                   fontSize='xl'
                 >
-                {jobPosting.title}
-              </Box>
-              {jobPosting.type == 'paid' ?
-                <Box fontSize='sm'>
-                  ${jobPosting.pay}/hr
+                  {jobPosting.title}
                 </Box>
-                : <Text fontSize='sm'>Voluntary Role</Text>
-              }
-                  <Box m={2}>
-                    {jobPosting.date}
+                {jobPosting.type == 'paid' ?
+                  <Box fontSize='sm'>
+                    ${jobPosting.pay}/hr
                   </Box>
+                : <Text fontSize='sm'>Voluntary Role</Text>
+                }
+                <Box m={2}>
+                  {jobPosting.date}
+                </Box>
               {/* <button className='button' onClick={handleClick}>Delete</button> */}
             </LinkBox>
           )
