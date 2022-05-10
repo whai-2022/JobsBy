@@ -3,16 +3,17 @@ import request from 'superagent'
 // const jobsURL = '/'
 const allJobsURL = '/api/allJobs'
 const myJobsURL = '/api/myJobs/jobsListed'
-// const apiKey1 = 'QG8WqWD76jb02uxJAAQZWQ'
+const acceptedJobsURL = '/api/myJobs/jobsDone'
+const apiKey1 = 'QG8WqWD76jb02uxJAAQZWQ'
 // const apiKey2 = 'wcyCeEHbpFxfjDPDJD3UWQ'
-const apiKey3 = 'gSnstGhj27bhsCpZR1Ri4A'
-// const apiKey4 = 'd5d7vnRinIwJCVRtlTXBAw'
+// const apiKey3 = 'gSnstGhj27bhsCpZR1Ri4A'
+const apiKey4 = 'd5d7vnRinIwJCVRtlTXBAw'
 
 // gets a list of suggested matching addresses
 export function getAutocompleteAddresses(address) {
   return request
     .get(
-      `https://api.addressable.co.nz/v2/autocomplete?api_key=${apiKey3}&country_code=NZ&q=${address.replaceAll(
+      `https://api.addressable.co.nz/v2/autocomplete?api_key=${apiKey4}&country_code=NZ&q=${address.replaceAll(
         ' ',
         '+'
       )}`
@@ -54,11 +55,18 @@ export function getUserJobs(userId) {
     .catch((err) => console.log(err.status, 'error'))
 }
 
+export function getJobsByAccepterId(accepterId) {
+  return request
+    .get(`${acceptedJobsURL}/${accepterId}`)
+    .then((res) => res.body)
+    .catch((err) => console.log(err.status, 'error'))
+}
+
 // accepts job
 export function acceptJob(jobId, accepterId) {
   return request
     .patch(`${allJobsURL}/${jobId}`)
     .send({ accepterId })
-    .then(res => res.body)
+    .then((res) => res.body)
     .catch((err) => console.log(err.message))
 }

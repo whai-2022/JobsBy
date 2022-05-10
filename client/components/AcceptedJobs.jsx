@@ -1,43 +1,34 @@
-import React, { useEffect } from 'react'
-import { fetchUserJobs } from '../actions'
-import { Link as LinkTo } from 'react-router-dom'
-
-import AcceptedJobs from './AcceptedJobs'
-import LoggedIn from './LoggedIn'
+import React, { useEffect } from "react"
+import { fetchAcceptedJobs } from "../actions"
+import {Link as LinkTo} from 'react-router-dom'
 
 import { Heading, VStack, LinkBox, Box, Badge } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
-import { SkipNavContent } from '@chakra-ui/skip-nav'
 import { useSelector, useDispatch} from "react-redux"
 import { useAuth0 } from '@auth0/auth0-react'
 
-function MyJobs() {
+function AcceptedJobs() {
 
+  const { acceptedJobs } = useSelector((state) => state.myJobs)
   const { isAuthenticated, user } = useAuth0()
 
-  const { myJobs } = useSelector((state) => state.myJobs)
-  // myJobs = {jobs = [res.body/actual jobs]}
-  console.log(myJobs)
-
-
   const dispatch = useDispatch()
+  
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(fetchUserJobs(user.sub)) 
+      dispatch(fetchAcceptedJobs(user.sub))
     }
   }, [])
 
-  if (!isAuthenticated) return <p>Please login to view your jobs. <LoggedIn /></p>
   return (
     <>
-    <SkipNavContent>
-    <AcceptedJobs />
+          <Heading m={9} fontSize='2xl'>My Jobs</Heading>
 
-      <Heading m={9} fontSize='lg'>Here are the jobs you have posted:</Heading>
+      <Heading m={9} fontSize='lg'>Here are the jobs you have accepted:</Heading>
 
-      {myJobs.length > 0 ? (
+      {acceptedJobs.length > 0 ? (
         <VStack spacing={6}>
 
-        {myJobs?.map((jobPosting, i) => {
+        {acceptedJobs?.map((jobPosting, i) => {
           return (
             <LinkBox as={LinkTo} to={`/alljobs/${jobPosting.id}`}
               p={3}
@@ -82,11 +73,10 @@ function MyJobs() {
             </LinkBox>
           )
         })}
-  </VStack>
-      ) : <p>No jobs.</p>}
-      </SkipNavContent>
+    </VStack>
+      ) : <p>No jobs :</p>}
     </>
   )
 }
 
-export default MyJobs
+export default AcceptedJobs

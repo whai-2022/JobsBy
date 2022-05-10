@@ -4,6 +4,8 @@ import Job from './Job'
 import JobsMap from './JobsMap'
 import { fetchJobsByRegion } from '../actions'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
+import { useAuth0 } from '@auth0/auth0-react'
+import LoggedIn from './LoggedIn'
 
 import {
   Text,
@@ -24,6 +26,8 @@ function AllJobs() {
   const [searchTerm, setSearchTerm] = useState('')
   const [position, setPosition] = useState([-36.856912, 174.763399])
   const [error, setError] = useState(null)
+
+  const { isAuthenticated } = useAuth0()
   // after a valid address is selected, the first address object is the final address object we need
 
   const { jobs } = useSelector((state) => state.jobs)
@@ -69,6 +73,7 @@ function AllJobs() {
     }
   }
 
+  if (!isAuthenticated) return <p>Please login to find a job. <LoggedIn /></p>
   return (
     <>
       <SkipNavContent>
