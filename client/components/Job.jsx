@@ -3,7 +3,7 @@ import { Link as LinkTo } from 'react-router-dom'
 import { MdAttachMoney } from 'react-icons/md'
 import { FaHandshake } from 'react-icons/fa' 
 
-import { Box, Badge, LinkBox, Icon, HStack, Text} from '@chakra-ui/react'
+import { Box, Badge, LinkBox, Icon, VStack, Text} from '@chakra-ui/react'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function Job({ title, description, pay, region, id, type }) {
@@ -22,7 +22,7 @@ function Job({ title, description, pay, region, id, type }) {
       >
         <SkipNavContent>
           <Box p={2} display="flex" alignItems="baseline">
-            <Badge borderRadius="full" px="2" colorScheme="purple">
+            <Badge borderRadius="full" px="2" colorScheme="teal">
               Available
             </Badge>
             <Box
@@ -46,23 +46,24 @@ function Job({ title, description, pay, region, id, type }) {
             <Box
               alignItems="center"
               fontSize="s"
-            >
+            > 
               <Icon
                 as={MdAttachMoney}
                 color='teal'
+                boxSize={5}
               />
               {pay}
             </Box>
-          : <Box
+          : <VStack
               alignItems="center"
               fontSize="s"
-
             >
               <Icon
                 as={FaHandshake}
                 color='teal'
-              /> Voluntary
-            </Box>}
+              />
+              <Text>Volunteer Role </Text>
+            </VStack>}
         
         </SkipNavContent>
         </LinkBox>
