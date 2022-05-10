@@ -1,10 +1,11 @@
 import React, { useEffect } from "react"
 import { fetchAcceptedJobs } from "../actions"
 import { Link as LinkTo } from 'react-router-dom'
-import { MdAttachMoney } from 'react-icons/md'
+import { MdAttachMoney, MdVolunteerActivism } from 'react-icons/md'
+import { GiReceiveMoney } from 'react-icons/gi'
 import { FaHandshake } from 'react-icons/fa' 
 
-import { Heading, VStack, LinkBox, Box, Badge, Spacer, Icon, Center, Text} from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
+import { Heading, VStack, LinkBox, Box, Badge, Spacer, Icon, Center, Circle, Text} from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
 import { useSelector, useDispatch} from "react-redux"
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -64,24 +65,24 @@ function AcceptedJobs() {
               fontSize="s"
               alignContent="right"
             > 
-              <Center w='40px' h='40px' bg='teal' color='white' borderRadius="base">
+              <Circle size='40px' bg='green.600' color='white'>
               <Icon
-                as={MdAttachMoney}
+                as={GiReceiveMoney}
                 boxSize={5}
                       />
-              </Center>
+              </Circle>
               {/* {jobPosting.pay}/hr */}
             </Box>
           : <Box
               fontSize="s"
               alignContent="right"
             >      
-             <Center w='40px' h='40px' bg='teal' color='white' borderRadius="base">
+             <Circle size='40px' bg='blue.600' color='white' >
                 <Icon
-                 as={FaHandshake}
-                boxSize={5}
+                 as={MdVolunteerActivism}
+                  boxSize={5}
                 />
-              </Center>
+              </Circle>
             </Box>}
                 </Box>
                 <Box
