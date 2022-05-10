@@ -41,7 +41,7 @@ function Job({ title, description, pay, region, id, type }) {
             {description}
           </Box>
           <Box m={2}>{pay}</Box>
-          <Box>{type}</Box>
+          <Box>{type == 'paid'? 'paid icon here' : 'voluntary icon here'}</Box>
         
         </SkipNavContent>
         </LinkBox>
