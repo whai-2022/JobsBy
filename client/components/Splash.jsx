@@ -19,7 +19,7 @@ function Splash() {
           textAlign={'center'}
           align={'center'}
           spacing={{ base: 5, md: 5 }}
-          py={{ base: 20, md: 28 }}
+          py={{ base: 16, md: 20 }}
           // pt={{ base: 20, md: 28 }}
           // pb={{ base: 5, md: 28 }}
         >
@@ -27,7 +27,7 @@ function Splash() {
             fontWeight={650}
             fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
-            color={useColorModeValue('#666666', 'blue.200')}
+            color={useColorModeValue('purple.700', 'blue.200')}
           >
             Welcome to JobsBy
           </Heading>
@@ -43,10 +43,10 @@ function Splash() {
         </Stack>
 
         <Stack
-          align={'center'}
+          align='center'
           spacing={{ base: 5, md: 5 }}
           py={{ base: 2, md: 2 }}
-          boxSize="90%"
+          boxSize="100%"
         >
           <Image
             src="images/group.png"

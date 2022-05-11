@@ -64,7 +64,7 @@ function Nav() {
           <ColorModeButton alignSelf="flex-end" />
         </HStack>
         <span>
-          <Box boxSize={{ base: '160px', md: '200px' }} padding={2}>
+          <Box boxSize={{ base: '160px', md: '300px' }} padding={2}>
             <Image
               src={useColorModeValue(
                 'images/newLogo.png',
