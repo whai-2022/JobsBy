@@ -49,7 +49,7 @@ function Job({ title, description, pay, region, id, type }) {
               <Box fontSize="s" alignContent="right">
                 <Circle
                   size="40px"
-                  bg={useColorModeValue('blue.600', 'cyan.700')}
+                  bg={useColorModeValue('teal.600', 'cyan.700')}
                   color={useColorModeValue('white', 'blue.100')}
                 >
                   <Icon as={FaHandHoldingUsd} boxSize={5} />
@@ -59,7 +59,7 @@ function Job({ title, description, pay, region, id, type }) {
               <Box fontSize="s" alignContent="right">
                 <Circle
                   size="40px"
-                  bg={useColorModeValue('teal.600', 'purple.500')}
+                  bg={useColorModeValue('blue.600', 'purple.500')}
                   color={useColorModeValue('white', 'purple.100')}
                 >
                   <Icon as={MdVolunteerActivism} boxSize={5} />

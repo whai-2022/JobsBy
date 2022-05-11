@@ -26,7 +26,7 @@ export default function JobDetail() {
 
   useEffect(() => {
     dispatch(fetchJobByID(id))
-  }, []) // you probably want to call this code whenever id changes
+  }, [id])
 
   if (!isAuthenticated) return <p>Please login to see this job</p>
   if (loading) return <p>Loading...</p>
@@ -58,30 +58,63 @@ export default function JobDetail() {
           <Text>{job.region}</Text>
         </Box>
 
-        
+        {job.occurrence && (
+          <Box textAlign="left" m={2}>
+            <Heading as="h3" fontSize="lg" fontWeight="bold">
+              How often:
+            </Heading>
+            <Text>{job.occurrence}</Text>
+          </Box>
+        )}
+
+        {job.when && (
+          <Box textAlign="left" m={2}>
+            <Heading as="h3" fontSize="lg" fontWeight="bold">
+              Start date:
+            </Heading>
+            <Text>{job.when}</Text>
+          </Box>
+        )}
+
         <Box textAlign="left" m={2}>
           <Heading as="h3" fontSize="lg" fontWeight="bold">
             Type:
           </Heading>
-            {job.type == 'paid' ?
-              <Text>Paid : ${job.pay}/hr</Text>
-            :
-              <Text>Voluntary role</Text>
-            }
-        </Box>
-        
-        
-        <Box textAlign="left" m={2}>
-          <Heading as="h3" fontSize="lg" fontWeight="bold">
-            Requirements:
-          </Heading>
-          <Text>{job.requirements}</Text>
+          {job.type == 'paid' ? (
+            <Text>Paid : ${job.pay}/hr</Text>
+          ) : (
+            <Text>Voluntary role</Text>
+          )}
         </Box>
 
+        {job.requirements && (
+          <Box textAlign="left" m={2}>
+            <Heading as="h3" fontSize="lg" fontWeight="bold">
+              Requirements:
+            </Heading>
+            <Text>{job.requirements}</Text>
+          </Box>
+        )}
+
         <Box textAlign="left" m={2}>
-          <Text fontWeight="bold">For more information, contact:</Text>
-          {job.email}
+          <Text fontWeight="bold">
+            For more information, contact {job.name}
+          </Text>
         </Box>
+
+        {job.email && (
+          <Box textAlign="left" m={2}>
+            <Text fontWeight="bold">Email:</Text>
+            {job.email}
+          </Box>
+        )}
+        {job.phone && (
+          <Box textAlign="left" m={2}>
+            <Text fontWeight="bold">Phone number:</Text>
+            {job.phone}
+          </Box>
+        )}
+
         {job.accepted ? (
           <Text fontWeight="bold">This position has been filled</Text>
         ) : (
