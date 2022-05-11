@@ -10,7 +10,6 @@ describe('<Job />', () => {
       id: 1,
       title: 'A job title',
       description: 'Job Description',
-      pay: '$50/hr',
       region: 'Auckland',
     }
 
@@ -29,7 +28,6 @@ describe('<Job />', () => {
     expect(screen.getByText(job.description)).toBeInTheDocument()
     expect(screen.getByText(job.title)).toBeInTheDocument()
     expect(screen.getByText(job.region)).toBeInTheDocument()
-    expect(screen.getByText(job.pay)).toBeInTheDocument()
     expect(screen.getByRole('link').href).toBe(
       `http://localhost/alljobs/${job.id}`
     )

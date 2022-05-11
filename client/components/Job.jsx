@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link as LinkTo } from 'react-router-dom'
 import { MdVolunteerActivism } from 'react-icons/md'
-import { GiReceiveMoney } from 'react-icons/gi'
+import { FaHandHoldingUsd } from 'react-icons/fa'
 
 import {
   Box,
@@ -52,7 +52,7 @@ function Job({ title, description, pay, region, id, type }) {
                   bg={useColorModeValue('blue.600', 'cyan.700')}
                   color={useColorModeValue('white', 'blue.100')}
                 >
-                  <Icon as={GiReceiveMoney} boxSize={5} />
+                  <Icon as={FaHandHoldingUsd} boxSize={5} />
                 </Circle>
               </Box>
             ) : (

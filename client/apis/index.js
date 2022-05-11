@@ -19,7 +19,6 @@ export function getAutocompleteAddresses(address) {
       )}`
     )
     .then((res) => res.body)
-    .catch((err) => console.log(err))
 }
 
 // posts new job

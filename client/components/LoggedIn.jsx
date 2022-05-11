@@ -44,24 +44,25 @@ const LoggedIn = () => {
           </Text>
         </>
       )}
-      <Box m={4}>
+        <Box m={4}>
         {isAuthenticated && (
           <Link as={LinkTo} to="/home" aria-label="Enter JobsBy website">
-            <Button colorScheme="purple">Enter</Button>
+            <Button m={4} colorScheme="purple">Enter</Button>
           </Link>
         )}
-      </Box>
       {isAuthenticated ? (
         <>
-          <Button onClick={signOut} colorScheme="purple">
+          <Button m={4} onClick={signOut} colorScheme="purple">
             Logout
           </Button>
         </>
-      ) : (
-        <Button onClick={signIn} colorScheme="purple">
+        )
+        : (
+        <Button m={4} onClick={signIn} colorScheme="purple">
           Login / Sign Up
         </Button>
       )}
+        </Box>
     </Container>
   )
 }

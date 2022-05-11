@@ -4,7 +4,7 @@ import Job from './Job'
 import JobsMap from './JobsMap'
 import { fetchJobsByRegion } from '../actions'
 
-import { SkipNavContent } from '@chakra-ui/skip-nav'
+// import { SkipNavContent } from '@chakra-ui/skip-nav'
 import { useAuth0 } from '@auth0/auth0-react'
 import LoggedIn from './LoggedIn'
 
@@ -93,14 +93,11 @@ function AllJobs() {
   return (
     <>
       {/* <SkipNavContent id="all-jobs-content"> */}
-      <VStack w="full" h="full" p={4} spacing={6}>
-        <Heading as="h1" size="xl" alignSelf="center">
-          Find a job near you
-        </Heading>
-        <Container position="relative" centerContent>
-          <JobsMap position={position} jobs={jobs} padding="10px" />
-        </Container>
-
+      <Heading as="h1" size="xl" alignSelf="center" m={6}>
+        Find a job near you
+      </Heading>
+      <Container position="relative" centerContent>
+        <JobsMap position={position} jobs={jobs} padding="10px" />
         {/* Input field for address to be searched */}
         <FormControl m={6} isRequired={true}>
           <FormLabel htmlFor="address">
@@ -150,21 +147,21 @@ function AllJobs() {
             </Text>
           )}
         </FormControl>
-        <VStack spacing={6} m={2}>
-          {jobs.map((job, i) => {
-            return (
-              <Job
-                key={i}
-                id={job.id}
-                title={job.title}
-                description={job.description}
-                pay={job.pay}
-                region={job.region}
-                type={job.type}
-              />
-            )
-          })}
-        </VStack>
+      </Container>
+      <VStack spacing={6} m={2}>
+        {jobs.map((job, i) => {
+          return (
+            <Job
+              key={i}
+              id={job.id}
+              title={job.title}
+              description={job.description}
+              pay={job.pay}
+              region={job.region}
+              type={job.type}
+            />
+          )
+        })}
       </VStack>
       {/* Cards of jobs available*/}
 

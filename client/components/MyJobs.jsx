@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { fetchUserJobs } from '../actions'
 import { Link as LinkTo } from 'react-router-dom'
 import { MdVolunteerActivism } from 'react-icons/md'
-import { GiReceiveMoney } from 'react-icons/gi'
+import { FaHandHoldingUsd } from 'react-icons/fa'
 
 import AcceptedJobs from './AcceptedJobs'
 import LoggedIn from './LoggedIn'
@@ -14,6 +14,7 @@ import {
   Box,
   Badge,
   Spacer,
+  Stack,
   Circle,
   Text,
   Icon,
@@ -46,78 +47,89 @@ function MyJobs() {
   return (
     <>
       <SkipNavContent id="my-jobs-content">
-        <AcceptedJobs />
-
-        <Heading m={6} fontSize="lg">
-          Here are the jobs you have posted:
+        <Heading m={6} as="h2">
+          My Jobs
         </Heading>
-
-        {myJobs.length > 0 ? (
-          <VStack spacing={6}>
-            {myJobs?.map((jobPosting, i) => {
-              return (
-                <LinkBox
-                  as={LinkTo}
-                  to={`/alljobs/${jobPosting.id}`}
-                  p={3}
-                  shadow="md"
-                  overflow="hidden"
-                  borderWidth="1px"
-                  bg={useColorModeValue('gray.50', 'gray.600')}
-                  w="100%"
-                  borderRadius="lg"
-                  key={`${jobPosting.id} ${i}`}
-                >
-                  <Box p={2} display="flex" alignItems="baseline">
-                    <Badge
-                      borderRadius="full"
-                      px="2"
-                      colorScheme={jobPosting.accepted ? 'purple' : 'blue'}
+        <Stack
+          direction={{ base: 'column', md: 'row' }}
+          spacing={6}
+          justify="center"
+        >
+          <AcceptedJobs />
+          <Box>
+            <Heading m={6} fontSize="lg">
+              Here are the jobs you have posted:
+            </Heading>
+            {myJobs.length > 0 ? (
+              <VStack spacing={6}>
+                {myJobs?.map((jobPosting, i) => {
+                  return (
+                    <LinkBox
+                      as={LinkTo}
+                      to={`/alljobs/${jobPosting.id}`}
+                      p={3}
+                      shadow="md"
+                      overflow="hidden"
+                      borderWidth="1px"
+                      bg={useColorModeValue('gray.50', 'gray.600')}
+                      w="100%"
+                      borderRadius="lg"
+                      key={`${jobPosting.id} ${i}`}
                     >
-                      {jobPosting.accepted ? 'Accepted' : 'Awaiting Response'}
-                    </Badge>
-                    <Box
-                      color={useColorModeValue('gray.500', 'blue.300')}
-                      fontWeight="semibold"
-                      letterSpacing="wide"
-                      fontSize="xs"
-                      textTransform="uppercase"
-                      ml="2"
-                    >
-                      {jobPosting.region}
-                    </Box>
-                    <Spacer />
-                    {jobPosting.type == 'paid' ? (
-                      <Box fontSize="s" alignContent="right">
-                        <Circle size="40px" bg="teal.600" color="white">
-                          <Icon as={GiReceiveMoney} boxSize={5} />
-                        </Circle>
+                      <Box p={2} display="flex" alignItems="baseline">
+                        <Badge
+                          borderRadius="full"
+                          px="2"
+                          colorScheme={jobPosting.accepted ? 'purple' : 'blue'}
+                        >
+                          {jobPosting.accepted
+                            ? 'Accepted'
+                            : 'Awaiting Response'}
+                        </Badge>
+                        <Box
+                          color={useColorModeValue('gray.500', 'blue.300')}
+                          fontWeight="semibold"
+                          letterSpacing="wide"
+                          fontSize="xs"
+                          textTransform="uppercase"
+                          ml="2"
+                        >
+                          {jobPosting.region}
+                        </Box>
+                        <Spacer />
+                        {jobPosting.type == 'paid' ? (
+                          <Box fontSize="s" alignContent="right">
+                            <Circle size="40px" bg="teal.600" color="white">
+                              <Icon as={FaHandHoldingUsd} boxSize={5} />
+                            </Circle>
+                          </Box>
+                        ) : (
+                          <Box fontSize="s" alignContent="right">
+                            <Circle size="40px" bg="blue.600" color="white">
+                              <Icon as={MdVolunteerActivism} boxSize={5} />
+                            </Circle>
+                          </Box>
+                        )}
                       </Box>
-                    ) : (
-                      <Box fontSize="s" alignContent="right">
-                        <Circle size="40px" bg="blue.600" color="white">
-                          <Icon as={MdVolunteerActivism} boxSize={5} />
-                        </Circle>
+                      <Box mt={1} fontWeight="bold" fontSize="xl">
+                        {jobPosting.title}
                       </Box>
-                    )}
-                  </Box>
-                  <Box mt={1} fontWeight="bold" fontSize="xl">
-                    {jobPosting.title}
-                  </Box>
-                  {jobPosting.type == 'paid' ? (
-                    <Box fontSize="sm">${jobPosting.pay}/hr</Box>
-                  ) : (
-                    <Text fontSize="sm">Voluntary Role</Text>
-                  )}
-                  <Box m={2}>{jobPosting.date}</Box>
-                  {/* <button className='button' onClick={handleClick}>Delete</button> */}
-                </LinkBox>
-              )
-            })}
-          </VStack>
-        ) : (
-          <p>No jobs.</p>
-        )}
+                      {jobPosting.type == 'paid' ? (
+                        <Box fontSize="sm">${jobPosting.pay}/hr</Box>
+                      ) : (
+                        <Text fontSize="sm">Voluntary Role</Text>
+                      )}
+                      <Box m={2}>{jobPosting.date}</Box>
+                      {/* <button className='button' onClick={handleClick}>Delete</button> */}
+                    </LinkBox>
+                  )
+                })}
+              </VStack>
+            ) : (
+              <p>No jobs.</p>
+            )}
+          </Box>
+        </Stack>
       </SkipNavContent>
     </>
   )

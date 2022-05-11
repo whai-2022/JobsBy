@@ -41,7 +41,7 @@ import {
   // multiple lines of text
   Textarea,
   //  tells more details about the form section
-  FormErrorMessage,
+  // FormErrorMessage,
   FormHelperText,
   // // STRETCH TODO: message that shows up when an error occurs
   // FormErrorMessage,
@@ -84,7 +84,10 @@ function PostJob() {
       .then((res) => {
         setAddresses(res)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        setAddresses([])
+        console.log(err)
+      })
   }
   const dispatch = useDispatch()
   const navigate = useNavigate()
