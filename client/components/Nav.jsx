@@ -64,15 +64,16 @@ function Nav() {
           <ColorModeButton alignSelf="flex-end" />
         </HStack>
         <span>
-          <Box boxSize={{ base: '160px', md: '250px' }} padding={2}>
+          {/* <Box width={{ base: '160px', md: '450px' }} height={{ base: '100px', md: '350px' }}padding={2}> */}
             <Image
+              width={{ base: '160px', md: '420px' }} padding={2}
               src={useColorModeValue(
                 'images/newLogo.png',
                 'images/newLogoDarkMode.png'
               )}
               alt="JobsyBy, Community for Community - Logo"
             ></Image>
-          </Box>
+          {/* </Box> */}
         </span>
         {spacer}
       </Flex>
@@ -81,3 +82,5 @@ function Nav() {
 }
 
 export default Nav
+
+// boxSize={{ base: '160px', md: '250px' }}
