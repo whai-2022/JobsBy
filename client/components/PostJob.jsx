@@ -78,7 +78,10 @@ function PostJob() {
       .then((res) => {
         setAddresses(res)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        setAddresses([])
+        console.log(err)
+      })
   }
   const dispatch = useDispatch()
   const navigate = useNavigate()

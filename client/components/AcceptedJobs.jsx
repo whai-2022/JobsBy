@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { fetchAcceptedJobs } from '../actions'
 import { Link as LinkTo } from 'react-router-dom'
 import { MdVolunteerActivism } from 'react-icons/md'
-import { GiReceiveMoney } from 'react-icons/gi'
+import { FaHandHoldingUsd } from 'react-icons/fa'
 
 import {
   Heading,
@@ -33,13 +33,8 @@ function AcceptedJobs() {
 
   return (
     <>
-      <Heading m={6} as="h2">
-        My Jobs
-      </Heading>
-
-      <Heading m={6} fontSize="lg">
-        Here are the jobs you have accepted:
-      </Heading>
+      <Box>
+      <Heading m={6} fontSize='lg'>Here are the jobs you have accepted:</Heading>
 
       {acceptedJobs.length > 0 ? (
         <VStack spacing={6}>
@@ -72,37 +67,49 @@ function AcceptedJobs() {
                     {jobPosting.region}
                   </Box>
                   <Spacer />
-                  {jobPosting.type == 'paid' ? (
-                    <Box fontSize="s" alignContent="right">
-                      <Circle size="40px" bg="teal.600" color="white">
-                        <Icon as={GiReceiveMoney} boxSize={5} />
-                      </Circle>
-                    </Box>
-                  ) : (
-                    <Box fontSize="s" alignContent="right">
-                      <Circle size="40px" bg="blue.600" color="white">
-                        <Icon as={MdVolunteerActivism} boxSize={5} />
-                      </Circle>
-                    </Box>
-                  )}
+                    {jobPosting.type == 'paid' ?
+                  <Box
+                    fontSize="s"
+                    alignContent="right"
+                  > 
+                    <Circle size='40px' bg='teal.600' color='white'>
+                      <Icon
+                        as={FaHandHoldingUsd}
+                        boxSize={5}
+                      />
+                    </Circle>
+                  </Box>
+          :       <Box
+                    fontSize="s"
+                    alignContent="right"
+                  >      
+                    <Circle size='40px' bg='blue.600' color='white' >
+                      <Icon
+                        as={MdVolunteerActivism}
+                        boxSize={5}
+                      />
+                    </Circle>
+                  </Box>}
                 </Box>
                 <Box mt={1} fontWeight="bold" fontSize="xl">
                   {jobPosting.title}
                 </Box>
-                {jobPosting.type == 'paid' ? (
-                  <Box fontSize="sm">${jobPosting.pay}/hr</Box>
-                ) : (
-                  <Text fontSize="sm">Voluntary Role</Text>
-                )}
-                <Box m={2}>{jobPosting.date}</Box>
-                {/* <button className='button' onClick={handleClick}>Delete</button> */}
-              </LinkBox>
-            )
-          })}
-        </VStack>
-      ) : (
-        <p>No jobs :</p>
-      )}
+                {jobPosting.type == 'paid' ?
+                  <Box fontSize='sm'>
+                    ${jobPosting.pay}/hr
+                  </Box>
+                : <Text fontSize='sm'>Voluntary Role</Text>
+                }
+                <Box m={2}>
+                  {jobPosting.date}
+                </Box>
+              {/* <button className='button' onClick={handleClick}>Delete</button> */}
+            </LinkBox>
+          )
+        })}
+    </VStack>
+        ) : <p>No jobs :</p>}
+    </Box>
     </>
   )
 }

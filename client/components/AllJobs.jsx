@@ -93,13 +93,14 @@ function AllJobs() {
   return (
     <>
       {/* <SkipNavContent> */}
-      <VStack w="full" h="full" p={4} spacing={6}>
-        <Heading as="h1" size="xl" alignSelf="center">
-          Find a job in your area
-        </Heading>
+        <Heading as="h1" size="xl" alignSelf="center" m={6}>Find a job in your area.</Heading>
         <Container position="relative" centerContent>
-          <JobsMap position={position} jobs={jobs} padding="10px" />
-        </Container>
+            <JobsMap
+              position={position}
+              jobs={jobs}
+              padding="10px"
+            />
+        
 
         {/* Input field for address to be searched */}
         <FormControl m={6} isRequired={true}>
@@ -144,6 +145,7 @@ function AllJobs() {
             </Text>
           )}
         </FormControl>
+        </Container>
         <VStack spacing={6} m={2}>
           {jobs.map((job, i) => {
             return (
@@ -159,7 +161,6 @@ function AllJobs() {
             )
           })}
         </VStack>
-      </VStack>
       {/* Cards of jobs available*/}
 
       {/* </SkipNavContent> */}
