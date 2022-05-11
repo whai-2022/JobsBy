@@ -36,9 +36,12 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightAddon,
+  InputLeftAddon,
   // multiple lines of text
   Textarea,
   //  tells more details about the form section
+  // FormErrorMessage,
   FormHelperText,
   // // STRETCH TODO: message that shows up when an error occurs
   // FormErrorMessage,
@@ -50,6 +53,7 @@ import {
   CheckboxGroup,
   Checkbox,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react'
 import { BsChatTextFill } from 'react-icons/bs'
 import {
@@ -69,7 +73,9 @@ function PostJob() {
   const { isAuthenticated, user } = useAuth0()
   const [address, setAddress] = useState('')
   const [addresses, setAddresses] = useState([])
+  const toast = useToast()
   // For Team's Learning: after a valid address is selected, the first address object is the final address object we need
+  // STRETCH TODO: Make this it's own hook/logic
   const handleAddressChange = (evt) => {
     setAddress(evt.target.value)
     api
@@ -93,15 +99,30 @@ function PostJob() {
     description: '',
     requirements: '',
     type: '',
-    contactBy: '',
+    contactBy: [],
     occurrence: '',
     when: '',
     pay: '',
     accepted: false,
     accepterId: '',
   })
+  //
+  // const [fieldErrors, setFieldErrors] = useState({
+  //   name: '',
+  //   title: '',
+  //   type: '',
+  //   contactBy: '',
+  //   address: '',
+  // })
+
+  // registers if a form field is empty
+
+  // any required fields have SOMETHING in them
+  // any email fields are valid emails
+  //
 
   function handleInputChange(evt) {
+    console.log(evt.target)
     setNewJob({
       ...newJob,
       [evt.target.name]: evt.target.value,
@@ -134,8 +155,32 @@ function PostJob() {
   //   const isError = input === ''
   // }
 
+  const isEmpty = (field) => {
+    if (field === '') return true
+    if (field !== null && typeof field === 'object' && !Array.isArray(field)) {
+      return Object.keys(field).length === 0
+    }
+    if (Array.isArray(field) && field.length === 0) return true
+    return false
+  }
+
   function handleSubmit(evt) {
     evt.preventDefault()
+    const requiredFields = ['name', 'title', 'type', 'contactBy']
+    const err =
+      requiredFields.some((field) => isEmpty(newJob[field])) ||
+      !addresses[0]?.region
+
+    if (err) {
+      return toast({
+        title: `Please fill out the required fields`,
+        status: 'error',
+        isClosable: true,
+      })
+    }
+
+    console.log('hello')
+
     // destructure address object (api data needs us to get the first item in the array)
     const { region, lon, lat } = addresses[0]
 
@@ -178,7 +223,7 @@ function PostJob() {
     )
   return (
     <>
-      <SkipNavContent>
+      <SkipNavContent id="post-job-content">
         <Heading
           as="h1"
           size="xl"
@@ -216,7 +261,7 @@ function PostJob() {
               >
                 {/* a11y: provide instructions on what the form requires */}
                 {/* a11y: say how long the form will take to complete. Make sure form does not time out.
-            TODO: enable save as you go */}
+            STRETCH TODO: enable save as you go */}
                 <ListItem>Time to complete ~ 30 minutes</ListItem>
                 <ListItem>
                   All fields marked “required” must be completed.
@@ -237,7 +282,7 @@ function PostJob() {
               <Heading as="h3">Job Form</Heading>
             </VisuallyHidden>
             {/* a11y: form fields in a logical order to tab through */}
-            {/* TODO a11y: highlight field when tabbing through */}
+            {/* a11y: highlight field when tabbing through */}
             {/* a11y: define what the fields require. Ex: if in a particular format */}
             {/* OCCURRENCE */}
             {/* a11y: short & specific labels, associated with form field */}
@@ -253,7 +298,7 @@ function PostJob() {
                     'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
-                  variant="flushed"
+                  variant={useColorModeValue('flushed', 'outline')}
                   name="occurrence"
                   value={newJob.occurrence}
                   onChange={handleInputChange}
@@ -302,20 +347,32 @@ function PostJob() {
             <FormControl id="pay">
               <FormLabel>If paid, what is the rate per hour? </FormLabel>
               <InputGroup>
-                <InputLeftElement>
+                <InputLeftAddon
+                  bg={useColorModeValue('cyan.100', 'gray.600')}
+                  variant={useColorModeValue('flushed', 'outline')}
+                >
+                  {' '}
                   <Icon as={MdAttachMoney} w={6} h={6} />
-                </InputLeftElement>
+                </InputLeftAddon>
                 <Input
                   focusBorderColor={useColorModeValue(
                     'purple.700',
                     'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
-                  variant="flushed"
+                  variant={useColorModeValue('flushed', 'outline')}
                   name="pay"
+                  type="number"
                   value={newJob.pay}
                   onChange={handleInputChange}
                 />
+                <InputRightAddon
+                  bg={useColorModeValue('cyan.100', 'gray.600')}
+                  variant={useColorModeValue('flushed', 'outline')}
+                  aria-hidden="true"
+                >
+                  per hour{' '}
+                </InputRightAddon>
               </InputGroup>
               <FormHelperText color={useColorModeValue('cyan.900', 'blue.300')}>
                 Paid jobs must not pay less than the{' '}
@@ -323,7 +380,8 @@ function PostJob() {
                   href="https://www.employment.govt.nz/hours-and-wages/pay/minimum-wage/minimum-wage-rates/"
                   aria-label="minimum wage rates"
                 >
-                  minimum wage
+                  minimum wage <br />
+                  Format: number only
                 </Link>
               </FormHelperText>
             </FormControl>
@@ -341,7 +399,7 @@ function PostJob() {
                     'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
-                  variant="flushed"
+                  variant={useColorModeValue('flushed', 'outline')}
                   name="when"
                   value={newJob.when}
                   onSubmit={handleSubmit}
@@ -370,7 +428,7 @@ function PostJob() {
                     'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
-                  variant="flushed"
+                  variant={useColorModeValue('flushed', 'outline')}
                   list="addresses"
                   name="address"
                   value={address}
@@ -389,6 +447,7 @@ function PostJob() {
             </FormControl>
 
             {/* NAME */}
+            {/* TODO ERROR HANDING: if the form is invalid, that is equal to the output of isEmpty */}
             <FormControl id="name" isRequired>
               <FormLabel>
                 Name <em aria-hidden="true">(Required)</em>
@@ -403,13 +462,18 @@ function PostJob() {
                     'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
-                  variant="flushed"
+                  variant={useColorModeValue('flushed', 'outline')}
                   name="name"
+                  type="text"
                   value={newJob.name}
                   onSubmit={handleSubmit}
                   onChange={handleInputChange}
                 />
               </InputGroup>
+              {/* TODO ERROR HANDING: if the input is empty, render an error message */}
+              {/* TODO ERROR HANDING: {isEmpty(newJob.name) ? (
+                <FormErrorMessage>Name is required</FormErrorMessage>
+              ) : */}
               <FormHelperText color={useColorModeValue('cyan.900', 'blue.300')}>
                 Contact person&apos;s details
               </FormHelperText>
@@ -428,9 +492,10 @@ function PostJob() {
                     'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
-                  variant="flushed"
+                  variant={useColorModeValue('flushed', 'outline')}
                   name="email"
                   type="email"
+                  required
                   value={newJob.email}
                   onSubmit={handleSubmit}
                   onChange={handleInputChange}
@@ -452,7 +517,7 @@ function PostJob() {
                     'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
-                  variant="flushed"
+                  variant={useColorModeValue('flushed', 'outline')}
                   name="phone"
                   type="tel"
                   value={newJob.phone}
@@ -517,7 +582,7 @@ function PostJob() {
             {/* TITLE */}
             <FormControl id="title" isRequired>
               <FormLabel>
-                Title <em aria-hidden="true">(Required)</em>
+                Job Title <em aria-hidden="true">(Required)</em>
               </FormLabel>
               <InputGroup>
                 <InputLeftElement>
@@ -529,7 +594,7 @@ function PostJob() {
                     'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
-                  variant="flushed"
+                  variant={useColorModeValue('flushed', 'outline')}
                   name="title"
                   type="title"
                   value={newJob.title}
@@ -549,7 +614,7 @@ function PostJob() {
               <Textarea
                 focusBorderColor={useColorModeValue('purple.700', 'purple.300')}
                 bg={useColorModeValue('cyan.100', 'gray.600')}
-                variant="flushed"
+                variant={useColorModeValue('flushed', 'outline')}
                 name="description"
                 value={newJob.description}
                 onChange={handleInputChange}
@@ -571,7 +636,7 @@ function PostJob() {
                     'purple.300'
                   )}
                   bg={useColorModeValue('cyan.100', 'gray.600')}
-                  variant="flushed"
+                  variant={useColorModeValue('flushed', 'outline')}
                   name="requirements"
                   value={newJob.requirements}
                   onChange={handleInputChange}

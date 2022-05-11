@@ -4,7 +4,7 @@ import Job from './Job'
 import JobsMap from './JobsMap'
 import { fetchJobsByRegion } from '../actions'
 
-import { SkipNavContent } from '@chakra-ui/skip-nav'
+// import { SkipNavContent } from '@chakra-ui/skip-nav'
 import { useAuth0 } from '@auth0/auth0-react'
 import LoggedIn from './LoggedIn'
 
@@ -87,24 +87,22 @@ function AllJobs() {
   if (!isAuthenticated)
     return (
       <p>
-        Please login to find a job. <LoggedIn />
+        Please login to find a job <LoggedIn />
       </p>
     )
   return (
     <>
-      {/* <SkipNavContent> */}
-        <Heading as="h1" size="xl" alignSelf="center" m={6}>Find a job in your area.</Heading>
-        <Container position="relative" centerContent>
-            <JobsMap
-              position={position}
-              jobs={jobs}
-              padding="10px"
-            />
-        
-
+      {/* <SkipNavContent id="all-jobs-content"> */}
+      <Heading as="h1" size="xl" alignSelf="center" m={6}>
+        Find a job near you
+      </Heading>
+      <Container position="relative" centerContent>
+        <JobsMap position={position} jobs={jobs} padding="10px" />
         {/* Input field for address to be searched */}
         <FormControl m={6} isRequired={true}>
-          <FormLabel htmlFor="address">Address:</FormLabel>
+          <FormLabel htmlFor="address">
+            Address <em>(Required)</em>
+          </FormLabel>
           <InputGroup>
             <InputLeftElement>
               <Icon as={MdLocationPin} w={6} h={6} />
@@ -121,8 +119,12 @@ function AllJobs() {
               variant="flushed"
             />
           </InputGroup>
-          <FormHelperText textAlign="left" mb={6}>
-            We&apos;ll never share your address
+          <FormHelperText
+            textAlign="left"
+            mb={6}
+            color={useColorModeValue('cyan.900', 'blue.300')}
+          >
+            We don&apos;t store your search address
           </FormHelperText>
 
           <datalist id="addresses" name="addresses">
@@ -145,22 +147,22 @@ function AllJobs() {
             </Text>
           )}
         </FormControl>
-        </Container>
-        <VStack spacing={6} m={2}>
-          {jobs.map((job, i) => {
-            return (
-              <Job
-                key={i}
-                id={job.id}
-                title={job.title}
-                description={job.description}
-                pay={job.pay}
-                region={job.region}
-                type={job.type}
-              />
-            )
-          })}
-        </VStack>
+      </Container>
+      <VStack spacing={6} m={2}>
+        {jobs.map((job, i) => {
+          return (
+            <Job
+              key={i}
+              id={job.id}
+              title={job.title}
+              description={job.description}
+              pay={job.pay}
+              region={job.region}
+              type={job.type}
+            />
+          )
+        })}
+      </VStack>
       {/* Cards of jobs available*/}
 
       {/* </SkipNavContent> */}

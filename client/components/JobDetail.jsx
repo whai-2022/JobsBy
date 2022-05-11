@@ -28,10 +28,10 @@ export default function JobDetail() {
     dispatch(fetchJobByID(id))
   }, []) // you probably want to call this code whenever id changes
 
-  if (!isAuthenticated) return <p>Please login to see this job.</p>
+  if (!isAuthenticated) return <p>Please login to see this job</p>
   if (loading) return <p>Loading...</p>
   return (
-    <SkipNavContent>
+    <SkipNavContent id="job-detail-content">
       <Box
         borderWidth="1px"
         p={2}
@@ -83,7 +83,7 @@ export default function JobDetail() {
           {job.email}
         </Box>
         {job.accepted ? (
-          <Text fontWeight="bold">This position has been filled.</Text>
+          <Text fontWeight="bold">This position has been filled</Text>
         ) : (
           <Button m={2} onClick={handleAcceptJob} colorScheme="teal">
             Accept Job
