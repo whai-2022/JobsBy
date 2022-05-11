@@ -31,7 +31,7 @@ function App() {
         {/* <NavHead /> */}
       </header>
       <main>
-        <Container maxW="container.sm" textAlign="center">
+        <Container maxW="container.sm" minH="100vh" textAlign="center" mb={12}>
           <Routes>
             <Route path="/" element={<Splash />} />
             <Route path="/home" element={<Home />} />
@@ -45,11 +45,8 @@ function App() {
         </Container>
       </main>
       <footer>
-        <Box pt='40'>
         <Footer />
-        </Box>
       </footer>
-      <footer className="footer"></footer>
     </>
   )
 }

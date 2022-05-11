@@ -23,8 +23,7 @@ function AcceptedJobs() {
 
   return (
     <>
-      <Heading m={6} as="h2">My Jobs</Heading>
-
+      <Box>
       <Heading m={6} fontSize='lg'>Here are the jobs you have accepted:</Heading>
 
       {acceptedJobs.length > 0 ? (
@@ -105,7 +104,8 @@ function AcceptedJobs() {
           )
         })}
     </VStack>
-      ) : <p>No jobs :</p>}
+        ) : <p>No jobs :</p>}
+    </Box>
     </>
   )
 }

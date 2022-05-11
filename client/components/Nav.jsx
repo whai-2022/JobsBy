@@ -12,11 +12,14 @@ import {
   Flex,
   Image,
   Box,
+  useBreakpointValue
 } from '@chakra-ui/react'
 
 import { HamburgerIcon } from '@chakra-ui/icons'
 
 function Nav() {
+  const spacer = useBreakpointValue({ base: null, md: <Box boxSize="72px" />})
+
   return (
     <>
     <Flex 
@@ -43,10 +46,12 @@ function Nav() {
       </Menu>
       </Box>
       <span>
-        <Box boxSize='160px' padding={2}>
+        <Box boxSize={{ base: '160px', md: '200px' }} padding={2}>
         <Image src= 'images/logoFULL.png'></Image>
         </Box>
-    </span>
+        </span>
+        {spacer}
+      
     </Flex>
     </>
   )

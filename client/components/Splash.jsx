@@ -20,9 +20,9 @@ function Splash() {
           </Heading>
           <Heading fontWeight={650} >
             <Text as={'span'} color={'teal.400'}>
-                Find big jobs, small jobs, and everything in-between in your neighbourhood.
-              </Text>
-              </Heading>
+              Find big jobs, small jobs, and everything in-between in your neighbourhood.
+            </Text>
+          </Heading>
 
           </Stack>
           <Stack

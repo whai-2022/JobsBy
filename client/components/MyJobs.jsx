@@ -7,7 +7,7 @@ import { FaHandHoldingUsd } from 'react-icons/fa'
 import AcceptedJobs from './AcceptedJobs'
 import LoggedIn from './LoggedIn'
 
-import { Heading, VStack, LinkBox, Box, Badge, Spacer, Circle, Text, Icon } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
+import { Heading, VStack, LinkBox, Box, Badge, Spacer, Circle, Text, Icon, Stack } from "@chakra-ui/react" // TODO: Text, Button add later - to go to full job desc.
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 import { useSelector, useDispatch} from "react-redux"
 import { useAuth0 } from '@auth0/auth0-react'
@@ -32,8 +32,10 @@ function MyJobs() {
   return (
     <>
     <SkipNavContent>
-    <AcceptedJobs />
-
+    <Heading m={6} as="h2">My Jobs</Heading>
+    <Stack direction={{base: 'column', md: 'row'}} spacing={6} justify="center">
+      <AcceptedJobs />
+      <Box>
       <Heading m={6} fontSize='lg'>Here are the jobs you have posted:</Heading>
 
       {myJobs.length > 0 ? (
@@ -114,8 +116,10 @@ function MyJobs() {
           )
         })}
   </VStack>
-      ) : <p>No jobs.</p>}
-      </SkipNavContent>
+            ) : <p>No jobs.</p>}
+        </Box>
+    </Stack>
+    </SkipNavContent>
     </>
   )
 }
