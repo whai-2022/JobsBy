@@ -19,7 +19,7 @@ function Splash() {
           textAlign={'center'}
           align={'center'}
           spacing={{ base: 5, md: 5 }}
-          py={{ base: 16, md: 20 }}
+          py={{ base: 16, md: 12 }}
           // pt={{ base: 20, md: 28 }}
           // pb={{ base: 5, md: 28 }}
         >
