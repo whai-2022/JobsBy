@@ -21,7 +21,6 @@ describe('<JobDetail />', () => {
       description: 'Job Description',
       lat: '0',
       lon: '0',
-      pay: '$50/hr',
       region: 'Auckland',
     }
     useSelector.mockReturnValue({
@@ -43,6 +42,5 @@ describe('<JobDetail />', () => {
     expect(screen.getByText(job.region)).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: job.title })).toBeInTheDocument()
     expect(screen.getByText(job.description)).toBeInTheDocument()
-    expect(screen.getByText(job.pay)).toBeInTheDocument()
   })
 })
