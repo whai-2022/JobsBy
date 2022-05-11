@@ -22,7 +22,7 @@ import ColorModeButton from './ColorModeButton'
 import { HamburgerIcon } from '@chakra-ui/icons'
 
 function Nav() {
-  const spacer = useBreakpointValue({ base: null, md: <Box boxSize="72px" />})
+  const spacer = useBreakpointValue({ base: null, md: <Box boxSize="110px" />})
 
   return (
     <>
