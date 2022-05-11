@@ -2,45 +2,50 @@ import React from 'react';
 import AcceptedJobs from "../AcceptedJobs"
 import { useSelector } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom';
+
+
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 jest.mock('react-redux')
 jest.mock('../../apis')
 
-describe('<AllJobs />', () => {
-  it('should render all the jobs', () => {
+describe('render <AcceptedJobs/> component', () => {
+  it('should render accepted jobs under jobs I accepted', () => {
     useSelector.mockReturnValue({
-      jobs: [
-        {
-          id: 8,
-          title: 'A job title',
-          description: 'Job Description',
-          lat: '0',
-          lon: '0',
-          pay: '$50/hr',
-          region: 'Auckland',
-        },
+      acceptedJobs: [
         {
           id: 9,
-          title: 'A second job title',
-          description: 'Second Job Description',
-          lat: '0',
-          lon: '0',
-          pay: '$70/hr',
+          title: 'Shop assistant',
+          description: 'Sell my things',
+          lat: '091',
+          lon: '322',
+          pay: '$7000/hr',
           region: 'Wellington',
+        },
+        {
+          id: 8,
+          title: 'Go fishing with me',
+          description: 'I have a boat but you are gonna need your own shoes',
+          lat: '93139729',
+          lon: '9328',
+          pay: 'No pay',
+          region: 'Queensland or Queenstown depends how you feel',
         }
       ]
     })
 
     render(
       <Router>
-        <AcceptedJobs />
+      <AcceptedJobs />
       </Router>
     )
     const links = screen.getAllByRole('link')
-    expect(links).toHaveLength(4) // there are two extra links to leafletjs and openstreetmap
-    expect(links[2].href).toBe('http://localhost/alljobs/8')
-    expect(links[3].href).toBe('http://localhost/alljobs/9')
+
+    screen.debug()
+
+    expect(links).toHaveLength(2)
+    expect(links[0].href).toBe('http://localhost/alljobs/9')
+    expect(links[1].href).toBe('http://localhost/alljobs/8')
   })
 })
