@@ -45,7 +45,7 @@ function MyJobs() {
     )
   return (
     <>
-      <SkipNavContent>
+      <SkipNavContent id="my-jobs-content">
         <AcceptedJobs />
 
         <Heading m={6} fontSize="lg">

@@ -32,7 +32,7 @@ const LoggedIn = () => {
             maxW={'3x1'}
           >
             {' '}
-            {`Hello again, ${user.email}.`}{' '}
+            {`Hello again, ${user.email}`}{' '}
           </Text>
           <Text
             fontWeight={500}
@@ -40,7 +40,7 @@ const LoggedIn = () => {
             maxW={'3x1'}
           >
             {' '}
-            {`Press Enter below to find your next job.`}{' '}
+            {`Press Enter below to find your next job`}{' '}
           </Text>
         </>
       )}

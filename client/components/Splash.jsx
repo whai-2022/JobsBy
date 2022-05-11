@@ -12,7 +12,7 @@ import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function Splash() {
   return (
-    <SkipNavContent>
+    <SkipNavContent id="splash-content">
       <Container maxW="container.sm">
         <br></br>
         <Stack
@@ -34,7 +34,7 @@ function Splash() {
           <Heading fontWeight={650}>
             <Text as={'span'} color={'teal.400'}>
               Find big jobs, small jobs, and everything in between in your
-              neighbourhood.
+              neighbourhood
             </Text>
           </Heading>
         </Stack>

@@ -27,7 +27,7 @@ function Job({ title, description, pay, region, id, type }) {
         borderWidth="1px"
         w="100%"
         borderRadius="lg"
-        bg={useColorModeValue('gray.50', 'aqua')}
+        bg={useColorModeValue('gray.50', 'gray.600')}
       >
         <SkipNavContent>
           <Box p={2} display="flex" alignItems="baseline">
@@ -35,7 +35,7 @@ function Job({ title, description, pay, region, id, type }) {
               Available
             </Badge>
             <Box
-              color="gray.500"
+              color={useColorModeValue('gray.500', 'blue.300')}
               fontWeight="semibold"
               letterSpacing="wide"
               fontSize="xs"
@@ -47,13 +47,21 @@ function Job({ title, description, pay, region, id, type }) {
             <Spacer />
             {type == 'paid' ? (
               <Box fontSize="s" alignContent="right">
-                <Circle size="40px" bg="teal.600" color="white">
+                <Circle
+                  size="40px"
+                  bg={useColorModeValue('blue.600', 'cyan.700')}
+                  color={useColorModeValue('white', 'blue.100')}
+                >
                   <Icon as={GiReceiveMoney} boxSize={5} />
                 </Circle>
               </Box>
             ) : (
               <Box fontSize="s" alignContent="right">
-                <Circle size="40px" bg="blue.600" color="white">
+                <Circle
+                  size="40px"
+                  bg={useColorModeValue('teal.600', 'purple.500')}
+                  color={useColorModeValue('white', 'purple.100')}
+                >
                   <Icon as={MdVolunteerActivism} boxSize={5} />
                 </Circle>
               </Box>

@@ -87,15 +87,15 @@ function AllJobs() {
   if (!isAuthenticated)
     return (
       <p>
-        Please login to find a job. <LoggedIn />
+        Please login to find a job <LoggedIn />
       </p>
     )
   return (
     <>
-      {/* <SkipNavContent> */}
+      {/* <SkipNavContent id="all-jobs-content"> */}
       <VStack w="full" h="full" p={4} spacing={6}>
         <Heading as="h1" size="xl" alignSelf="center">
-          Find a job in your area
+          Find a job near you
         </Heading>
         <Container position="relative" centerContent>
           <JobsMap position={position} jobs={jobs} padding="10px" />
@@ -103,7 +103,9 @@ function AllJobs() {
 
         {/* Input field for address to be searched */}
         <FormControl m={6} isRequired={true}>
-          <FormLabel htmlFor="address">Address:</FormLabel>
+          <FormLabel htmlFor="address">
+            Address <em>(Required)</em>
+          </FormLabel>
           <InputGroup>
             <InputLeftElement>
               <Icon as={MdLocationPin} w={6} h={6} />
@@ -120,8 +122,12 @@ function AllJobs() {
               variant="flushed"
             />
           </InputGroup>
-          <FormHelperText textAlign="left" mb={6}>
-            We&apos;ll never share your address
+          <FormHelperText
+            textAlign="left"
+            mb={6}
+            color={useColorModeValue('cyan.900', 'blue.300')}
+          >
+            We don&apos;t store your search address
           </FormHelperText>
 
           <datalist id="addresses" name="addresses">

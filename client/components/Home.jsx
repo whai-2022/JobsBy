@@ -17,7 +17,7 @@ import { SkipNavContent } from '@chakra-ui/skip-nav'
 function Home() {
   return (
     <>
-      <SkipNavContent>
+      <SkipNavContent id="home-content">
         <Stack direction={'row'} spacing={6} justify="center" pb={85}>
           <Heading
             fontSize="3xl"
@@ -67,7 +67,7 @@ function Home() {
               fontWeight="bold"
               m={6}
             >
-              Find a job
+              Find a Job
             </Link>
             <br />
             <Link
@@ -78,7 +78,7 @@ function Home() {
               fontWeight="bold"
               m={6}
             >
-              Post a new job{' '}
+              Post a Job{' '}
             </Link>
             <br />
             <Link
@@ -89,7 +89,7 @@ function Home() {
               fontWeight="bold"
               m={6}
             >
-              View my current jobs{' '}
+              View My Jobs{' '}
             </Link>
           </Box>
         </Center>
