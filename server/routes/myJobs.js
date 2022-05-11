@@ -33,7 +33,7 @@ router.get('/jobsDone/:accepterId', (req, res) => {
 // Updates the job
 // id is the job's id
 router.patch('/:id', (req, res) => {
-  const id = +req.params.id
+  const id = Number(req.params.id)
   const job = req.body
   db.updateJobById(job, id)
     .then(() => {

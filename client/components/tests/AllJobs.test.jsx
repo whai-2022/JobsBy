@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
 jest.mock('react-redux')
 jest.mock('../../apis')
+jest.mock('@auth0/auth0-react')
 
 describe('<AllJobs />', () => {
   it('should render all the jobs', () => {
@@ -31,6 +33,9 @@ describe('<AllJobs />', () => {
           region: 'Wellington',
         }
       ]
+    })
+    useAuth0.mockReturnValue({
+      isAuthenticated: () => true
     })
 
     render(
