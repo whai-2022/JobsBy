@@ -6,7 +6,7 @@ jest.mock('../../../server/db/db')
 
 describe('GET /', () => {
   test('gets all the jobs in the db', () => {
-    db.getAllJobs.mockReturnValue(
+    db.getJobsByRegion.mockReturnValue(
       Promise.resolve([
         {
           id: 1,
@@ -38,7 +38,7 @@ describe('GET /', () => {
       })
   })
   test('returns status 500 if database error', () => {
-    db.getAllJobs.mockImplementation(() => {
+    db.getJobsByRegion.mockImplementation(() => {
       return Promise.reject(new Error('not good'))
     })
     return request(server)
