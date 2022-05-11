@@ -13,6 +13,7 @@ import {
   HStack,
   Image,
   Box,
+  useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react'
 
@@ -21,6 +22,8 @@ import ColorModeButton from './ColorModeButton'
 import { HamburgerIcon } from '@chakra-ui/icons'
 
 function Nav() {
+  const spacer = useBreakpointValue({ base: null, md: <Box boxSize="100px" />})
+
   return (
     <>
       <Flex
@@ -61,19 +64,23 @@ function Nav() {
           <ColorModeButton alignSelf="flex-end" />
         </HStack>
         <span>
-          <Box boxSize="160px" padding={2}>
+          {/* <Box width={{ base: '160px', md: '450px' }} height={{ base: '100px', md: '350px' }}padding={2}> */}
             <Image
+              width={{ base: '160px', md: '420px' }} padding={2}
               src={useColorModeValue(
                 'images/newLogo.png',
                 'images/newLogoDarkMode.png'
               )}
               alt="JobsyBy, Community for Community - Logo"
             ></Image>
-          </Box>
+          {/* </Box> */}
         </span>
+        {spacer}
       </Flex>
     </>
   )
 }
 
 export default Nav
+
+// boxSize={{ base: '160px', md: '250px' }}

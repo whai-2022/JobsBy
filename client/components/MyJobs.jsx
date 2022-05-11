@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { fetchUserJobs } from '../actions'
 import { Link as LinkTo } from 'react-router-dom'
 import { MdVolunteerActivism } from 'react-icons/md'
-import { GiReceiveMoney } from 'react-icons/gi'
+import { FaHandHoldingUsd } from 'react-icons/fa'
 
 import AcceptedJobs from './AcceptedJobs'
 import LoggedIn from './LoggedIn'
@@ -14,6 +14,7 @@ import {
   Box,
   Badge,
   Spacer,
+  Stack,
   Circle,
   Text,
   Icon,
@@ -45,12 +46,12 @@ function MyJobs() {
     )
   return (
     <>
-      <SkipNavContent>
-        <AcceptedJobs />
-
-        <Heading m={6} fontSize="lg">
-          Here are the jobs you have posted:
-        </Heading>
+    <SkipNavContent>
+    <Heading m={6} as="h2">My Jobs</Heading>
+    <Stack direction={{base: 'column', md: 'row'}} spacing={6} justify="center">
+      <AcceptedJobs />
+      <Box>
+      <Heading m={6} fontSize='lg'>Here are the jobs you have posted:</Heading>
 
         {myJobs.length > 0 ? (
           <VStack spacing={6}>
@@ -90,7 +91,7 @@ function MyJobs() {
                     {jobPosting.type == 'paid' ? (
                       <Box fontSize="s" alignContent="right">
                         <Circle size="40px" bg="teal.600" color="white">
-                          <Icon as={GiReceiveMoney} boxSize={5} />
+                          <Icon as={FaHandHoldingUsd} boxSize={5} />
                         </Circle>
                       </Box>
                     ) : (
@@ -117,7 +118,9 @@ function MyJobs() {
           </VStack>
         ) : (
           <p>No jobs.</p>
-        )}
+            )}
+        </Box>
+      </Stack>
       </SkipNavContent>
     </>
   )
