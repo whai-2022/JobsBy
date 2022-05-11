@@ -58,13 +58,19 @@ export default function JobDetail() {
           <Text>{job.region}</Text>
         </Box>
 
+        
         <Box textAlign="left" m={2}>
           <Heading as="h3" fontSize="lg" fontWeight="bold">
-            Pay:
+            Type:
           </Heading>
-          <Text>{job.pay}</Text>
+            {job.type == 'paid' ?
+              <Text>Paid : ${job.pay}/hr</Text>
+            :
+              <Text>Voluntary role</Text>
+            }
         </Box>
-
+        
+        
         <Box textAlign="left" m={2}>
           <Heading as="h3" fontSize="lg" fontWeight="bold">
             Requirements:
