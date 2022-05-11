@@ -24,7 +24,8 @@ import {
   FormHelperText,
   Container,
   InputGroup,
-  InputLeftElement
+  InputLeftElement,
+  useColorModeValue,
 } from '@chakra-ui/react'
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -83,7 +84,12 @@ function AllJobs() {
     }
   }
 
-  if (!isAuthenticated) return <p>Please login to find a job. <LoggedIn /></p>
+  if (!isAuthenticated)
+    return (
+      <p>
+        Please login to find a job. <LoggedIn />
+      </p>
+    )
   return (
     <>
       {/* <SkipNavContent> */}
@@ -97,9 +103,7 @@ function AllJobs() {
         
 
         {/* Input field for address to be searched */}
-        <FormControl
-          m={6}
-          isRequired={true}>
+        <FormControl m={6} isRequired={true}>
           <FormLabel htmlFor="address">Address:</FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -112,13 +116,13 @@ function AllJobs() {
               type="address"
               value={address}
               onChange={handleAddressChange}
-              focusBorderColor="purple.700"
-              bg="cyan.100"
+              focusBorderColor={useColorModeValue('purple.700', 'purple.300')}
+              bg={useColorModeValue('cyan.100', 'gray.600')}
               variant="flushed"
             />
           </InputGroup>
           <FormHelperText textAlign="left" mb={6}>
-            We&apos;ll never share your address.
+            We&apos;ll never share your address
           </FormHelperText>
 
           <datalist id="addresses" name="addresses">
@@ -130,8 +134,9 @@ function AllJobs() {
             type="submit"
             onClick={submitSearch}
             rightIcon={<FaSearchLocation />}
-            colorScheme="purple"
-            size="lg">
+            colorScheme={useColorModeValue('purple', 'blue')}
+            size="lg"
+          >
             Search
           </Button>
           {error && (
@@ -156,9 +161,8 @@ function AllJobs() {
             )
           })}
         </VStack>
-        {/* Cards of jobs available*/}
-        
-        
+      {/* Cards of jobs available*/}
+
       {/* </SkipNavContent> */}
     </>
   )

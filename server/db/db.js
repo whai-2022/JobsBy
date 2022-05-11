@@ -22,7 +22,7 @@ function getJobById(id, db = connection) {
 }
 
 function addJob(job, db = connection) {
-  return db('jobs').insert(job)
+  return db('jobs').insert(job, ['id'])
 }
 
 function deleteJob(id, db = connection) {

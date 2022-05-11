@@ -3,7 +3,16 @@ import { Link as LinkTo } from 'react-router-dom'
 import { MdVolunteerActivism } from 'react-icons/md'
 import { FaHandHoldingUsd } from 'react-icons/fa'
 
-import { Box, Badge, LinkBox, Icon, Text, Spacer, Circle} from '@chakra-ui/react'
+import {
+  Box,
+  Badge,
+  LinkBox,
+  Icon,
+  Text,
+  Spacer,
+  Circle,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { SkipNavContent } from '@chakra-ui/skip-nav'
 
 function Job({ title, description, pay, region, id, type }) {
@@ -18,7 +27,7 @@ function Job({ title, description, pay, region, id, type }) {
         borderWidth="1px"
         w="100%"
         borderRadius="lg"
-        bg="gray.50"
+        bg={useColorModeValue('gray.50', 'aqua')}
       >
         <SkipNavContent>
           <Box p={2} display="flex" alignItems="baseline">
@@ -66,12 +75,11 @@ function Job({ title, description, pay, region, id, type }) {
           <Box m={2} isTruncated>
             {description}
           </Box>
-          {type == 'paid' ?
-            <Box fontSize='sm'>
-              ${pay}/hr
-            </Box>
-          : <Text fontSize='sm'>Voluntary Role</Text>
-          }
+          {type == 'paid' ? (
+            <Box fontSize="sm">${pay}/hr</Box>
+          ) : (
+            <Text fontSize="sm">Voluntary Role</Text>
+          )}
         </SkipNavContent>
       </LinkBox>
     </>
