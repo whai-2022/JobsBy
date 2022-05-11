@@ -108,7 +108,7 @@ function AcceptedJobs() {
           )
         })}
     </VStack>
-        ) : <p>No jobs :</p>}
+        ) : <p>No jobs</p>}
     </Box>
     </>
   )

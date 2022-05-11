@@ -149,6 +149,7 @@ function AllJobs() {
         </FormControl>
       </Container>
       <VStack spacing={6} m={2}>
+        {jobs.length === 0 && <Text>No jobs available in this region</Text>}
         {jobs.map((job, i) => {
           return (
             <Job
