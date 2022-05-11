@@ -87,12 +87,14 @@ export default function JobDetail() {
           )}
         </Box>
 
-        <Box textAlign="left" m={2}>
-          <Heading as="h3" fontSize="lg" fontWeight="bold">
-            Requirements:
-          </Heading>
-          <Text>{job.requirements}</Text>
-        </Box>
+        {job.requirements && (
+          <Box textAlign="left" m={2}>
+            <Heading as="h3" fontSize="lg" fontWeight="bold">
+              Requirements:
+            </Heading>
+            <Text>{job.requirements}</Text>
+          </Box>
+        )}
 
         <Box textAlign="left" m={2}>
           <Text fontWeight="bold">
@@ -102,9 +104,7 @@ export default function JobDetail() {
 
         {job.email && (
           <Box textAlign="left" m={2}>
-            <Text fontWeight="bold">
-              Email:
-            </Text>
+            <Text fontWeight="bold">Email:</Text>
             {job.email}
           </Box>
         )}
