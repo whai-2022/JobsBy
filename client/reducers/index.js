@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 
-// import stuff from './stuff'
+import jobsReducer from './jobsReducer'
+import myJobsReducer from './myJobsReducer'
 
 export default combineReducers({
-  // stuff
+  jobs: jobsReducer,
+  myJobs: myJobsReducer,
 })

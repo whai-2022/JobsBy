@@ -1,17 +1,52 @@
-import React, { useEffect } from 'react'
-import AddTodo from './AddTodo'
+import React from 'react'
+
+import { Routes, Route } from 'react-router-dom'
+
+import { Container, Box } from '@chakra-ui/react'
+/* a11y: skip Navigation link and destination container for screen readers and keyboard users
+  More info: https://chakra-ui.com/docs/components/navigation/skip-nav */
+import { SkipNavLink } from '@chakra-ui/skip-nav'
+
+// import Header from './Header'
+import Splash from './Splash'
+import Home from './Home'
+import AllJobs from './AllJobs'
+import PostJob from './PostJob'
+import Nav from './Nav'
+import Job from './Job'
+import JobDetail from './JobDetail'
+import MyJobs from './MyJobs'
+import Footer from './Footer'
+// import NavHead from './NavHead'
 
 function App() {
-  useEffect(() => {}, [])
+  //user.sub
 
   return (
     <>
       <header className="header">
-        <h1>todos</h1>
-        <AddTodo />
+        <SkipNavLink>Skip to content</SkipNavLink>
+        {/* <Header /> */}
+        <Nav />
+        {/* <NavHead /> */}
       </header>
-      <section className="main"></section>
-      <footer className="footer"></footer>
+      <main>
+        <Container maxW="container.sm" minH="100vh" textAlign="center" mb={12}>
+          <Routes>
+            <Route path="/" element={<Splash />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/alljobs" element={<AllJobs />} />
+            <Route path="/alljobs/:id" element={<JobDetail />} />
+            <Route path="/postjob" element={<PostJob />} />
+            <Route path="/job" element={<Job />} />
+            {/* TODO: when my profile is made (maybe), we can make this myProfile/myJobs ? */}
+            <Route path="/myJobs" element={<MyJobs />} />
+          </Routes>
+        </Container>
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </>
   )
 }
